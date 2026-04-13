@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E '\\\\.\\(kt|xml|gradle|kts|toml|properties\\)$')",
+      "Bash(./gradlew assembleDebug)",
+      "WebSearch",
+      "WebFetch(domain:www.horydoly.cz)",
+      "WebFetch(domain:www.thecrag.com)",
+      "WebFetch(domain:varp.cz)",
+      "WebFetch(domain:www.aktivtono.cz)",
+      "WebFetch(domain:www.humweb.cz)",
+      "WebFetch(domain:www.skalnioblasti.cz)",
+      "WebFetch(domain:www.horosvaz.cz)",
+      "WebFetch(domain:skalycr.cz)",
+      "Bash(python3 -c ':*)",
+      "Bash(mkdir -p \"C:/Users/PC/AndroidStudioProjects/ClimbLog/app/src/main/assets\")",
+      "Bash(cp \"C:/Users/PC/AndroidStudioProjects/ClimbLog/app/src/data/chs-rocks.json\" \"C:/Users/PC/AndroidStudioProjects/ClimbLog/app/src/main/assets/chs-rocks.json\")",
+      "Bash(wc -c \"C:/Users/PC/AndroidStudioProjects/ClimbLog/app/src/data/\"*.json)",
+      "Bash(node -e ':*)",
+      "Bash(node:*)",
+      "Bash(echo \"Scraper started in background PID: $!\")",
+      "Bash(xargs grep:*)",
+      "Bash(xargs cat:*)",
+      "Bash(./gradlew assembleDebug --info)"
+    ]
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "generatedAt": "2026-04-05T07:57:19.315Z",
+  "source": "https://www.horosvaz.cz/databaze-skal-cr/",
+  "stats": {
+    "regions": 1,
+    "areas": 1,
+    "sectors": 2,
+    "rocks": 2,
+    "routes": 20
+  },
+  "regions": [
+    {
+      "id": 9,
+      "name": "Českomoravská vrchovina",
+      "url": "https://www.horosvaz.cz/skaly-region-9/",
+      "areas": [
+        {
+          "id": 136,
+          "name": "Javořická vrchovina",
+          "url": "https://www.horosvaz.cz/skaly-oblast-136/",
+          "sectors": [
+            {
+              "id": 1049,
+              "name": "Bouldry u Dobré Vody",
+              "url": "https://www.horosvaz.cz/skaly-sektor-1049/",
+              "rocks": [
+                {
+                  "id": 17763,
+                  "name": "Bouldery nad psím hřbitovem",
+                  "url": "https://www.horosvaz.cz/skaly-skala-17763/",
+                  "routes": []
+                }
+              ]
+            },
+            {
+              "id": 1048,
+              "name": "Hradisko - Bradlo",
+              "url": "https://www.horosvaz.cz/skaly-sektor-1048/",
+              "rocks": [
+                {
+                  "id": 15689,
+                  "name": "Bradlo",
+                  "url": "https://www.horosvaz.cz/skaly-skala-15689/",
+                  "routes": [
+                    {
+                      "id": 86921,
+                      "name": "Bernard",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86921/",
+                      "grade": "3+",
+                      "description": "Nástup v pravé části V stěny. Stěnou, výše vpravo spárkou n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86922,
+                      "name": "Svijany",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86922/",
+                      "grade": "2",
+                      "description": "Tupou SV hranou přes blok převisem n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86923,
+                      "name": "Princezna Ingrid",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86923/",
+                      "grade": "7-",
+                      "description": "V L části S stěnky stěnou, výše koutem n. v.",
+                      "firstAscent": "Václav Svoboda"
+                    },
+                    {
+                      "id": 86924,
+                      "name": "Klášter",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86924/",
+                      "grade": "5+",
+                      "description": "Vlevo od koutu S stěnou a přes 2 malé převisy n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86925,
+                      "name": "Březňák",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86925/",
+                      "grade": "1-2",
+                      "description": "Vlevo od strže ve V stěně n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86926,
+                      "name": "Krakonoš",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86926/",
+                      "grade": "4",
+                      "description": "V stěnou přes převísek n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86927,
+                      "name": "Regent",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86927/",
+                      "grade": "2",
+                      "description": "V stěnou, zprava kolem převisu n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86928,
+                      "name": "Smädný Mnich",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86928/",
+                      "grade": "1",
+                      "description": "Koutem v SV hraně n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86929,
+                      "name": "Rebel",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86929/",
+                      "grade": "2+",
+                      "description": "Hranou vpravo od koutu n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86930,
+                      "name": "Staropramen",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86930/",
+                      "grade": "3-",
+                      "description": "Při levé hraně na S vybíhajícího bloku přes 2 převisy n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86931,
+                      "name": "Radegast",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86931/",
+                      "grade": "2",
+                      "description": "Z pravé strany bloku při levé hraně n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86932,
+                      "name": "Ježek 11°",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86932/",
+                      "grade": "2-3",
+                      "description": "Ze strže, při levé straně V stěny n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86933,
+                      "name": "Budvar",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86933/",
+                      "grade": "3",
+                      "description": "Nástup v pravé části V stěny. Vzhůru do trojúhelníkové prohlubně, při její pravé straně n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86934,
+                      "name": "Kelt",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86934/",
+                      "grade": "5+",
+                      "description": "Přímo přes převis, dále stěnou při hraně n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86935,
+                      "name": "Holba",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86935/",
+                      "grade": "6-",
+                      "description": "Nástup v polovině V stěny. Mírně vpravo kolem 1. Bh. , dále stěnou kolem 2 Bh a středem převisu n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86936,
+                      "name": "Mušketýr",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86936/",
+                      "grade": "4",
+                      "description": "Při pravé hraně V stěny členitou stěnou k 1. Bh. Výše vlevo nebo vpravo spárou a položenou stěnou n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86937,
+                      "name": "Eggenberg",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86937/",
+                      "grade": "5",
+                      "description": "S hranou kolem Bh n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86938,
+                      "name": "Javořický ležák",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86938/",
+                      "grade": "5",
+                      "description": "S stěnou kolem Bh na polici (VK), vpravo stěnou n. v.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 86939,
+                      "name": "Kuří voko",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86939/",
+                      "grade": "6+",
+                      "description": "Levou hranou ohraničující n. stupový kout, dále stěnou při levé hraně přes 2 Bh n. v.",
+                      "firstAscent": "Petr Elster, K. Sýkora,začátkem 80.let"
+                    },
+                    {
+                      "id": 86940,
+                      "name": "Bbiirreell",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-86940/",
+                      "grade": "3+",
+                      "description": "Z stěnou n. v.",
+                      "firstAscent": "Michal Plunder, J. Bednář,podzim 1995"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

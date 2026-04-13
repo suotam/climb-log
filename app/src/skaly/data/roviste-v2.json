@@ -1,0 +1,3351 @@
+{
+  "generatedAt": "2026-04-05T16:19:54.449Z",
+  "source": "https://www.horosvaz.cz/databaze-skal-cr/",
+  "schema": {
+    "region": "skaly-region-*",
+    "group": "skaly-oblast-*",
+    "area": "skaly-sektor-*",
+    "sector": "skaly-skala-*",
+    "route": "skaly-cesta-*"
+  },
+  "stats": {
+    "regions": 1,
+    "groups": 1,
+    "areas": 1,
+    "sectors": 18,
+    "routes": 281
+  },
+  "regions": [
+    {
+      "id": 10,
+      "name": "Praha a Střední Čechy",
+      "url": "https://www.horosvaz.cz/skaly-region-10/",
+      "groups": [
+        {
+          "id": 74,
+          "name": "Střední Povltaví",
+          "url": "https://www.horosvaz.cz/skaly-oblast-74/",
+          "official_type": "oblast",
+          "areas": [
+            {
+              "id": 289,
+              "name": "Roviště",
+              "url": "https://www.horosvaz.cz/skaly-sektor-289/",
+              "official_type": "sektor",
+              "gps": {
+                "lat": 49.6605825,
+                "lng": 14.2562719
+              },
+              "sectors": [
+                {
+                  "id": 1520,
+                  "name": "Falkenwand",
+                  "url": "https://www.horosvaz.cz/skaly-skala-1520/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.6620183,
+                    "lng": 14.2534911
+                  },
+                  "routes": [
+                    {
+                      "id": 20428,
+                      "order": 1,
+                      "name": "Konec psích let",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20428/",
+                      "grade": "5+",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Zcela vlevo podél spáry přes tři nýty ke slaňáku.",
+                      "firstAscent": "Roman Blahník,2000"
+                    },
+                    {
+                      "id": 20427,
+                      "order": 2,
+                      "name": "Vltavská linie",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20427/",
+                      "grade": "7-",
+                      "length": "15m",
+                      "rating": null,
+                      "description": "Druhá cesta zleva vedoucí přes dva nýty kolmou zajímavou stěnkou.",
+                      "firstAscent": "František Mezera, R. Blahník,2000"
+                    },
+                    {
+                      "id": 20426,
+                      "order": 3,
+                      "name": "Budweiser",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20426/",
+                      "grade": "8-",
+                      "length": "15m",
+                      "rating": null,
+                      "description": "Nástup ze středu plošiny ve spádnici levého okraje převisu, vzhůru a nad nýtem mírně doleva přes hladkou desku(nt. ) a vzhůru ke slaňáku.",
+                      "firstAscent": "Roman Blahník, F. Mezera,2000"
+                    },
+                    {
+                      "id": 20425,
+                      "order": 4,
+                      "name": "Hundeüberhang",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20425/",
+                      "grade": "8-",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Nástup stejně jako c. Budweiser a pak od 1. nýtu doprava přes stropový převis a stěnkou k poslednímu nýtu c. Žluté nebezpečí, tou na vrchol.",
+                      "firstAscent": "Roman Blahník, F. Mezera,2000"
+                    },
+                    {
+                      "id": 20422,
+                      "order": 5,
+                      "name": "Žluté nebezpečí",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20422/",
+                      "grade": "7",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Ve spádnici pravé hrany velkého převisu je hrana, tou přes nýt do stěny a tou přes další nýt k odštěpu a tím doprava ke slaňáku.",
+                      "firstAscent": "Roman Blahník, F. Mezera,2000"
+                    },
+                    {
+                      "id": 20424,
+                      "order": 6,
+                      "name": "Co bude pak",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20424/",
+                      "grade": "6+",
+                      "length": "17m",
+                      "rating": null,
+                      "description": "Na pravé straně plošiny, vpravo od cesty Žluté nebezpečí přes tři nýty zajímavě vrstvenou stěnou.",
+                      "firstAscent": "František Mezera, R. Blahník,2000"
+                    },
+                    {
+                      "id": 20423,
+                      "order": 7,
+                      "name": "Trhák",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20423/",
+                      "grade": "5",
+                      "length": "17m",
+                      "rating": null,
+                      "description": "Cesta nastupuje úplně vpravo. Kolmou členitou stěnou přes tři nýty k vrcholu.",
+                      "firstAscent": "František Mezera, R. Blahník,2000"
+                    }
+                  ]
+                },
+                {
+                  "id": 1519,
+                  "name": "Žebřík",
+                  "url": "https://www.horosvaz.cz/skaly-skala-1519/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.661966025508,
+                    "lng": 14.253801517189
+                  },
+                  "routes": [
+                    {
+                      "id": 20413,
+                      "order": 1,
+                      "name": "Pulci mlčí",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20413/",
+                      "grade": "6+",
+                      "length": "12m",
+                      "rating": null,
+                      "description": "Přímá varianta cesty \"Žáby kvákaj\". Ve spádnici pilíře mělkou depresí na polici k 1 bh Žab. kvákaj.",
+                      "firstAscent": "Jiří Žižka,23.12.2006"
+                    },
+                    {
+                      "id": 20408,
+                      "order": 2,
+                      "name": "Žáby kvákaj",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20408/",
+                      "grade": "5",
+                      "length": "12m",
+                      "rating": null,
+                      "description": "Koutkem nástupu cesty Mokrý Duše\" na polici, po ní doleva 3 m pod první borhák v pilíři. Odtud přímo po pilíři ke slaň BH. \"",
+                      "firstAscent": "Jiří Žižka, Z. Vaník, L. Vaníková,2006"
+                    },
+                    {
+                      "id": 20407,
+                      "order": 3,
+                      "name": "Mokrý duše",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20407/",
+                      "grade": "6-",
+                      "length": "14m",
+                      "rating": null,
+                      "description": "Cesta nastupuje vlevo téměř od vody, malým koutkem. Pak přechází ve stěnu kterou pokračujete až k pilíři (poslední nýt) a jeho hladkou stěnou na vrchol. Nahoře není slaňák(strom).",
+                      "firstAscent": "Zdeněk Dušek, F. Mezera, K. Šolarová,1996"
+                    },
+                    {
+                      "id": 20418,
+                      "order": 4,
+                      "name": "Splněný sen",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20418/",
+                      "grade": "8-",
+                      "length": "14m",
+                      "rating": null,
+                      "description": "Nástup ve sníženém místě vpravo od cesty Mokrý duše. Kolmou stěnou po neberoucích bočácích a ( nýt, pestr) oblanech. Přes další tři nýty a dolez mírně doprava ke třetímu nýtu c. Boží návraty.",
+                      "firstAscent": "Petr Obst,2000"
+                    },
+                    {
+                      "id": 20419,
+                      "order": 5,
+                      "name": "Boží návraty",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20419/",
+                      "grade": "7-",
+                      "length": "12m",
+                      "rating": null,
+                      "description": "Asi dva metry vlevo od hrany. Lehce členitou stěnkou k vysoko danému nýtu. Pak přes dva další mírně převislou členitou stěnou na vrchol ke slaňáku.",
+                      "firstAscent": "František Mezera, K. Šolarová,1996"
+                    },
+                    {
+                      "id": 20410,
+                      "order": 6,
+                      "name": "Leonardovo delirium",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20410/",
+                      "grade": "5",
+                      "length": "14m",
+                      "rating": null,
+                      "description": "Mírně vlevo od oblé hrany podél spáry. Nýt a pak mírně doprave za hranu přes další nýt na vrchol. ( sl. )",
+                      "firstAscent": "Zdeněk Dušek, J. Šefl,1996"
+                    },
+                    {
+                      "id": 20412,
+                      "order": 7,
+                      "name": "Jak je libo varianta",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20412/",
+                      "grade": "4",
+                      "length": "13m",
+                      "rating": null,
+                      "description": "Nástup po výrazné trhlině tou šikmo doprava až k prvnímu nýtu c. Jak je libo. Tou pak na vrchol.",
+                      "firstAscent": "Zdeněk Dušek, J. Šefl,1996"
+                    },
+                    {
+                      "id": 20417,
+                      "order": 8,
+                      "name": "Jak je libo",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20417/",
+                      "grade": "4",
+                      "length": "13m",
+                      "rating": null,
+                      "description": "Nástup v boční stěně, vlevo od žebříku. Přes dva nýty ke slaňáku.",
+                      "firstAscent": "Zdeněk Dušek, J. Šefl,1996"
+                    },
+                    {
+                      "id": 20416,
+                      "order": 9,
+                      "name": "Pro trpaslíky a ještě menší",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20416/",
+                      "grade": "4",
+                      "length": "8m",
+                      "rating": null,
+                      "description": "Hned nalevo od sestupového žebříku položená cesta s mnoha nýty. Ideální pro malé.",
+                      "firstAscent": "Zdeněk Dušek,1996"
+                    },
+                    {
+                      "id": 118104,
+                      "order": 10,
+                      "name": "Random bordel",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-118104/",
+                      "grade": "3",
+                      "length": "13m",
+                      "rating": null,
+                      "description": "Pěkným koutem a výše spárou vpravo od cesty \"Pro trpaslíky a ještě menší\" ke slanění. Jištění vlastní, vhodné větší friendy.",
+                      "firstAscent": "Blanka Pechačová,8. 9. 2023"
+                    },
+                    {
+                      "id": 118650,
+                      "order": 11,
+                      "name": "Žebřík",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-118650/",
+                      "grade": "3",
+                      "length": "8m",
+                      "rating": null,
+                      "description": "Vpravo vedle žebříku po pilíři ke sl.",
+                      "firstAscent": "Martin Tučka, M. Tučková,14.4.2018"
+                    },
+                    {
+                      "id": 20411,
+                      "order": 12,
+                      "name": "Hodina H",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20411/",
+                      "grade": "6",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Vlevo od cesty Štěstí v koutě\" přes 3 bh a dále cestou Štěstí v koutě ke slaňáku. \"",
+                      "firstAscent": "František Mezera, J. Žižka, Z. Vaník,2006"
+                    },
+                    {
+                      "id": 20421,
+                      "order": 13,
+                      "name": "Štěstí v koutě",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20421/",
+                      "grade": "6",
+                      "length": "14m",
+                      "rating": null,
+                      "description": "Nástup mírně vpravo od převislého koutku pak dále přes 4 nt. na vrch.",
+                      "firstAscent": "František Mezera, K. Šolarová,1996"
+                    },
+                    {
+                      "id": 20415,
+                      "order": 14,
+                      "name": "Vibrátor",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20415/",
+                      "grade": "6+",
+                      "length": "14m",
+                      "rating": null,
+                      "description": "Dole kolmou stěnou. Pak vhloubením a nahoře plotnou.",
+                      "firstAscent": "Zdeněk Dušek, F. Mezera, K. Šolarová, J. Šefl,1996"
+                    },
+                    {
+                      "id": 20420,
+                      "order": 15,
+                      "name": "Dobrej zvyk",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20420/",
+                      "grade": "7",
+                      "length": "17m",
+                      "rating": null,
+                      "description": "Nástup vlevo od kouta a vlevo od cesty Mr. Beer. Hladkou stěnou přes dva nýty pod převis a namáhavě přes něj a přes další tři nýty k vrcholu",
+                      "firstAscent": "Zdeněk Dušek, F. Mezera,1996"
+                    },
+                    {
+                      "id": 20409,
+                      "order": 16,
+                      "name": "Mr. Beer",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20409/",
+                      "grade": "7+",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Koutem přes dva nýty pod převis, boulder přímo přes něj, dále přes dva nýty ke slaňáku.",
+                      "firstAscent": "František Mezera, O. Sobotka, K. Šolarová,1997"
+                    },
+                    {
+                      "id": 20414,
+                      "order": 17,
+                      "name": "Fifty pifty",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20414/",
+                      "grade": "5",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Stejně jako cesta Mr. Beer, ale u prvního doprava obloukem se obejde převis. (2 nt. ) a vrátí se k 4. nýtu c. Mr. Beer. Tou na vrchol.",
+                      "firstAscent": "František Mezera, Z. Dušek,199?"
+                    }
+                  ]
+                },
+                {
+                  "id": 1518,
+                  "name": "Stěna podvodníků",
+                  "url": "https://www.horosvaz.cz/skaly-skala-1518/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.6617536,
+                    "lng": 14.2541214
+                  },
+                  "routes": [
+                    {
+                      "id": 20406,
+                      "order": 1,
+                      "name": "Nejištěná",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20406/",
+                      "grade": "6+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Zdeněk Vaník, J. Zachariáš,2003"
+                    },
+                    {
+                      "id": 20405,
+                      "order": 2,
+                      "name": "Ari - bary",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20405/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Hladkou plotnou pod převísek, přes něj a plotýnkami ke slaňáku. Návrh na změnu klasifikace: 6+",
+                      "firstAscent": "František Mezera, K. Šolarová,2003"
+                    },
+                    {
+                      "id": 20404,
+                      "order": 3,
+                      "name": "Říční kolotoč",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20404/",
+                      "grade": "5+",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Vpravo od Ari - Bary hladkou plotnou pod převis s ostrým zářezem ve hraně, lehce doprava a kolmou stěnkou ke slaňáku. Lezitelné jen za nízkého stavu vody.",
+                      "firstAscent": "Jiří Žižka,2002"
+                    },
+                    {
+                      "id": 20394,
+                      "order": 4,
+                      "name": "Žula nevaruje varianta",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20394/",
+                      "grade": "5",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, R. Blahník,1999"
+                    },
+                    {
+                      "id": 20403,
+                      "order": 5,
+                      "name": "Žula nevaruje",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20403/",
+                      "grade": "6",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Roman Blahník, F. Mezera,1999"
+                    },
+                    {
+                      "id": 20402,
+                      "order": 6,
+                      "name": "Jako brus",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20402/",
+                      "grade": "5",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, R. Blahník,1999"
+                    },
+                    {
+                      "id": 20401,
+                      "order": 7,
+                      "name": "Jako brus varianta",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20401/",
+                      "grade": "5",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, R. Blahník,1999"
+                    },
+                    {
+                      "id": 20400,
+                      "order": 8,
+                      "name": "Dávej bacha",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20400/",
+                      "grade": "6",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, R. Blahník,1999"
+                    },
+                    {
+                      "id": 20393,
+                      "order": 9,
+                      "name": "Zdeňku, máš ho",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20393/",
+                      "grade": "8-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Roman Blahník, F. Mezera,1999"
+                    },
+                    {
+                      "id": 20399,
+                      "order": 10,
+                      "name": "Pozdrav do Labáku",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20399/",
+                      "grade": "7+/8-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Roman Blahník, F. Mezera,1999"
+                    },
+                    {
+                      "id": 20398,
+                      "order": 11,
+                      "name": "Malý věci",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20398/",
+                      "grade": "7+/8-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Roman Blahník, F. Mezera,1999"
+                    },
+                    {
+                      "id": 20397,
+                      "order": 12,
+                      "name": "Hyperbola",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20397/",
+                      "grade": "7-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, R. Blahník,1999"
+                    },
+                    {
+                      "id": 20392,
+                      "order": 13,
+                      "name": "Pár vět",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20392/",
+                      "grade": "7-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, R. Blahník,1999"
+                    },
+                    {
+                      "id": 20396,
+                      "order": 14,
+                      "name": "Městečko na dlani",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20396/",
+                      "grade": "8+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Roman Blahník, P. Obst,1999"
+                    },
+                    {
+                      "id": 20395,
+                      "order": 15,
+                      "name": "Ruleta",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20395/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 2,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, R. Blahník,1999"
+                    },
+                    {
+                      "id": 98675,
+                      "order": 16,
+                      "name": "Uzavřené oddělení",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-98675/",
+                      "grade": "7-",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Vpravo od cesty Ruleta (mezi cestami Ruleta a Blázinec) stěnou přes 4BH na polici a dále stěnou přes 2BH ke slanění.",
+                      "firstAscent": "Roman Blahník, F. Mezera,6.2918"
+                    },
+                    {
+                      "id": 98673,
+                      "order": 17,
+                      "name": "Blázinec",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-98673/",
+                      "grade": "5",
+                      "length": "27m",
+                      "rating": null,
+                      "description": "Vpravo od Rulety po polici šíkmo doorava a před stěnku n. t.",
+                      "firstAscent": "František Mezera, R. Krčmář,27.5.2918"
+                    }
+                  ]
+                },
+                {
+                  "id": 4394,
+                  "name": "Hřbitovní stěna",
+                  "url": "https://www.horosvaz.cz/skaly-skala-4394/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.6615669,
+                    "lng": 14.2547947
+                  },
+                  "routes": [
+                    {
+                      "id": 20380,
+                      "order": 1,
+                      "name": "Vytočenka",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20380/",
+                      "grade": "6",
+                      "length": "13m",
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, P. Obst,1999"
+                    },
+                    {
+                      "id": 20379,
+                      "order": 2,
+                      "name": "Znojmo",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20379/",
+                      "grade": "4",
+                      "length": "9m",
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera,1999"
+                    },
+                    {
+                      "id": 20390,
+                      "order": 3,
+                      "name": "Koryto",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20390/",
+                      "grade": "6-",
+                      "length": "12m",
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, K. Šolarová,1996"
+                    },
+                    {
+                      "id": 20389,
+                      "order": 4,
+                      "name": "Lehká země",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20389/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, K. Šolarová,1998"
+                    },
+                    {
+                      "id": 20377,
+                      "order": 5,
+                      "name": "Hudba hor",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20377/",
+                      "grade": "7-",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, K. Šolarová, V. Lhotka,1997"
+                    },
+                    {
+                      "id": 20391,
+                      "order": 6,
+                      "name": "Krásná zem",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20391/",
+                      "grade": "7-",
+                      "length": "19m",
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "P. Kamarád, R. Sýkora,1998"
+                    },
+                    {
+                      "id": 20388,
+                      "order": 7,
+                      "name": "Polnice západu",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20388/",
+                      "grade": "6-",
+                      "length": "19m",
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, J. Masner, V. Lhotka,1998"
+                    },
+                    {
+                      "id": 20387,
+                      "order": 8,
+                      "name": "Pohyby",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20387/",
+                      "grade": "7",
+                      "length": "21m",
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Petr Obst, F. Mezera,1997"
+                    },
+                    {
+                      "id": 20386,
+                      "order": 9,
+                      "name": "Španělský lži",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20386/",
+                      "grade": "8+",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Roman Blahník,1999"
+                    },
+                    {
+                      "id": 97284,
+                      "order": 10,
+                      "name": "Jang Jin",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-97284/",
+                      "grade": "9+",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Vpravo od cesty Španělský lži nad posledním nýtem ze spoďáku spárou",
+                      "firstAscent": "Petr Obst,2005"
+                    },
+                    {
+                      "id": 20385,
+                      "order": 11,
+                      "name": "Život, vesmír a vůbec",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20385/",
+                      "grade": "9",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Roman Blahník,1999"
+                    },
+                    {
+                      "id": 20384,
+                      "order": 12,
+                      "name": "Kirsie Holmworth",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20384/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Popis chybí",
+                      "firstAscent": "Petr Obst,2003"
+                    },
+                    {
+                      "id": 20383,
+                      "order": 13,
+                      "name": "Direkt harmony",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20383/",
+                      "grade": "8+",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Roman Blahník,1998"
+                    },
+                    {
+                      "id": 20376,
+                      "order": 14,
+                      "name": "Superharmonie",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20376/",
+                      "grade": "8",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Roman Blahník, P. Obst,2004"
+                    },
+                    {
+                      "id": 20382,
+                      "order": 15,
+                      "name": "Démon",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20382/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Popis chybí",
+                      "firstAscent": "Roman Blahník, F. Mezera,1999"
+                    },
+                    {
+                      "id": 20381,
+                      "order": 16,
+                      "name": "Harmonie",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20381/",
+                      "grade": "8-/8",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Petr Obst, M. Obst, F. Mezera,1998"
+                    },
+                    {
+                      "id": 20378,
+                      "order": 17,
+                      "name": "Disharmonie",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20378/",
+                      "grade": "8",
+                      "length": "22m",
+                      "rating": null,
+                      "description": "Cestou \"Direkt Harmony\" k předposlednímu nýtu. Od něj šíkmo doleva a přes poslednímu nýt cesty \"Kirsie\" k jeho slaňáku.",
+                      "firstAscent": "Emil Pohořelský,2010"
+                    },
+                    {
+                      "id": 97285,
+                      "order": 18,
+                      "name": "Kirsie Eleison",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-97285/",
+                      "grade": "8+/9-",
+                      "length": "22m",
+                      "rating": null,
+                      "description": "Cestou Kirsie Holmworth k předposlednímu BH, od něj doprava k předposlednímu BH cestou Direkt Hharmony. Od něj přímo ke slaňáku.",
+                      "firstAscent": "Emil Pohořelský,2010"
+                    }
+                  ]
+                },
+                {
+                  "id": 1517,
+                  "name": "Canyon",
+                  "url": "https://www.horosvaz.cz/skaly-skala-1517/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.66158,
+                    "lng": 14.2548903
+                  },
+                  "routes": [
+                    {
+                      "id": 20375,
+                      "order": 1,
+                      "name": "Balsam",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20375/",
+                      "grade": "5+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, K. Šolarová,1995"
+                    },
+                    {
+                      "id": 20371,
+                      "order": 2,
+                      "name": "Koridor",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20371/",
+                      "grade": "5+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, K. Šolarová,1995"
+                    },
+                    {
+                      "id": 20374,
+                      "order": 3,
+                      "name": "Very athletic",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20374/",
+                      "grade": "7+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, K. Šolarová, Z. Dušek,1995"
+                    },
+                    {
+                      "id": 20373,
+                      "order": 4,
+                      "name": "Jack Daniels",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20373/",
+                      "grade": "5",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Z. Mikeš, F. Mezera, K. Šolarová,1995"
+                    },
+                    {
+                      "id": 20372,
+                      "order": 5,
+                      "name": "Koutek",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20372/",
+                      "grade": "3",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Květa Šolarová,1995"
+                    }
+                  ]
+                },
+                {
+                  "id": 4393,
+                  "name": "Hranol",
+                  "url": "https://www.horosvaz.cz/skaly-skala-4393/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.6614428,
+                    "lng": 14.2550106
+                  },
+                  "routes": [
+                    {
+                      "id": 99898,
+                      "order": 1,
+                      "name": "Ježeček",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-99898/",
+                      "grade": "5",
+                      "length": "13m",
+                      "rating": null,
+                      "description": "Zcela vlevo položenou členitou stěnkou přes 2 bh mírně doprava ke společnému slaňáku s Frantíkovo kotvičkami.",
+                      "firstAscent": "František Mezera, R. Blahník,2006"
+                    },
+                    {
+                      "id": 20360,
+                      "order": 2,
+                      "name": "Frantíkovo kotvičky",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20360/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Dole položená lehce zarostlá plotna (bh), potom členitá kolmá stěna s 5 bh mírně doleva ke slaňáku společnému s Ježečkem.",
+                      "firstAscent": "Petr Obst, R. Blahník,3.12.2005"
+                    },
+                    {
+                      "id": 99899,
+                      "order": 3,
+                      "name": "Ďubal's route",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-99899/",
+                      "grade": "5+",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Vpravo od Františkovo kotviček přes 4 bh ke slaňáku.",
+                      "firstAscent": "František Mezera, R. Blahník, R. Kostelníková,2006"
+                    },
+                    {
+                      "id": 99900,
+                      "order": 4,
+                      "name": "Tatranská",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-99900/",
+                      "grade": "4",
+                      "length": "17m",
+                      "rating": null,
+                      "description": "Plotnou pod koutek a jím přes nýt mírně doprava ke slaňáku cesty Černý pás.",
+                      "firstAscent": "Roman Blahník, F. Mezera,2006"
+                    },
+                    {
+                      "id": 20362,
+                      "order": 5,
+                      "name": "Černý pás",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20362/",
+                      "grade": "8-/8",
+                      "length": "17m",
+                      "rating": null,
+                      "description": "Vlevo od cesty \"Jedličkárna\" položenou výše převislou stěnou přes 4 bh pod převis. Přes převis 5. bh a vlevo při hraně ke slanění.",
+                      "firstAscent": "Roman Blahník, P. Obst,2010"
+                    },
+                    {
+                      "id": 99901,
+                      "order": 6,
+                      "name": "Šestinedělí",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-99901/",
+                      "grade": "6",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Nástup jako Černý pás, od 1. nýtu doprava přes výšvihy ostře řezané hrany.",
+                      "firstAscent": "František Mezera, R. Blahník,2006"
+                    },
+                    {
+                      "id": 20370,
+                      "order": 7,
+                      "name": "Jedličkárna",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20370/",
+                      "grade": "5",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Koutem uprostřed údolní stěny po schodovitých výšvizích, nahoře stěnkou ke slaňáku. První kruh vysoko.",
+                      "firstAscent": "František Mezera, K. Šolarová, P. Soukal,1994"
+                    },
+                    {
+                      "id": 20358,
+                      "order": 8,
+                      "name": "Myčkárna",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20358/",
+                      "grade": "5+",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Vpravo od Jedličkárny, dolez stejný",
+                      "firstAscent": "František Mezera, K. Šolarová,2000"
+                    },
+                    {
+                      "id": 20357,
+                      "order": 9,
+                      "name": "29 zmijí",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20357/",
+                      "grade": "6-",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Mezi Myčkárnou a Marabu středem stěny do cesty Stověžatá paka a tou ke sl.",
+                      "firstAscent": "Jaroslav Ježek, E. Holíková, P. Holík,5.7.2013"
+                    },
+                    {
+                      "id": 20361,
+                      "order": 10,
+                      "name": "Marabu",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20361/",
+                      "grade": "5",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Od nápisu na skále přímo vzhůru přes zarostlé schodovité bloky a cestou Stověžatá paka ke sl.",
+                      "firstAscent": "František Mezera,200?"
+                    },
+                    {
+                      "id": 20369,
+                      "order": 11,
+                      "name": "Sviť měsíčku sviť",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20369/",
+                      "grade": "4",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Vzhůru, doprava přes Stověžatá paka a obloukem doleva zpátky křižuje podruhé Stověžatá paka u jejich 3. nýtu a doleva ke slaňáku Jedličkárny.",
+                      "firstAscent": "Jaromír Masner, R. Číp,1995"
+                    },
+                    {
+                      "id": 20368,
+                      "order": 12,
+                      "name": "Stověžatá paka",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20368/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Koutem v údolní stěně (bh) doleva na polici (bh), položenou plotnou (bh) pod kolmý stupeň a jím pomocí trhliny (bh) ke slanění.",
+                      "firstAscent": "František Mezera, Z. Mikeš,2000"
+                    },
+                    {
+                      "id": 119150,
+                      "order": 13,
+                      "name": "Nová Paka",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-119150/",
+                      "grade": "6-",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Nástup koutem (bh) jako Stověžatá a dále přímo přes pět stříbrňáků přes polici a stěnou ke slanění.",
+                      "firstAscent": "František Mezera,200?"
+                    },
+                    {
+                      "id": 20367,
+                      "order": 14,
+                      "name": "Psí léta",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20367/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 3,
+                      "description": "Krátkou stěnkou přímo přes 2 nýty ke společnému sl. s cestou Megahu.",
+                      "firstAscent": "František Mezera, K. Šolarová, P. Soukal,1995"
+                    },
+                    {
+                      "id": 20366,
+                      "order": 15,
+                      "name": "Megahu",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20366/",
+                      "grade": "6",
+                      "length": "9m",
+                      "rating": null,
+                      "description": "Krátkou stěnkou zprava přes nýt ke společnému slanění s cestou Psí léta.",
+                      "firstAscent": "Z. Mikeš, F. Mezera,2000"
+                    },
+                    {
+                      "id": 20365,
+                      "order": 16,
+                      "name": "Div divoucí",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20365/",
+                      "grade": "5-",
+                      "length": "19m",
+                      "rating": null,
+                      "description": "Napravo od cesty Megahu stěnou přes 4 nýty nahoru ke slanění.",
+                      "firstAscent": "Jaromír Masner, K. Šolarová, F. Mezera,2000"
+                    },
+                    {
+                      "id": 20364,
+                      "order": 17,
+                      "name": "Západní sokolík",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20364/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Od hrany koutem šikmo doleva pod převis a sokolíkem přes 2 kruhy, nakonec doprava ke sl.",
+                      "firstAscent": "František Mezera, K. Šolarová, P. Soukal,1993"
+                    },
+                    {
+                      "id": 20363,
+                      "order": 18,
+                      "name": "Švih do prázdna",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20363/",
+                      "grade": "6-",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Nástup jako Sněžná hrana a od 1. kruhu přes 2 nýty ke sl.",
+                      "firstAscent": "František Mezera, Z. Vaník,2005"
+                    },
+                    {
+                      "id": 20359,
+                      "order": 19,
+                      "name": "Sněžná hrana",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20359/",
+                      "grade": "5+",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Nástup koutem jako Západní sokolík, doprava spárou k 1. kruhu, přes převis na hranu a 2. kruh ke společnému sl.",
+                      "firstAscent": "František Mezera, K. Šolarová, P. Soukal,1993"
+                    },
+                    {
+                      "id": 118118,
+                      "order": 20,
+                      "name": "Hrana zprava",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-118118/",
+                      "grade": "4",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Nástup po hraně pod 1. kr. doprava a po pravé poklopené straně stěny Hranolu, vpravo od cesty Sněžná hrana na temeno.",
+                      "firstAscent": "Zdeněk Vaník, L. Vaníková,2005"
+                    }
+                  ]
+                },
+                {
+                  "id": 4573,
+                  "name": "Trůn (El Krakonoš)",
+                  "url": "https://www.horosvaz.cz/skaly-skala-4573/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.6613714,
+                    "lng": 14.2551842
+                  },
+                  "routes": [
+                    {
+                      "id": 23905,
+                      "order": 1,
+                      "name": "Index žízně",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23905/",
+                      "grade": "7",
+                      "length": "25m",
+                      "rating": null,
+                      "description": "Levou hladkou stěnou kolem přes 2 bh, přes cest \"Matterhornská žízeň\", dále stěnou a převisem (9 bh) ke sl.",
+                      "firstAscent": "František Mezera, R. Blahník,1999"
+                    },
+                    {
+                      "id": 23904,
+                      "order": 2,
+                      "name": "Matterhornská žízeň",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23904/",
+                      "grade": "5+",
+                      "length": "25m",
+                      "rating": null,
+                      "description": "Koutem (kruh) dále koutem kolem stromu (kruh) do převísků (2 kruhy) a dále přes kruh ke sl.",
+                      "firstAscent": "Pavel Soukal, K. Šolarová,1993"
+                    },
+                    {
+                      "id": 23903,
+                      "order": 3,
+                      "name": "Strýc Amplion",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23903/",
+                      "grade": "6+",
+                      "length": "25m",
+                      "rating": null,
+                      "description": "Přes velkou šupinu (2 bh) položenou a kolmou stěnou přes odštěp a sokolíky (6 bh) ke sl.",
+                      "firstAscent": "Zdeněk Dušek, J. Šefl,1993"
+                    },
+                    {
+                      "id": 23902,
+                      "order": 4,
+                      "name": "Babylon",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23902/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Výrazným doleva ubíhajícím koutem v levé části Trůnu, který se posléze napřimuje, 9 bh. Klasika. Je třeba dát pozor na lokry, ne všechno drží pevně.",
+                      "firstAscent": "František Mezera, K. Šolarová, V. Lhotka,1998"
+                    },
+                    {
+                      "id": 23901,
+                      "order": 5,
+                      "name": "Cesta proviantního náčelníka",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23901/",
+                      "grade": "7",
+                      "length": "28m",
+                      "rating": null,
+                      "description": "Hranou nalevo u cesty Babylon na úroveň 4. jištění a vpravo do stěny (2 stříbrné bh) a na polici, přes 3 bh a odštěp ke slanění.",
+                      "firstAscent": "Jiří Nedbal, P. Coufal,1993"
+                    },
+                    {
+                      "id": 23900,
+                      "order": 6,
+                      "name": "Nejdelší vandr",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23900/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Vpravo u cesty Babylon, nástup přes hodiny (bh). Kolmou stěnou (5 nýtů) po lištách na polici ke sl.",
+                      "firstAscent": "František Mezera, K. Šolarová,1995"
+                    },
+                    {
+                      "id": 23908,
+                      "order": 7,
+                      "name": "Malý dny",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23908/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Vpravo vedle cesty \"Nejdelší vandr\" kolmou a mírně převislou stěnou po jemných lištách na polici ke slanění.",
+                      "firstAscent": "František Mezera, J. Šefl, K. Šolarová,1994"
+                    },
+                    {
+                      "id": 23899,
+                      "order": 8,
+                      "name": "Dlouhý noci",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23899/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Nalevo od Cesty pro Borynku, dlouhá cesta vhloubením (6 bh) ke sl. vlevo.",
+                      "firstAscent": "František Mezera, K. Šolarová, V. Lhotka,2001"
+                    },
+                    {
+                      "id": 23898,
+                      "order": 9,
+                      "name": "Obezity reality",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23898/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Pilířem nalevo od Cesty pro Borynku přes 4 bh ke společnému sl.",
+                      "firstAscent": "František Mezera, K. Šolarová, V. Lhotka,1998"
+                    },
+                    {
+                      "id": 23897,
+                      "order": 10,
+                      "name": "Cesta pro Borynku",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23897/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 3,
+                      "description": "Přes stupně a koutem na předskalí (bh) stěnou 2 bh a závěrečným koutem na polici ke sl. (knížka).",
+                      "firstAscent": "František Mezera, K. Šolarová, V. Lhotka,1998"
+                    },
+                    {
+                      "id": 23896,
+                      "order": 11,
+                      "name": "Lodní zvon",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23896/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 3,
+                      "description": "Šestka mezi cestou Pro Borynku a Zelenej list. Těžší kolem 2. bh.",
+                      "firstAscent": "František Mezera, K. Šolarová, V. Lhotka,2001"
+                    },
+                    {
+                      "id": 23910,
+                      "order": 12,
+                      "name": "Zelenej list",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23910/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Kolmou až lehce převislou stěnou přes 5 bh k řetězu.",
+                      "firstAscent": "František Mezera, K. Šolarová, V. Lhotka,1998"
+                    },
+                    {
+                      "id": 23895,
+                      "order": 13,
+                      "name": "Duševní azyl direkt",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23895/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Narovnání (2 bh) cesty Duševní azyl (3 očka).",
+                      "firstAscent": "František Mezera,199?"
+                    },
+                    {
+                      "id": 23909,
+                      "order": 14,
+                      "name": "Duševní azyl",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23909/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Zleva na předskalí vpravo, mírně doleva přes 5 oček na polici k řetězu.",
+                      "firstAscent": "František Mezera, O. Sobotka,199?"
+                    },
+                    {
+                      "id": 119171,
+                      "order": 15,
+                      "name": "Vize",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-119171/",
+                      "grade": "10-",
+                      "length": "22m",
+                      "rating": null,
+                      "description": "Od 1. bh cesty Duševní azyl přímo hladkou stěnou. Neberou se chyty vpravo za bh cesty Proti větru ani za výraznou levou oblou spárou, která protíná celou stěnu.",
+                      "firstAscent": "Martin Spilka,1.11.2020"
+                    },
+                    {
+                      "id": 23907,
+                      "order": 16,
+                      "name": "Proti větru",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23907/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 3,
+                      "description": "Zprava na balkonek (bh) a linií 4 bh stěnou až pod převis a zleva (3 bh) ke sl. u \"České cesty\".",
+                      "firstAscent": "Petr Obst, M. Obst, F. Mezera,1997"
+                    },
+                    {
+                      "id": 23894,
+                      "order": 17,
+                      "name": "Pán větrů",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23894/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 2,
+                      "description": "Zleva na převis cesty \"Proti větru\" (bh), stěnou (4 bh) a přímo (zprava, 3 bh) na vrchol ke sl.",
+                      "firstAscent": "Petr Obst, R. Blahník,2004"
+                    },
+                    {
+                      "id": 23886,
+                      "order": 18,
+                      "name": "Česká cesta",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23886/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Z předskalí stěnou přes 5 kruhů, přes 1 bh pod převisem doleva (bh) a koutem (2 bh) na vrchol ke sl.",
+                      "firstAscent": "František Mezera, O. Sobotka,1993"
+                    },
+                    {
+                      "id": 23893,
+                      "order": 19,
+                      "name": "Džezbalet",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23893/",
+                      "grade": "9",
+                      "length": "26m",
+                      "rating": null,
+                      "description": "Českou cestou pod převis a přes 3 bh přímo převisem ke sl.",
+                      "firstAscent": "Martin Laštovička,1998"
+                    },
+                    {
+                      "id": 23892,
+                      "order": 20,
+                      "name": "El Krakonoš",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23892/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Nástup jako \"Česká cesta\" a přímo stěnou přes nýty, smici a kruhy ke sl.",
+                      "firstAscent": "Ondřej Huml, O. Sobotka,1994"
+                    },
+                    {
+                      "id": 23885,
+                      "order": 21,
+                      "name": "Ruce vzhůru",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23885/",
+                      "grade": "7",
+                      "length": "25m",
+                      "rating": null,
+                      "description": "Na polici předskalí a stěnou přes bh na polici ke slanění Vltavské cesty za pravou hranou.",
+                      "firstAscent": "František Mezera, K. Šolarová,1994"
+                    },
+                    {
+                      "id": 23906,
+                      "order": 22,
+                      "name": "Vltavská cesta",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23906/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Nástup u nápisu přes 1 bh na předskalí. Přes 4 kroužky kolmou stěnou na polici ke slaňáku. Pod 1. kruhem možno založit friend.",
+                      "firstAscent": "František Mezera, K. Šolarová,1993"
+                    },
+                    {
+                      "id": 119170,
+                      "order": 23,
+                      "name": "Projekt",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-119170/",
+                      "grade": "1",
+                      "length": null,
+                      "rating": null,
+                      "description": "Projekt; Vltavskou cestou (1 bh, 4 kruhy) a dále krátkou stěnkou přes 2 bh ke sl.",
+                      "firstAscent": "Radek Záveský,projekt"
+                    },
+                    {
+                      "id": 23888,
+                      "order": 24,
+                      "name": "Palmovka",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23888/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Napravo vedle \"Vltavské cesty\", koutem a členitou stěnou přes účka na polici ke sl.",
+                      "firstAscent": "František Mezera, K. Šolarová, V. Lhotka,1998"
+                    },
+                    {
+                      "id": 23891,
+                      "order": 25,
+                      "name": "Dávný touhy",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23891/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Koutkem (smyčka) a mírně převislou stěnou přes 5 nýtů ke sl.",
+                      "firstAscent": "František Mezera, K. Šolarová,1994"
+                    },
+                    {
+                      "id": 23890,
+                      "order": 26,
+                      "name": "Mozol",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23890/",
+                      "grade": "6+",
+                      "length": "25m",
+                      "rating": null,
+                      "description": "Nástup cestou \"Dávný touhy\" (smyčka, 2 nýty) a vpravo přes 2 nýty na polici ke sl.",
+                      "firstAscent": "František Mezera, E. Tesař,2000"
+                    },
+                    {
+                      "id": 23889,
+                      "order": 27,
+                      "name": "Tětiva",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23889/",
+                      "grade": "7",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Cesta stěnou přes převísek (5 nýtů) ke sl.",
+                      "firstAscent": "František Mezera, K. Šolarová, Z. Dušek,1994"
+                    },
+                    {
+                      "id": 23887,
+                      "order": 28,
+                      "name": "Bumerang",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23887/",
+                      "grade": "6",
+                      "length": "17m",
+                      "rating": null,
+                      "description": "Napravo u cesty \"Tětiva\", širokou zahnutou spárou přes 3 nýty ke sl.",
+                      "firstAscent": "František Mezera, K. Šolarová, Z. Dušek,1994"
+                    }
+                  ]
+                },
+                {
+                  "id": 1516,
+                  "name": "Dračí stěna",
+                  "url": "https://www.horosvaz.cz/skaly-skala-1516/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.6613092,
+                    "lng": 14.2553728
+                  },
+                  "routes": [
+                    {
+                      "id": 20352,
+                      "order": 1,
+                      "name": "Vokno",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20352/",
+                      "grade": "6",
+                      "length": "17m",
+                      "rating": null,
+                      "description": "Nástup zleva nebo přímo a přes okno (3 nýty, vlastní).",
+                      "firstAscent": "František Mezera, O. Sobotka,1993"
+                    },
+                    {
+                      "id": 20351,
+                      "order": 2,
+                      "name": "Laštovičník",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20351/",
+                      "grade": "7",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Nástup jako Vokno (1. nýt) a přes 2 nýty zprava ke sl.",
+                      "firstAscent": "Petr Obst,2000"
+                    },
+                    {
+                      "id": 20350,
+                      "order": 3,
+                      "name": "Minuta ticha",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20350/",
+                      "grade": "5",
+                      "length": "17m",
+                      "rating": null,
+                      "description": "2 nýty",
+                      "firstAscent": "Ondřej Sobotka, F. Mezera,1993"
+                    },
+                    {
+                      "id": 20349,
+                      "order": 4,
+                      "name": "Lásky jedné plavovlásky",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20349/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Cesta vede hranou na balkón, dále stále mírně doleva hranou (1. bh) a přes 5 hb. ke slaňáku.",
+                      "firstAscent": "František Mezera, K. Šolarová, Najman,1999"
+                    },
+                    {
+                      "id": 20354,
+                      "order": 5,
+                      "name": "Poslední kovboj",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20354/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 3,
+                      "description": "Přes převislou stěnku (bh) vlevo od kouta cesty \"S krčmou v zádech\" přes 6 bh mírně doleva ke slaňáku. Stříbrné bh.",
+                      "firstAscent": "František Mezera, K. Šolarová,1995"
+                    },
+                    {
+                      "id": 20348,
+                      "order": 6,
+                      "name": "S krčmou v zádech",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20348/",
+                      "grade": "4",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "E. Tesař, J. Šefl,1993"
+                    },
+                    {
+                      "id": 20343,
+                      "order": 7,
+                      "name": "Azbest",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20343/",
+                      "grade": "7",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, K. Šolarová,1995"
+                    },
+                    {
+                      "id": 20347,
+                      "order": 8,
+                      "name": "Azbest v plamenech",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20347/",
+                      "grade": "7+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Petr Obst, M. Obst,2000"
+                    },
+                    {
+                      "id": 20341,
+                      "order": 9,
+                      "name": "Věčné plameny",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20341/",
+                      "grade": "7-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, K. Šolarová,1995"
+                    },
+                    {
+                      "id": 20353,
+                      "order": 10,
+                      "name": "Pověste ho vejš",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20353/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, O. Sobotka,1995"
+                    },
+                    {
+                      "id": 20346,
+                      "order": 11,
+                      "name": "Komín",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20346/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, O. Sobotka,1993"
+                    },
+                    {
+                      "id": 20342,
+                      "order": 12,
+                      "name": "Cesta BSP",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20342/",
+                      "grade": "6+",
+                      "length": "14m",
+                      "rating": null,
+                      "description": "Nástup vlevo od koutokomínu, převislou stěnkou po oblých chytech (2 bh) ke sl.",
+                      "firstAscent": "František Mezera, K. Šolarová,1999"
+                    },
+                    {
+                      "id": 20356,
+                      "order": 13,
+                      "name": "Tvrdší krok",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20356/",
+                      "grade": "6+",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Cesta vede v horní části stěny od slaňáku Krčmy v zádech.",
+                      "firstAscent": "E. Tesař, J. Šefl,1993"
+                    },
+                    {
+                      "id": 20344,
+                      "order": 14,
+                      "name": "Soudce lynch",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20344/",
+                      "grade": "8+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Cestou \"Pověšte Ho Vejš\" na výraznou polici nebo i jinou cestou tamtéž. Z police vlevo od cesty \"Zlatá Horečka\" stěnkou, trhlinkou a spárou přes 5 bh na vrchol.",
+                      "firstAscent": "Roman Blahník, F. Mezera,2007"
+                    },
+                    {
+                      "id": 20355,
+                      "order": 15,
+                      "name": "Zlatá horečka",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20355/",
+                      "grade": "7-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Od slaň BH cesty BSP",
+                      "firstAscent": "Roman Číp, F. Mezera,1994"
+                    },
+                    {
+                      "id": 20345,
+                      "order": 16,
+                      "name": "Klíčová hrana",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20345/",
+                      "grade": "5",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "P. Soukal, K. Šolarová,1993"
+                    }
+                  ]
+                },
+                {
+                  "id": 11890,
+                  "name": "Emanovy zahrádky",
+                  "url": "https://www.horosvaz.cz/skaly-skala-11890/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.6612906,
+                    "lng": 14.2554831
+                  },
+                  "routes": [
+                    {
+                      "id": 20339,
+                      "order": 1,
+                      "name": "Lucie v noci nepije",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20339/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 3,
+                      "description": "Mezi levým, koutem a cestou Babagliding, po stupních a stěnou přes 3 nýty a 4 bh ke sl.",
+                      "firstAscent": "D. Hampejs, M. Šobr,2006"
+                    },
+                    {
+                      "id": 20333,
+                      "order": 2,
+                      "name": "Babagliding",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20333/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Nástup ve spádnici bh na převísku. Přes něj a bh na položenější terén (4 bh), těžší je dolez. Druhá cesta zleva.",
+                      "firstAscent": "E. Tesař, L. Majerová,1995"
+                    },
+                    {
+                      "id": 20338,
+                      "order": 3,
+                      "name": "Vlastizpitec",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20338/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Plotničkou přes 2 bh pod stupeň. Přes něj zprava a po nevýrazném pilířku ke slaňáku nad cestou Ohnesuki uprostřed stěny. Třetí zleva (7 bh).",
+                      "firstAscent": "František Mezera, V. Lhotka,1999"
+                    },
+                    {
+                      "id": 20337,
+                      "order": 4,
+                      "name": "Ohnesuki",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20337/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "4. cesta zleva. Přes 5 kruhů ke slaňáku cesty Babagliding.",
+                      "firstAscent": "E. Tesař, L. Majerová,1993"
+                    },
+                    {
+                      "id": 20336,
+                      "order": 5,
+                      "name": "Cesta asociálů",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20336/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Středem stěny mezi kruhy, přes 6 bh ke sl. cesty Sociálka.",
+                      "firstAscent": "František Mezera, V. Lhotka,1999"
+                    },
+                    {
+                      "id": 20331,
+                      "order": 6,
+                      "name": "Sociálka",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20331/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Plotnou (2 kruhy) vpravo od koutku, přes 2 kruhy doleva na plotnu a jí přes 5. kruh ke slaňáku.",
+                      "firstAscent": "František Mezera, P. Soukal, K. Šolarová,1993"
+                    },
+                    {
+                      "id": 20335,
+                      "order": 7,
+                      "name": "Osmý den",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20335/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 2,
+                      "description": "Napravo od kruhů, plotnou přes 3 bh na polici (2 bh) a mírně vpravo ke slanění.",
+                      "firstAscent": "František Mezera, K. Šolarová,1998"
+                    },
+                    {
+                      "id": 20340,
+                      "order": 8,
+                      "name": "Taudy",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20340/",
+                      "grade": "4",
+                      "length": "15m",
+                      "rating": null,
+                      "description": "Napravo u cesty Osmý den. V pravé části snadno po stupních přímo přes 3 bh ke slanění.",
+                      "firstAscent": "Jaromír Masner, O. Sobotka,1995"
+                    },
+                    {
+                      "id": 112527,
+                      "order": 9,
+                      "name": "Pomlázka",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-112527/",
+                      "grade": "5+",
+                      "length": "15m",
+                      "rating": null,
+                      "description": "Mezi cestou Taudy a Fiveka, vpravo na horní terase Zahrádek. Koutem a pilířem (3 bh) na polici (bh) a stěnkou ke slanění.",
+                      "firstAscent": "Martin Tučka, P. Hovorka,3.4.2021"
+                    },
+                    {
+                      "id": 20332,
+                      "order": 10,
+                      "name": "Fiveka",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20332/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 2,
+                      "description": "Na pilířek vpravo níže u Zahrádek, po hraně a ukloněnou plotýnkou přes 1 účko.",
+                      "firstAscent": "František Mezera, E. Tesař,2000"
+                    },
+                    {
+                      "id": 112528,
+                      "order": 11,
+                      "name": "Čanda buráků",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-112528/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Plotnou přes 3bh pod převis, přes něj do kolmé stěnky, 2bh, a na polici přes 1bh ke slanění.",
+                      "firstAscent": "Pavel Rajf, F. Mezera, T. Horyna,28.3.2021"
+                    },
+                    {
+                      "id": 112470,
+                      "order": 12,
+                      "name": "Krkavčí matka",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-112470/",
+                      "grade": "6-",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Z police (bh) stěnou (2 bh) na polici a dále přes stupně (3 bh) ke sl.",
+                      "firstAscent": "František Mezera, M. Tučka,28.3.2021"
+                    },
+                    {
+                      "id": 112469,
+                      "order": 13,
+                      "name": "Bratříček",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-112469/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 3,
+                      "description": "Nalevo od \"Rázovité hrany\". Z police (bh) stěnkou (bh) na terasu a přes 2 bh na polici, přes výšvih a plotýnkou (2 bh) ke slanění u hrany.",
+                      "firstAscent": "Martin Tučka, F. Mezera,28.3.2021"
+                    },
+                    {
+                      "id": 112468,
+                      "order": 14,
+                      "name": "Ultimátum",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-112468/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Nástup od stromu komínem jako Rázovitá hrana přes vklíněný balvan (bh) do rozdvojení (bh) a vlevo koutem (2 bh) ke slanění.",
+                      "firstAscent": "Martin Tučka, Markéta Hovorková, F. Mezera,28.3.2021"
+                    },
+                    {
+                      "id": 20334,
+                      "order": 15,
+                      "name": "Rázovitá hrana",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20334/",
+                      "grade": "6",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "U velkého stromu komínem přes vklíněné kameny (bh) do rozdvojení (bh). Hranou (3 stříbrné bh) ke sl. Vpravo je sektor Kindergarten. Slaňák původně výš.",
+                      "firstAscent": "František Mezera,2000"
+                    }
+                  ]
+                },
+                {
+                  "id": 1515,
+                  "name": "Kindergarten",
+                  "url": "https://www.horosvaz.cz/skaly-skala-1515/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.6610383,
+                    "lng": 14.2562447
+                  },
+                  "routes": [
+                    {
+                      "id": 118697,
+                      "order": 1,
+                      "name": "Překvapení",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-118697/",
+                      "grade": "4",
+                      "length": "12m",
+                      "rating": null,
+                      "description": "Nástup napravo u stromu, členitou stěnou na vrcholový pilíř ke slanění.",
+                      "firstAscent": "Martin Tučka, F. Mezera,17.12.2023"
+                    },
+                    {
+                      "id": 20330,
+                      "order": 2,
+                      "name": "Eskalátor",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20330/",
+                      "grade": "2",
+                      "length": "12m",
+                      "rating": null,
+                      "description": "Zleva lehce na pilířek po stupních.",
+                      "firstAscent": "E. Tesař, L. Majerová,1996"
+                    },
+                    {
+                      "id": 20329,
+                      "order": 3,
+                      "name": "Kindervajce",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20329/",
+                      "grade": "3",
+                      "length": "10m",
+                      "rating": null,
+                      "description": "Středem položené stěnky přes 3 bh ke slanění.",
+                      "firstAscent": "E. Tesař, L. Majerová,1996"
+                    },
+                    {
+                      "id": 20328,
+                      "order": 4,
+                      "name": "Kostižer",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20328/",
+                      "grade": "4",
+                      "length": "9m",
+                      "rating": null,
+                      "description": "Při pravé hraně položenou stěnkou přes nýt doleva ke sl.",
+                      "firstAscent": "E. Tesař, L. Majerová,1996"
+                    }
+                  ]
+                },
+                {
+                  "id": 18442,
+                  "name": "Schody",
+                  "url": "https://www.horosvaz.cz/skaly-skala-18442/",
+                  "official_type": "skala",
+                  "gps": null,
+                  "routes": [
+                    {
+                      "id": 112346,
+                      "order": 1,
+                      "name": "Levá cesta",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-112346/",
+                      "grade": "6-",
+                      "length": "10m",
+                      "rating": null,
+                      "description": "Levou částí kolmé stěny přes 2 bh ke sl.",
+                      "firstAscent": "František Mezera, M. Tučka,2018"
+                    },
+                    {
+                      "id": 112347,
+                      "order": 2,
+                      "name": "Pravá cesta",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-112347/",
+                      "grade": "6",
+                      "length": "10m",
+                      "rating": null,
+                      "description": "Pravou částí kolmé stěny přes 2 bh ke sl.",
+                      "firstAscent": "Martin Tučka, J. Nešvera, F. Mezera,2018"
+                    }
+                  ]
+                },
+                {
+                  "id": 18439,
+                  "name": "Školka",
+                  "url": "https://www.horosvaz.cz/skaly-skala-18439/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.6610331,
+                    "lng": 14.2564178
+                  },
+                  "routes": [
+                    {
+                      "id": 112337,
+                      "order": 1,
+                      "name": "Boty",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-112337/",
+                      "grade": "3",
+                      "length": "5m",
+                      "rating": null,
+                      "description": "Levá krátká cesta, po hraně plotny přes 2 bh ke slanění.",
+                      "firstAscent": "Martin Tučka,2021"
+                    },
+                    {
+                      "id": 112338,
+                      "order": 2,
+                      "name": "Čepice",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-112338/",
+                      "grade": "3",
+                      "length": "6m",
+                      "rating": null,
+                      "description": "Prostřední krátká cesta, plotnou přes 3 bh a polici ke slanění.",
+                      "firstAscent": "Martin Tučka,2021"
+                    },
+                    {
+                      "id": 112339,
+                      "order": 3,
+                      "name": "Rukavice",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-112339/",
+                      "grade": "3",
+                      "length": "6m",
+                      "rating": null,
+                      "description": "Pravá krátká cesta, plotnou a koutem (3 bh) přes polici ke slanění.",
+                      "firstAscent": "Martin Tučka,2021"
+                    }
+                  ]
+                },
+                {
+                  "id": 1514,
+                  "name": "Bílá stěnka (Jurský park)",
+                  "url": "https://www.horosvaz.cz/skaly-skala-1514/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.6607953,
+                    "lng": 14.2562444
+                  },
+                  "routes": [
+                    {
+                      "id": 20327,
+                      "order": 1,
+                      "name": "Lenochod",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20327/",
+                      "grade": "4",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "E. Tesař, J. Šefl,1994"
+                    },
+                    {
+                      "id": 20326,
+                      "order": 2,
+                      "name": "Fíček",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20326/",
+                      "grade": "4+",
+                      "length": "10m",
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, K. Šolarová, Gita Smolová,2000"
+                    },
+                    {
+                      "id": 20322,
+                      "order": 3,
+                      "name": "Bílá nemoc",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20322/",
+                      "grade": "6+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, K. Šolarová,1994"
+                    },
+                    {
+                      "id": 20325,
+                      "order": 4,
+                      "name": "Návrat růžového pantera",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20325/",
+                      "grade": "7-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "E. Tesař, P. Soukal, F. Mezera,1994"
+                    },
+                    {
+                      "id": 20324,
+                      "order": 5,
+                      "name": "Jurský park",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20324/",
+                      "grade": "7-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, R. Číp, K. Šolarová,1994"
+                    },
+                    {
+                      "id": 20323,
+                      "order": 6,
+                      "name": "Falko",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20323/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, R. Číp, K. Šolarová,1994"
+                    },
+                    {
+                      "id": 118119,
+                      "order": 7,
+                      "name": "Jeb JIP",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-118119/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 2,
+                      "description": "Něklik M vpravo od cesty Falko hranou přes 3 BH ke slanění",
+                      "firstAscent": "František Mezera, P. Holík, R. Blahník,2014"
+                    }
+                  ]
+                },
+                {
+                  "id": 4392,
+                  "name": "Pyramida (Krutý Řím)",
+                  "url": "https://www.horosvaz.cz/skaly-skala-4392/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.660606,
+                    "lng": 14.256287
+                  },
+                  "routes": [
+                    {
+                      "id": 112566,
+                      "order": 1,
+                      "name": "Šupšup, prdprd, mrdmrd",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-112566/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Stěnou vlevo od cesty \"Já chtěla krém\" přes 4 bh k jejímu 5. bh a tou ke slanění.",
+                      "firstAscent": "Petr Holík, F. Mezera, R. Blahník,9.11.2014"
+                    },
+                    {
+                      "id": 112564,
+                      "order": 2,
+                      "name": "Já chtěla krém",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-112564/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 3,
+                      "description": "Koutem (bh) a stěnou (bh) na polici, stěnou (2 bh) a pilířem (bh) ke slanění.",
+                      "firstAscent": "Martin Tučka, P. Michvocíková,1.4.2014"
+                    },
+                    {
+                      "id": 112567,
+                      "order": 3,
+                      "name": "Kunda se neříká",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-112567/",
+                      "grade": "8-/8",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Vpravo od cesty \"Já chtěla krém\" stěnou pod převis (3 bh) a dále přímo přes převis (2 bh) ke slanění.",
+                      "firstAscent": "Roman Blahník, F. Mezera, P. Holík,9.11.2014"
+                    },
+                    {
+                      "id": 20321,
+                      "order": 4,
+                      "name": "Solidní nejistota",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20321/",
+                      "grade": "6",
+                      "length": "15m",
+                      "rating": null,
+                      "description": "Nástup vlevo od kouta (šipka na skále) a nahoře zprava od převisu. Nejištěno, stěna není příliš pevná.",
+                      "firstAscent": "Roman Blahník,2000"
+                    },
+                    {
+                      "id": 20320,
+                      "order": 5,
+                      "name": "Slzy pro tátu",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20320/",
+                      "grade": "4",
+                      "length": "12m",
+                      "rating": null,
+                      "description": "Výrazným koutem blevo po stupňovitých blocích. Přes 1 nýt ke slaňáku.",
+                      "firstAscent": "Květa Šolarová, J. Rozmajzl,1995"
+                    },
+                    {
+                      "id": 20319,
+                      "order": 6,
+                      "name": "Sfinga",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20319/",
+                      "grade": "7-",
+                      "length": "13m",
+                      "rating": null,
+                      "description": "Vpravo od kouta c. \"Slzy pro tátu\" přes převisek a dva nýty ke slaňáku",
+                      "firstAscent": "František Mezera, K. Šolarová,1994"
+                    },
+                    {
+                      "id": 20318,
+                      "order": 7,
+                      "name": "Padoucnice",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20318/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 3,
+                      "description": "Dole přes převisek a pak navalením do plotnya tou přes 2 nt. ke slaňáku",
+                      "firstAscent": "František Mezera, O. Sobotka, O. Huml,1993"
+                    },
+                    {
+                      "id": 20317,
+                      "order": 8,
+                      "name": "Zapomenutá",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20317/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 3,
+                      "description": "Nástup koutkem a jím přes 3 nt. ke slanění",
+                      "firstAscent": "Roman Číp, O. Huml,1992"
+                    },
+                    {
+                      "id": 20316,
+                      "order": 9,
+                      "name": "Kleopatra",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20316/",
+                      "grade": "5+",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Vpravo do c. \"Zapomenutá\", do které se napojí u jejího 2. nýtu. Těžší nástup.",
+                      "firstAscent": "František Mezera, O. Huml,1994"
+                    },
+                    {
+                      "id": 20315,
+                      "order": 10,
+                      "name": "Sarkofág",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20315/",
+                      "grade": "7",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Cestou \"Krutý Řím\" k 1 nt. , pak stále mírně doleva přes hranu ke 3. nt. cesty \"Zapomenutá\"",
+                      "firstAscent": "František Mezera, O. Huml,1994"
+                    },
+                    {
+                      "id": 20310,
+                      "order": 11,
+                      "name": "Krutý Řím",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20310/",
+                      "grade": "8-",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Trhlinou vpravo od hrany (nt.) přes neberoucí trhlinu. Podél ní přes tři kruhy šikmo doprava na temeno. Místní klasika s těžkým a trochu usmekaným nástupem.",
+                      "firstAscent": "František Mezera, R. Číp,1994"
+                    },
+                    {
+                      "id": 20314,
+                      "order": 12,
+                      "name": "Skarabeus",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20314/",
+                      "grade": "10-",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Mezi c. \"Krutý Řím\" a \"Ave Cesar\". Dolez ke 3. kr. c. Krutý Řím. 2. nýt prodloužit",
+                      "firstAscent": "Petr Resch,2007"
+                    },
+                    {
+                      "id": 20313,
+                      "order": 13,
+                      "name": "Ave cesar",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20313/",
+                      "grade": "9-",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Mírně vpravo od středu trojúhelníkové stěny, hladkou plotnou přes 4 nt. ke sl. Cesty faraónů",
+                      "firstAscent": "Petr Obst, M. Obst,2000"
+                    },
+                    {
+                      "id": 20312,
+                      "order": 14,
+                      "name": "Cesta faraónů",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20312/",
+                      "grade": "6",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Nástup v koutě napravo od c. Ave Cesar. Přes 2 nt. a diagonálně vlevo, dále přes 4. nýt c. Ave Cesar ke slanění. Oblíbená cesta po pravé hraně pyramidovité stěny. [16 m, 3 nt. + sl.]",
+                      "firstAscent": "František Mezera, J. Šefl,1994"
+                    },
+                    {
+                      "id": 20308,
+                      "order": 15,
+                      "name": "Karavana",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20308/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Vpravo od Cesty faraonů. Členitou stěnou na balkónek a odtud kouto-vhloubením přes 2 nt. vzhůru a pak doprava ke sl. [15 m, 2 nt. + sl.]",
+                      "firstAscent": "František Mezera, K. Šolarová, V. Lhotka,2001"
+                    },
+                    {
+                      "id": 20309,
+                      "order": 16,
+                      "name": "Mumium",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20309/",
+                      "grade": "6",
+                      "length": "15m",
+                      "rating": null,
+                      "description": "Vpravo od c. Karavana na polici a odtud mírně převislým pilířkem přes 2 nt. ke sl. c. Karavana. [15 m, 2 nt. + sl.]",
+                      "firstAscent": "František Mezera, K. Šolarová, V. Lhotka,2001"
+                    },
+                    {
+                      "id": 20307,
+                      "order": 17,
+                      "name": "Zakázaná cesta",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20307/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 4,
+                      "description": "Nastupuje nevýrazným koutem, doleva stěnkou do vytlačujícího vhloubení a jeho pravou stěnkou přes 2 nt. stěnkou na polici ke sl. [18 m, 3 nt. + sl.]",
+                      "firstAscent": "František Mezera, K. Šolarová, V. Lhotka,2001"
+                    }
+                  ]
+                },
+                {
+                  "id": 1798,
+                  "name": "Monolit",
+                  "url": "https://www.horosvaz.cz/skaly-skala-1798/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.6603856,
+                    "lng": 14.2567031
+                  },
+                  "routes": [
+                    {
+                      "id": 20311,
+                      "order": 1,
+                      "name": "Odpadlík",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20311/",
+                      "grade": "6-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, K. Šolarová, V. Lhotka,2001"
+                    },
+                    {
+                      "id": 118635,
+                      "order": 2,
+                      "name": "Sans souci",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-118635/",
+                      "grade": "8",
+                      "length": "19m",
+                      "rating": null,
+                      "description": "Nástup vlevo od cesty \"Srazová\". Hladkou stěnou pilířku zprava kolem 1 bh. do šikmé poruchy tou mírně doleva a ke 2. bh. přímo nad něj na vrchol pilířku na polici. Dále c. \"Odpadlík\" přes další 2 nt. ke sl.",
+                      "firstAscent": "Roman Blahník, P. Sláma, F. Mezera,2015"
+                    },
+                    {
+                      "id": 23920,
+                      "order": 3,
+                      "name": "Srazová cesta",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23920/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, O. Sobotka, J. Gracel,1992"
+                    },
+                    {
+                      "id": 23919,
+                      "order": 4,
+                      "name": "Tanec Sv. Víta",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23919/",
+                      "grade": "8-/8",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Ondřej Sobotka,1997"
+                    },
+                    {
+                      "id": 23923,
+                      "order": 5,
+                      "name": "Šupitopresto",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23923/",
+                      "grade": "7+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Ondřej Huml, R. Číp,1992"
+                    },
+                    {
+                      "id": 23924,
+                      "order": 6,
+                      "name": "Krajina snů",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23924/",
+                      "grade": "7+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Ondřej Huml, R. Číp,1993"
+                    },
+                    {
+                      "id": 23912,
+                      "order": 7,
+                      "name": "Krajina snů var. Doleva",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23912/",
+                      "grade": "8+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Varianta cesty Krajina Snů\", u 4 bh doleva do cesty \"Šupitopresto\". \"",
+                      "firstAscent": "Jan Doudlebský,2003"
+                    },
+                    {
+                      "id": 23918,
+                      "order": 8,
+                      "name": "Náhodné setkání",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23918/",
+                      "grade": "8-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Roman Blahník, P. Obst,2000"
+                    },
+                    {
+                      "id": 23922,
+                      "order": 9,
+                      "name": "Kulečníková koule",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23922/",
+                      "grade": "7",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Ondřej Huml, O. Sobotka,1993"
+                    },
+                    {
+                      "id": 23911,
+                      "order": 10,
+                      "name": "Poslední mohykán",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23911/",
+                      "grade": "7+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Petr Obst, M. Obst,1997"
+                    },
+                    {
+                      "id": 23917,
+                      "order": 11,
+                      "name": "Přepište dějiny",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23917/",
+                      "grade": "8",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Ondřej Huml, R. Blahník, F. Mezera,1999"
+                    },
+                    {
+                      "id": 23916,
+                      "order": 12,
+                      "name": "Z ostudy kabát",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23916/",
+                      "grade": "8-/8",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Roman Blahník, F. Mezera,1999"
+                    },
+                    {
+                      "id": 119400,
+                      "order": 13,
+                      "name": "Rock oslav",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-119400/",
+                      "grade": "8+/9-",
+                      "length": "22m",
+                      "rating": null,
+                      "description": "Cestou Z Ostudy Kabát ke 3. nt. (druhý nad policí), šikmo vpravo a přes 2 bh. a nt. na velkou polici ke slanění. Třem sestrám ke třicetinám.",
+                      "firstAscent": "Roman Blahník,16. 12. 2015"
+                    },
+                    {
+                      "id": 23915,
+                      "order": 14,
+                      "name": "Tofíček",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23915/",
+                      "grade": "6+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, R. Blahník,1999"
+                    },
+                    {
+                      "id": 23921,
+                      "order": 15,
+                      "name": "Maximální Dominik",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23921/",
+                      "grade": "6",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, K. Šolarová,2004"
+                    },
+                    {
+                      "id": 23914,
+                      "order": 16,
+                      "name": "Další prosím",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23914/",
+                      "grade": "6-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "František Mezera, V. Lhotka,1999"
+                    },
+                    {
+                      "id": 23913,
+                      "order": 17,
+                      "name": "Epizoda ze života",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23913/",
+                      "grade": "8-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Popis chybí",
+                      "firstAscent": "Roman Blahník,1999"
+                    },
+                    {
+                      "id": 20272,
+                      "order": 18,
+                      "name": "Příliš vzdálená hvězda",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20272/",
+                      "grade": "8+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Mezi cestami \"Epizoda ze života\" a \"Knedlo vepřo zelo\" stěnou ke slanění.",
+                      "firstAscent": "Miroslav Beránek, P. Obst,2008"
+                    }
+                  ]
+                },
+                {
+                  "id": 1513,
+                  "name": "Highlander",
+                  "url": "https://www.horosvaz.cz/skaly-skala-1513/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.6602517,
+                    "lng": 14.2571592
+                  },
+                  "routes": [
+                    {
+                      "id": 20299,
+                      "order": 1,
+                      "name": "Knedlo vepřo zelo",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20299/",
+                      "grade": "8-/8",
+                      "length": "26m",
+                      "rating": null,
+                      "description": "Nástup v koutě jako c. Revoluční, výšvihem na patest. Pak levou částí stěny, která je v horních partiích schodovitě převislá.",
+                      "firstAscent": "Ondřej Sobotka, F. Mezera,1998"
+                    },
+                    {
+                      "id": 20300,
+                      "order": 2,
+                      "name": "Sbohem a dík za ryby",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20300/",
+                      "grade": "7+",
+                      "length": "25m",
+                      "rating": null,
+                      "description": "Nástup stejně jako c. \"Revoluční\" na patest, pak lehce stěnou výše podél c. \"Revoluční\", až pod schodovitě utvářenou převislou hranu, tou na vrchol.",
+                      "firstAscent": "Roman Blahník, F. Mezera,1999"
+                    },
+                    {
+                      "id": 20298,
+                      "order": 3,
+                      "name": "Revoluční",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20298/",
+                      "grade": "5",
+                      "length": "25m",
+                      "rating": null,
+                      "description": "Koutkem na patest, lehce nevýrazným koutem, tím několik metrů a pak po zřejmých chytech uhnout do levé stěnky. Volný balvan v koutě!",
+                      "firstAscent": "V. Lhotka, F. Mezera"
+                    },
+                    {
+                      "id": 20297,
+                      "order": 4,
+                      "name": "Žlutá voda",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20297/",
+                      "grade": "6-",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Nástup stejně jako c. Imrvére v lihu na balkonek, pak vlevo od této cesty, a vpravo od koutku přes tři nt. ke slaňáku.",
+                      "firstAscent": "František Mezera, K. Šolarová, Z. Dušek,1995"
+                    },
+                    {
+                      "id": 20296,
+                      "order": 5,
+                      "name": "Imrvére v lihu",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20296/",
+                      "grade": "7",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Nástup v koutě vlevo od cesty Kulatý vobdélníky. Přes 5 nt. podél vrcholové spárky ke slaňáku cesty Fialovej les.",
+                      "firstAscent": "František Mezera, K. Šolarová, Z. Mikeš,1997"
+                    },
+                    {
+                      "id": 20295,
+                      "order": 6,
+                      "name": "Kulatý vobdélníky",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20295/",
+                      "grade": "7/7+",
+                      "length": "22m",
+                      "rating": null,
+                      "description": "Nástup asi 2m vlevo od cesty Fialovej les, kterou kříží u 3. nýtu a jde dále šikmo doprava depresí pod převískem, na konci traverzu pak krátkým výšvihem ke slaňáku. Klasika.",
+                      "firstAscent": "František Mezera, K. Šolarová, R. Číp,1994"
+                    },
+                    {
+                      "id": 20294,
+                      "order": 7,
+                      "name": "Fialovej les",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20294/",
+                      "grade": "7",
+                      "length": "22m",
+                      "rating": null,
+                      "description": "Nástup vlevo od cesty \"Kyselý déšť\". Krátkou stěnkou přes 2 BH. 3. BH má společný s cestou Kulatý vobdélníky. Dál poktačuje přímo stěnkou s výšvihem na polici ke slaňáku. Klasika. [20 m, 6 nt. + sl. ], 1997",
+                      "firstAscent": "František Mezera, K. Šolarová, R. Číp,1994"
+                    },
+                    {
+                      "id": 99063,
+                      "order": 8,
+                      "name": "Kyselý déšť",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-99063/",
+                      "grade": "8+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Vlevo od cesty Zlatý Koule přímo přes dva nýty a mírně vpravo k třetímu. Přímo přes čtvrtý k pátému (nýt od cesty Kulaté Vobdélníky), mírně vlevo šestý nýt a přímo přes něj po pilířku ke slanění.",
+                      "firstAscent": "Roman Blahník, P. Obst, O. Sobotka,7.4.2012"
+                    },
+                    {
+                      "id": 20293,
+                      "order": 9,
+                      "name": "Zlatý koule",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20293/",
+                      "grade": "9+",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "stěnou přes 4. nýt, pak se cesta spojí (u pátého nt. ) s cestou Kulaté obdélníky.",
+                      "firstAscent": "Petr Resch,2001"
+                    },
+                    {
+                      "id": 20292,
+                      "order": 10,
+                      "name": "Varianta Jámy a kyvadla",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20292/",
+                      "grade": "8+",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Těžkým nástupem přímo přes 2 nýty do c. Jáma a kyvadlo. Pak touto cestou na vrchol. Náročné na nástupu a pak v druhé půlce na vytrvalost, lezení za oblé chyty. Klasická cesta.",
+                      "firstAscent": "Ondřej Sobotka,1997"
+                    },
+                    {
+                      "id": 118120,
+                      "order": 11,
+                      "name": "Hypertenze",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-118120/",
+                      "grade": "8",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Vlevo od nástupu c. Jáma a kyvadlo přío ke kruhu a od něj přímo podél trhliny přímo ke 3. nýtu cesty František Dobrota. Tou na vrchol. Boulder na nástupu, pak se ještě trochu leze.",
+                      "firstAscent": "Roman Blahník, M. Beránek, P. Sláma,2013"
+                    },
+                    {
+                      "id": 20291,
+                      "order": 12,
+                      "name": "Jáma a kyvadlo",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20291/",
+                      "grade": "8",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Nástup skoro stejně jako c. František Dobrota, vzhůru a pak mírně doleva přes kruh traverzovým boulderem. Pak již lehčeji a nahoře mírně převislou stěnou vytrvalostně po oblých chytech.",
+                      "firstAscent": "Ondřej Sobotka,1997"
+                    },
+                    {
+                      "id": 20290,
+                      "order": 13,
+                      "name": "František Dobrota",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20290/",
+                      "grade": "7-",
+                      "length": "21m",
+                      "rating": null,
+                      "description": "Dole obtížněji kolmou nástupovou stěnkou (1. a 2. nt. ), pak lehce vhloubením (nt. ) a levou stěnou přes další dva nýty ke slaňáku.",
+                      "firstAscent": "Petr Obst, O. Sobotka, F. Mezera,1997"
+                    },
+                    {
+                      "id": 20289,
+                      "order": 14,
+                      "name": "Vlny",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20289/",
+                      "grade": "6",
+                      "length": "15m",
+                      "rating": null,
+                      "description": "Dole přes malý převísek. Na šestku poměrně těžké kroky, kolem prvního, pak cesta jde doprava, kde se napojí ke 3. nt. c. Odliv.",
+                      "firstAscent": "František Mezera, Z. Vaník,1992"
+                    },
+                    {
+                      "id": 20288,
+                      "order": 15,
+                      "name": "Odliv",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20288/",
+                      "grade": "7+",
+                      "length": "14m",
+                      "rating": null,
+                      "description": "Dole vypečený nástupový převísek a pak již lehčeji přímo ke slaňáku.",
+                      "firstAscent": "František Mezera, P. Obst, O. Sobotka,1997"
+                    },
+                    {
+                      "id": 20273,
+                      "order": 16,
+                      "name": "Sedící býk",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20273/",
+                      "grade": "9-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Nástup zprava. 4. nýt společný s cestou \"Odliv\".",
+                      "firstAscent": "Petr Obst,2005"
+                    },
+                    {
+                      "id": 20301,
+                      "order": 17,
+                      "name": "Apač",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20301/",
+                      "grade": "8+/9-",
+                      "length": "14m",
+                      "rating": null,
+                      "description": "Krásný boulder za mini lišty. Od druhého bh. doprava a pak zpět ke slaňáku. Těžší variace (9-) je od druhého bh. doleva do police, konec jako c. Sedící býk. Velká klasika.",
+                      "firstAscent": "Ondřej Sobotka,1995"
+                    },
+                    {
+                      "id": 20287,
+                      "order": 18,
+                      "name": "Komanč",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20287/",
+                      "grade": "8+",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Boulderový nástup za ostré lišty přes dva nýty a dolez jako c. Woodoo. Asi lehčí osm plusko, zvláště pro delší lezce. Pěkná linie.",
+                      "firstAscent": "Roman Blahník, P. Obst,2000"
+                    },
+                    {
+                      "id": 20286,
+                      "order": 19,
+                      "name": "Ohnivá voda",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20286/",
+                      "grade": "8+/9-",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Od 2. nýtu c. Komanč mírně vpravo do cesty Woodoo direkt a tou pak na vrchol. Pěkná a celkem náročná cesta.",
+                      "firstAscent": "Jan Doudlebský,2004"
+                    },
+                    {
+                      "id": 20271,
+                      "order": 20,
+                      "name": "Woodoo",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20271/",
+                      "grade": "8",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Cesta po ostré hraně, pak dol. a zpět obloukem a zajímavě jemně k vrcholu. Dole je zajímavé nakulení na hraně a ještě závěr nabídne krásné lezení po malých lištách. Maximální klasika.",
+                      "firstAscent": "Ondřej Sobotka, F. Mezera, Z. Mikeš,1997"
+                    },
+                    {
+                      "id": 20304,
+                      "order": 21,
+                      "name": "Woodoo dir",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20304/",
+                      "grade": "8+",
+                      "length": "19m",
+                      "rating": null,
+                      "description": "Narovnání cesty Woodoo od 2. ke 4. borháku. Po malých lištách boulder v kolmé stěně.",
+                      "firstAscent": "Petr Resch,1999"
+                    },
+                    {
+                      "id": 20285,
+                      "order": 22,
+                      "name": "Světlá stezka",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20285/",
+                      "grade": "9/9+",
+                      "length": "19m",
+                      "rating": null,
+                      "description": "Nástup koutkem vpravo od c. Woodoo. Přes 2 bh. až do vodorovné spáry, zde mírně doprava (bh. ) a po trhlince vzhůru ke slaňáku. Co borhák to boulder. Klasika.",
+                      "firstAscent": "Antonín Páleniček,2000"
+                    },
+                    {
+                      "id": 20275,
+                      "order": 23,
+                      "name": "Žežická míle",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20275/",
+                      "grade": "9-/9",
+                      "length": null,
+                      "rating": null,
+                      "description": "Nástup vlevo od cesty \"Sotomayor\", po šikmo ubíhajících lištách mírně vlevo ke slaňáku cesty \"Světlá stezka\".",
+                      "firstAscent": "Petr Obst,2005"
+                    },
+                    {
+                      "id": 20274,
+                      "order": 24,
+                      "name": "Přirozený výběr",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20274/",
+                      "grade": "9",
+                      "length": null,
+                      "rating": null,
+                      "description": "Cestou \"Žiželická míle\" do poruchy. Z ní přímo přes 3. nýt cesty \"Sotomayor\" nahoru.",
+                      "firstAscent": "Emil Pohořelský,2010"
+                    },
+                    {
+                      "id": 20284,
+                      "order": 25,
+                      "name": "Sotomayor",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20284/",
+                      "grade": "9-/9",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Krásná klasická cesta s povinným skokem do oblého chytu kousek nad 3. nt. Těžší pro menší postavy.",
+                      "firstAscent": "Zdeněk Resch,1998"
+                    },
+                    {
+                      "id": 20283,
+                      "order": 26,
+                      "name": "Nebe",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20283/",
+                      "grade": "9+",
+                      "length": "21m",
+                      "rating": null,
+                      "description": "Od 1. bh. c. Progetto mírně doleva přes dva nýty (boulder) k pátému bh. c. Progetto a tou pak ke slaňáku. Ladění po chytech nechytech. [21 m, 3 bh. , 2 nt. + sl. ] P. Obst, 2004",
+                      "firstAscent": "Petr Obst,2004"
+                    },
+                    {
+                      "id": 20303,
+                      "order": 27,
+                      "name": "Progetto",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20303/",
+                      "grade": "8+/9-",
+                      "length": "21m",
+                      "rating": null,
+                      "description": "Od 1. bh. c. Progetto mírně doleva přes dva nýty (boulder) k pátému bh. c. Progetto a tou pak ke slaňáku. Ladění po chytech nechytech.",
+                      "firstAscent": "Petr Resch,1997"
+                    },
+                    {
+                      "id": 20276,
+                      "order": 28,
+                      "name": "Mezihra",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20276/",
+                      "grade": "8+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Cestou \"Progetto\" k 3. bh. Dále přímo stěnou přes 2bh ke slaňáku.",
+                      "firstAscent": "Roman Blahník, F. Mezera,2007"
+                    },
+                    {
+                      "id": 20306,
+                      "order": 29,
+                      "name": "Profin",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20306/",
+                      "grade": "8",
+                      "length": "22m",
+                      "rating": null,
+                      "description": "Od 3. nýtu c. Progetto lehce vpravo do cesty Finalgon a tou na vrchol.",
+                      "firstAscent": "David Chudoba,2009"
+                    },
+                    {
+                      "id": 20302,
+                      "order": 30,
+                      "name": "Finalgon",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20302/",
+                      "grade": "7+",
+                      "length": "21m",
+                      "rating": null,
+                      "description": "Nádherná cesta podél členité spáry po kulatých chytech. Technické lezení, se zajímavými kroky a mírně vytrvalostním charakterem.",
+                      "firstAscent": "František Mezera, O. Sobotka,1993"
+                    },
+                    {
+                      "id": 20282,
+                      "order": 31,
+                      "name": "Varanasi",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20282/",
+                      "grade": "8-",
+                      "length": "22m",
+                      "rating": null,
+                      "description": "Lehce na patest a pak mírně převislou stěnou přes 4 nt. k poslednímu jištění c. Finalgon. Technička.",
+                      "firstAscent": "Petr Obst,2003"
+                    },
+                    {
+                      "id": 20281,
+                      "order": 32,
+                      "name": "Highlander",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20281/",
+                      "grade": "8-/8",
+                      "length": "21m",
+                      "rating": null,
+                      "description": "Nástup asi 2 metry od členité spáry c. Finalgon. Mírně převislou kompaktní stěnou po šikmých kostkách a lištách. Přes 7 nt. ke gradujícímu závěru. Super cesta, místní velká klasika.",
+                      "firstAscent": "František Mezera, Z. Mikeš, O. Sobotka,1993"
+                    },
+                    {
+                      "id": 20280,
+                      "order": 33,
+                      "name": "Local hero",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20280/",
+                      "grade": "8",
+                      "length": "19m",
+                      "rating": null,
+                      "description": "Odvážná kratší a hutná cesta zcela vpravo na této desce. U 4. nt. napr. je bočák a s ním je cesta lehčí.",
+                      "firstAscent": "Ondřej Sobotka,1997"
+                    },
+                    {
+                      "id": 20305,
+                      "order": 34,
+                      "name": "Nova",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20305/",
+                      "grade": "6+",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Cesta vede při pravé hraně pravé stěnové desky přes 3 bh ke slaňáku c. Highlander.",
+                      "firstAscent": "František Mezera, K. Šolarová, R. Číp,1994"
+                    },
+                    {
+                      "id": 20279,
+                      "order": 35,
+                      "name": "Řeka čaruje",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20279/",
+                      "grade": "6+",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Členitou stěnou vpravo od cesty Nova. Mezi. 3. a 4. je větší vzdálenost. Pozor na volné kameny.",
+                      "firstAscent": "František Mezera, K. Šolarová,2002"
+                    },
+                    {
+                      "id": 20278,
+                      "order": 36,
+                      "name": "Dýško",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20278/",
+                      "grade": "6-",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Nástup mezi c. Řeka čaruje a Ketynka. ke 2 nt. c Ketynka, pak dop. členitou plotnou přes 3 nt. ke sl.",
+                      "firstAscent": "František Mezera, K. Šolarová,2002"
+                    },
+                    {
+                      "id": 20277,
+                      "order": 37,
+                      "name": "Ketynka",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-20277/",
+                      "grade": "5+",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Na pravé části stěny, koutem (nt. ), plotnou a stěnkou přes dva nt. do plotny (nt. ) pod převis (nt. ) a vleva výšvihem ke slaňáku. Nahoře volné bloky.",
+                      "firstAscent": "František Mezera, K. Šolarová,2002"
+                    },
+                    {
+                      "id": 118636,
+                      "order": 38,
+                      "name": "Návrat zimního psa",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-118636/",
+                      "grade": "5-",
+                      "length": "9m",
+                      "rating": null,
+                      "description": "Cesta vede vlevo od převisového nástupu Cesty pro Vojtěcha. Mírně položenou stěnou přes tři bh. ke slaňáku.",
+                      "firstAscent": "M. Kaiser,2002"
+                    },
+                    {
+                      "id": 118638,
+                      "order": 39,
+                      "name": "Cesta pro Vojtěcha",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-118638/",
+                      "grade": "6",
+                      "length": "8m",
+                      "rating": null,
+                      "description": "Přes nástupový převis na hraně pak kolmou stěnou přes dva bh. ke sl.",
+                      "firstAscent": "M. Kaiser,2002"
+                    },
+                    {
+                      "id": 118637,
+                      "order": 40,
+                      "name": "Pipijána",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-118637/",
+                      "grade": "6+",
+                      "length": "8m",
+                      "rating": null,
+                      "description": "Nástup v pravé části přes výrazný převis dále ještě přes jeden menší převísek a ke slaňovacímu kruhu, který je na horním balkonku.",
+                      "firstAscent": "M. Kaiser,2002"
+                    }
+                  ]
+                },
+                {
+                  "id": 1799,
+                  "name": "Yosemite - levá část (Hafty)",
+                  "url": "https://www.horosvaz.cz/skaly-skala-1799/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.660043,
+                    "lng": 14.257384
+                  },
+                  "routes": [
+                    {
+                      "id": 23946,
+                      "order": 1,
+                      "name": "Žáby mají přednost",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23946/",
+                      "grade": "7",
+                      "length": "13m",
+                      "rating": null,
+                      "description": "Nástup spárou se smyčkou společně s c. Předloktí Pepka námořníka, která pak jde doprava.",
+                      "firstAscent": "Ondřej Huml, R. Číp,1992"
+                    },
+                    {
+                      "id": 23947,
+                      "order": 2,
+                      "name": "Předloktí Pepka námořníka",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23947/",
+                      "grade": "7+",
+                      "length": "13m",
+                      "rating": null,
+                      "description": "Nástup stejně jako Žáby mají přednost a pak šikmo doprava podél trhliny. Cesty mají nástupovou var.",
+                      "firstAscent": "Ondřej Huml, R. Číp,1992"
+                    },
+                    {
+                      "id": 23925,
+                      "order": 3,
+                      "name": "Černé břicho",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23925/",
+                      "grade": "8+",
+                      "length": "14m",
+                      "rating": null,
+                      "description": "Nástup vpravo od cesty Žáby mají přednost, kolem prvního bh. boulder, pak již lehčeji přímo k vrch.",
+                      "firstAscent": "Ondřej Huml, F. Mezera, R. Číp,1992"
+                    },
+                    {
+                      "id": 118639,
+                      "order": 4,
+                      "name": "Varlidův pupek",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-118639/",
+                      "grade": "8+/9-",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Cestou Černé břicho až ke 3. bh. , pak traverz do c. Varlid a tou ke sl. Varianta ne příliš lezená.",
+                      "firstAscent": "Autoři neznámí"
+                    },
+                    {
+                      "id": 118640,
+                      "order": 5,
+                      "name": "Rezavý šporny",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-118640/",
+                      "grade": "9/9+",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Vpravo od c. Černé břicho přes 2 bh. do díry, z ní pravou hranou vhloubení přímo a ke slaňáku cesty Černé břicho. Boulder kolem prvního háku.",
+                      "firstAscent": "Roman Blahník,2014"
+                    },
+                    {
+                      "id": 23954,
+                      "order": 6,
+                      "name": "Varlid",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23954/",
+                      "grade": "9-/9",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Od 2. bh. v c. Lída dol. přes bh. do bočáku, z něj zprava a přímo k dalšímu bh. , z madla skok do chytů podél šikmé poruchy, tou dopr. a vzhůru ke sl. c. Lída. Cesta je zleva ohraničena hranou, za kterou by se nemělo sahat (tudy se napojuje Předloktí Pepka námořníka), trochu nel…",
+                      "firstAscent": "Martin Spilka, B. Brodský,2001"
+                    },
+                    {
+                      "id": 23953,
+                      "order": 7,
+                      "name": "Lída",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23953/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Dole nástupový boulder pak po trhlině za boční chyty, na konci trhliny natahovací boulder, vhloubením s vytrvalostním závěrem přímo k vrcholovému sl. Velká klasika.",
+                      "firstAscent": "O. Bílý,1996"
+                    },
+                    {
+                      "id": 23936,
+                      "order": 8,
+                      "name": "Lída direkt",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23936/",
+                      "grade": "9-",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Začátek jako c. Lída, ale u 5. bh. jdete doprava přes nový borhák ke sl. z narovnání c. Čára života.",
+                      "firstAscent": "Břetislav Brodský, P. Obst,2001"
+                    },
+                    {
+                      "id": 23937,
+                      "order": 9,
+                      "name": "Lídina čárka",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23937/",
+                      "grade": "9-/9",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Spojení cest Lída a Čára života. Nad 2. bh. v cestě Lída se traverzuje k 2. bh. cesty Čára života a tou se dolézá na vrchol.",
+                      "firstAscent": "M. Leitman,2002"
+                    },
+                    {
+                      "id": 23938,
+                      "order": 10,
+                      "name": "Falešný ráj",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23938/",
+                      "grade": "9",
+                      "length": "17m",
+                      "rating": null,
+                      "description": "Nástup c. Lída a od jejího 4. bh. traverz přes 3. bh. c. Obladi oblada ke 3. bh. Čáry života a tou už za odměnu na vrchol.",
+                      "firstAscent": "Petr Obst,2004"
+                    },
+                    {
+                      "id": 23939,
+                      "order": 11,
+                      "name": "D.D.D",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23939/",
+                      "grade": "9+",
+                      "length": null,
+                      "rating": null,
+                      "description": "Leze se jako Falešný ráj, ale dolez je jako Na hranici mezi dobrem a zlem.",
+                      "firstAscent": "J. Dlabola,7.6.2005"
+                    },
+                    {
+                      "id": 23935,
+                      "order": 12,
+                      "name": "Dusík",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23935/",
+                      "grade": "10-",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Lídou ke 3. bh. , doprava ke 2. bh. Obladi oblada, přes 3. bh. Obladi oblada, traverz doprava ke 3. bh. c. Čára života a dolez cestou Na hranici mezi dobrem a zlem.",
+                      "firstAscent": "J. Horák,22.4.2005"
+                    },
+                    {
+                      "id": 23945,
+                      "order": 13,
+                      "name": "Helium",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23945/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Pod c. Obladi oblada nástupovým boulderem přímo přes nt. na římsu, pak doleva do c. Lída a tou n. v.",
+                      "firstAscent": "Rosťa Štefánek,2002"
+                    },
+                    {
+                      "id": 23932,
+                      "order": 14,
+                      "name": "Realizace",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23932/",
+                      "grade": "10",
+                      "length": null,
+                      "rating": null,
+                      "description": "Nástup cesty \"Helium\", dále přímo do cesty \"Obladi oblada\", traverz doprava do cesty \"Čára života\" a její variantou (9) dolez.",
+                      "firstAscent": "J. Dlabola,11.3.2008"
+                    },
+                    {
+                      "id": 23933,
+                      "order": 15,
+                      "name": "Cvička",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23933/",
+                      "grade": "8-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Kombinace cest - nástup cestou \"Čára života\" a po polici kolem c. \"Obladi oblada\", přez c. \"Lída\", \"Varlid\" do c. \"Černé břicho\".",
+                      "firstAscent": "Břetislav Brodský, Vrána,2001"
+                    },
+                    {
+                      "id": 23952,
+                      "order": 16,
+                      "name": "Obladi oblada",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23952/",
+                      "grade": "9+",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Nástup jako Čára života, od 1. bh. doleva na římsu a přes další 2 bh. vzhůru, poté mírně doleva a cestou Lída nebo Lída direkt nahoru.",
+                      "firstAscent": "Petr Resch,2000"
+                    },
+                    {
+                      "id": 23944,
+                      "order": 17,
+                      "name": "Čarbladidá",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23944/",
+                      "grade": "9-",
+                      "length": "20m",
+                      "rating": null,
+                      "description": "Cestou Čára života ke 3. bh. (dlouhý preso pomůže), traverz doleva přes 3. bh. Obladi oblada do c. Lída a tou ke slaňáku. ČARa života-oBLADI oblada-líDÁ",
+                      "firstAscent": "David Chudoba,2004"
+                    },
+                    {
+                      "id": 23931,
+                      "order": 18,
+                      "name": "Osma",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23931/",
+                      "grade": "8",
+                      "length": null,
+                      "rating": null,
+                      "description": "Nástup cestou Čára Života\", traverz po spodní polici do c. \"Varlid\" a tím ke slaňáku. \"",
+                      "firstAscent": "D. Hampejs,2009"
+                    },
+                    {
+                      "id": 23930,
+                      "order": 19,
+                      "name": "Poslední šance",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23930/",
+                      "grade": "8-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Nástup cestou \"Čára Života\", traverz po spodní polici do c. \"Lída\" a tou ke slaňáku.",
+                      "firstAscent": "Monika Grünová,15.10.2006"
+                    },
+                    {
+                      "id": 23934,
+                      "order": 20,
+                      "name": "Na hranici mezi dobrem a zlem",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23934/",
+                      "grade": "9",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Nástup c. Čára života ke 4. bh. , odtud mírně šikmo doleva přes bh. ke slaňáku (společný pro Lídu direkt a Obladi oblada).",
+                      "firstAscent": "Roman Blahník,2005"
+                    },
+                    {
+                      "id": 23951,
+                      "order": 21,
+                      "name": "Čára života",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23951/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Nádherná cesta napravo od c. Helium, sokolíkovou spárou mírně doprava dolez plotnovým vhloubením.",
+                      "firstAscent": "Ondřej Huml, F. Mezera, R. Číp,1992"
+                    },
+                    {
+                      "id": 108214,
+                      "order": 22,
+                      "name": "Tritium",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-108214/",
+                      "grade": "10+",
+                      "length": "12m",
+                      "rating": null,
+                      "description": "Mezi Čárou Života a Kamasutrou",
+                      "firstAscent": "1. PP Martin Spilka,2012"
+                    },
+                    {
+                      "id": 23943,
+                      "order": 23,
+                      "name": "Kamasutra",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23943/",
+                      "grade": "10-",
+                      "length": "17m",
+                      "rating": null,
+                      "description": "Pěkné silově technické lezení za oblé lišty s nepříliš dobrými stupy.",
+                      "firstAscent": "Petr Resch,2002"
+                    },
+                    {
+                      "id": 108211,
+                      "order": 24,
+                      "name": "Bohemian rhapsody",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-108211/",
+                      "grade": "11+",
+                      "length": "25m",
+                      "rating": null,
+                      "description": "Nástup jako Tritium ke třetímu nýtu, úkrok doprava do Peace of Mind pod stříšku, zde doprava (po dvou klíčových krocích PoM se přídá ještě 3 další těžký kroky do Haftyho) do Odtučňovací kúry a dolez celým závěrečným boulderem Kečupu nahoru.",
+                      "firstAscent": "Adam Ondra, PP,29.4.2020"
+                    },
+                    {
+                      "id": 108215,
+                      "order": 25,
+                      "name": "Peace of mind",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-108215/",
+                      "grade": "11-",
+                      "length": "15m",
+                      "rating": null,
+                      "description": "Po vylezení téměř celé Kamasutry (3 nýty) pokračovat stále mírně doprava. Dále přes převísek stále mírně doprava. Dolez cestou Osel \"přímo\" za 8a. FA Jungli vylezl s madlem vlevo na konci Kamasutry.",
+                      "firstAscent": "Martin Spilka, FA Martin Jungling,2013"
+                    },
+                    {
+                      "id": 108216,
+                      "order": 26,
+                      "name": "Peaceful mind",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-108216/",
+                      "grade": "11-/11",
+                      "length": null,
+                      "rating": null,
+                      "description": "Jako Peace of Mind, ale pod stříškou úkrok doprava a dolez Wave Direct.",
+                      "firstAscent": "PP Adam Ondra,2015"
+                    },
+                    {
+                      "id": 23942,
+                      "order": 27,
+                      "name": "Hafty",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23942/",
+                      "grade": "9",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Nástup vpravo od c. Kamasutra. Z levé strany patestu k převislému odštěpu, podél něj (3 nt. - pestry) pod převis, boulder směrem doprava a výlez doleva. Velká klasika a uznávaná cesta.",
+                      "firstAscent": "Petr Resch,2000"
+                    },
+                    {
+                      "id": 23929,
+                      "order": 28,
+                      "name": "Osel",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23929/",
+                      "grade": "9",
+                      "length": null,
+                      "rating": null,
+                      "description": "Cestou \"Hafty\" pod závěrečný převis a zde doleva přes strůpek.",
+                      "firstAscent": "Petr Resch,2008"
+                    },
+                    {
+                      "id": 23927,
+                      "order": 29,
+                      "name": "Wave",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23927/",
+                      "grade": "10",
+                      "length": null,
+                      "rating": null,
+                      "description": "Nástup c. \"Hafty\" (Odtučňovací kůra), v polovině traverzu do c. \"Nové koření\" a přímo přes dva nýty ke slaňáku.",
+                      "firstAscent": "Petr Resch,2008"
+                    },
+                    {
+                      "id": 23928,
+                      "order": 30,
+                      "name": "Odtučňovací kůra",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23928/",
+                      "grade": "9",
+                      "length": null,
+                      "rating": null,
+                      "description": "Cestou \"Hafty\" ke 3. bhk, pak traverz doprava přes dosud nepoužívaný nýt a dále až do cesty \"Nové koření\" a jí na vrchol.",
+                      "firstAscent": "Petr Resch,2008"
+                    },
+                    {
+                      "id": 23948,
+                      "order": 31,
+                      "name": "Chilli",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23948/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Přes tři nýty do cesty \"Nové koření\" a na vrchol.",
+                      "firstAscent": "Roman Blahník,2006"
+                    },
+                    {
+                      "id": 23926,
+                      "order": 32,
+                      "name": "Sweet chilli",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23926/",
+                      "grade": "10-/10",
+                      "length": null,
+                      "rating": null,
+                      "description": "Nástup cestou \"Chilli\", pak mírně doleva přes dva nýty ke slaňáku.",
+                      "firstAscent": "Autoři neznámí,2008"
+                    },
+                    {
+                      "id": 23949,
+                      "order": 33,
+                      "name": "Nové koření",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23949/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Cesta, začínající vlastně až v polovině stěny nad vysokým patestem (na něj přes nýt), má jednu těžší pasáž a pak mírně vytrvalostní závěr. Klasika.",
+                      "firstAscent": "Ondřej Sobotka,1998"
+                    },
+                    {
+                      "id": 23941,
+                      "order": 34,
+                      "name": "Kečup",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23941/",
+                      "grade": "10",
+                      "length": "18m",
+                      "rating": null,
+                      "description": "Adamem Ondrou přelezený dlouholetý projekt vpravo od c. Nové koření.",
+                      "firstAscent": "Adam Ondra,2008"
+                    },
+                    {
+                      "id": 23950,
+                      "order": 35,
+                      "name": "Ozzmosis",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23950/",
+                      "grade": "6+",
+                      "length": "17m",
+                      "rating": null,
+                      "description": "Stěnkou vlevo od koutku hladkou stěnou ke slaňáku. Lehčí než vypadá.",
+                      "firstAscent": "František Mezera, Z. Mikeš,1997"
+                    }
+                  ]
+                },
+                {
+                  "id": 8698,
+                  "name": "Yosemite - pravá část (Hafty)",
+                  "url": "https://www.horosvaz.cz/skaly-skala-8698/",
+                  "official_type": "skala",
+                  "gps": {
+                    "lat": 49.65996,
+                    "lng": 14.257696
+                  },
+                  "routes": [
+                    {
+                      "id": 59265,
+                      "order": 1,
+                      "name": "Vzdušný holčiny",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-59265/",
+                      "grade": "6+",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Nástup při nevýrazné hraně, na polici a nad druhým jištěním jemnou spárkou na vrchol.",
+                      "firstAscent": "František Mezera, O. Huml,1995"
+                    },
+                    {
+                      "id": 59255,
+                      "order": 2,
+                      "name": "Magický proud",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-59255/",
+                      "grade": "8-",
+                      "length": null,
+                      "rating": null,
+                      "description": "Mezi cestou \"Ondrovina\" a c. \"Vzdušný holčiny\" přímo přes 3 nýty na vrchol.",
+                      "firstAscent": "Miroslav Beránek, P. Obst,2005"
+                    },
+                    {
+                      "id": 59263,
+                      "order": 3,
+                      "name": "Ondrovina",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-59263/",
+                      "grade": "8+",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Vpravo od hrany s c. Magický proud. Kolmou stěnkou přes tři nýty se specifickým bouldrem. Klíčový boulder se dá oblézt zprava, ale originál vede přímo a je to jedinečný silový krok.",
+                      "firstAscent": "Ondřej Sobotka, O. Huml,1993"
+                    },
+                    {
+                      "id": 59262,
+                      "order": 4,
+                      "name": "Get back",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-59262/",
+                      "grade": "8+/9-",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Cesta nastupuje dva metry vpravo od c. Ondrovina přes tři nýty n. v. Poměrně těžká a zřídka lezená cesta. Pěkný boulder pro silné prsty. Může být i těžší, někdo tvrdí, že i poctivé 9-.",
+                      "firstAscent": "Petr Resch,1996"
+                    },
+                    {
+                      "id": 59261,
+                      "order": 5,
+                      "name": "Dej si dolejt",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-59261/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 3,
+                      "description": "Dole těžší krok pak lehce členitou trhlinou. Pěkná cesta a dole na 7- celkem výživná.",
+                      "firstAscent": "František Mezera, K. Šolarová,1992"
+                    },
+                    {
+                      "id": 59260,
+                      "order": 6,
+                      "name": "James griwe",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-59260/",
+                      "grade": null,
+                      "length": null,
+                      "rating": 5,
+                      "description": "Dole těžší krok pak lehce členitou trhlinou.",
+                      "firstAscent": "Ondřej Huml,1994"
+                    },
+                    {
+                      "id": 59264,
+                      "order": 7,
+                      "name": "Velrybářská výprava",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-59264/",
+                      "grade": "6",
+                      "length": "15m",
+                      "rating": null,
+                      "description": "Vpravo od c. James Griwe po velkých vylomených chytech (nýt, 2 bh) kolmou stěnou ke slaňáku. Spodní část cesty je doporučeno dojistit vlastním materiálem!",
+                      "firstAscent": "František Mezera, K. Šolarová,1992"
+                    },
+                    {
+                      "id": 59259,
+                      "order": 8,
+                      "name": "Liberátor",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-59259/",
+                      "grade": "6-",
+                      "length": "15m",
+                      "rating": null,
+                      "description": "Cesta vedle c. Velrybářská výprava. Pozor! Nástup nelze dojistit a první je relativně vysoko. Pěkná, ale trochu záludná!",
+                      "firstAscent": "František Mezera, K. Šolarová,1994"
+                    },
+                    {
+                      "id": 59258,
+                      "order": 9,
+                      "name": "Temně mele mlýn",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-59258/",
+                      "grade": "6+",
+                      "length": "13m",
+                      "rating": null,
+                      "description": "Stěnkou přes nýt, na poličku a dále stěnou přes dva nýty, konec stejně jako c. Liberátor. Na 6+ těžká.",
+                      "firstAscent": "Ondřej Huml, J. Masner,1995"
+                    },
+                    {
+                      "id": 59257,
+                      "order": 10,
+                      "name": "Novoroční cesta",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-59257/",
+                      "grade": "5",
+                      "length": "14m",
+                      "rating": null,
+                      "description": "Krátkou stěnkou přes dva nýty. Slaňák je až úplně nahoře a zdola není vidět.",
+                      "firstAscent": "František Mezera, K. Šolarová, P. Soukal,1994"
+                    },
+                    {
+                      "id": 59256,
+                      "order": 11,
+                      "name": "Věšáček",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-59256/",
+                      "grade": "5",
+                      "length": "12m",
+                      "rating": null,
+                      "description": "Cesta, která se nachází na stěně nejvíce vpravo.",
+                      "firstAscent": "František Mezera, K. Šolarová, P. Soukal,1994"
+                    },
+                    {
+                      "id": 23940,
+                      "order": 36,
+                      "name": "Oblíbený koutek",
+                      "url": "https://www.horosvaz.cz/skaly-cesta-23940/",
+                      "grade": "5",
+                      "length": "16m",
+                      "rating": null,
+                      "description": "Koutkem, který bývá příliš zarostlý na to, aby byl oblíbený. Přesto je často lezený.",
+                      "firstAscent": "František Mezera, K. Šolarová,1996"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
