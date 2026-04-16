@@ -35,6 +35,7 @@ private val dayNames = arrayOf("Po", "Út", "St", "Čt", "Pá", "So", "Ne")
 fun CalendarScreen(
     onAscentClick: (Long) -> Unit,
     onEditAscent: (routeId: Long, ascentId: Long) -> Unit,
+    onSessionClick: (sessionId: Long) -> Unit,
     viewModel: CalendarViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -87,6 +88,7 @@ fun CalendarScreen(
                     items(sessions, key = { "session_${it.id}" }) { session ->
                         CalendarSessionCard(
                             session = session,
+                            onClick = { onSessionClick(session.id) },
                             onEditAscent = onEditAscent
                         )
                     }
@@ -229,10 +231,13 @@ private fun MonthGrid(
 @Composable
 private fun CalendarSessionCard(
     session: OutdoorSession,
+    onClick: () -> Unit,
     onEditAscent: (routeId: Long, ascentId: Long) -> Unit
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.3f)

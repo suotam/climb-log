@@ -2,47 +2,80 @@ package com.example.climblog.ui.screen.areas
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.climblog.data.local.dao.RouteDao
+import com.example.climblog.data.local.dao.RouteWithContext
+import com.example.climblog.data.local.dao.SectorDao
+import com.example.climblog.data.local.dao.SectorWithArea
 import com.example.climblog.data.repository.AreaRepository
 import com.example.climblog.domain.model.Area
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
+enum class SearchMode { AREAS, SECTORS, ROUTES }
+
 data class AreaListUiState(
-    val areas: List<Area> = emptyList(),          // filtered (list mode)
-    val allAreas: List<Area> = emptyList(),        // unfiltered (map mode)
+    val areas: List<Area> = emptyList(),
+    val allAreas: List<Area> = emptyList(),
     val searchQuery: String = "",
+    val searchMode: SearchMode = SearchMode.AREAS,
+    val sectorResults: List<SectorWithArea> = emptyList(),
+    val routeResults: List<RouteWithContext> = emptyList(),
     val showMap: Boolean = false,
     val selectedAreaId: Long? = null,
     val isLoading: Boolean = true
 )
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class AreaListViewModel @Inject constructor(
-    private val areaRepository: AreaRepository
+    private val areaRepository: AreaRepository,
+    private val sectorDao: SectorDao,
+    private val routeDao: RouteDao
 ) : ViewModel() {
 
     private val _searchQuery = MutableStateFlow("")
+    private val _searchMode = MutableStateFlow(SearchMode.AREAS)
     private val _showMap = MutableStateFlow(false)
     private val _selectedAreaId = MutableStateFlow<Long?>(null)
 
+    private val sectorResultsFlow: Flow<List<SectorWithArea>> =
+        combine(_searchQuery, _searchMode) { q, mode -> q to mode }
+            .flatMapLatest { (q, mode) ->
+                if (mode == SearchMode.SECTORS && q.length >= 2)
+                    sectorDao.searchSectors("%$q%")
+                else
+                    flowOf(emptyList())
+            }
+
+    private val routeResultsFlow: Flow<List<RouteWithContext>> =
+        combine(_searchQuery, _searchMode) { q, mode -> q to mode }
+            .flatMapLatest { (q, mode) ->
+                if (mode == SearchMode.ROUTES && q.length >= 2)
+                    routeDao.searchRoutes("%$q%")
+                else
+                    flowOf(emptyList())
+            }
+
     val uiState: StateFlow<AreaListUiState> = combine(
-        areaRepository.getAllAreas(),
-        _searchQuery,
-        _showMap,
-        _selectedAreaId
-    ) { areas, query, showMap, selectedId ->
-        val filtered = if (query.isBlank()) areas
+        combine(areaRepository.getAllAreas(), _searchQuery) { areas, q -> areas to q },
+        combine(_showMap, _selectedAreaId) { m, s -> m to s },
+        combine(_searchMode, sectorResultsFlow, routeResultsFlow) { mode, sec, rts -> Triple(mode, sec, rts) }
+    ) { (areas, q), (showMap, selId), (mode, sectors, routes) ->
+        val filtered = if (q.isBlank()) areas
         else areas.filter {
-            it.name.contains(query, ignoreCase = true) ||
-            it.region.contains(query, ignoreCase = true)
+            it.name.contains(q, ignoreCase = true) || it.region.contains(q, ignoreCase = true)
         }
         AreaListUiState(
             areas = filtered,
             allAreas = areas,
-            searchQuery = query,
+            searchQuery = q,
+            searchMode = mode,
+            sectorResults = sectors,
+            routeResults = routes,
             showMap = showMap,
-            selectedAreaId = selectedId,
+            selectedAreaId = selId,
             isLoading = false
         )
     }.stateIn(
@@ -52,6 +85,10 @@ class AreaListViewModel @Inject constructor(
     )
 
     fun onSearchQueryChange(query: String) { _searchQuery.value = query }
+    fun onSearchModeChange(mode: SearchMode) {
+        _searchMode.value = mode
+        _searchQuery.value = ""
+    }
 
     fun toggleMapView() {
         _showMap.update { !it }

@@ -18,6 +18,7 @@ import com.example.climblog.ui.screen.routes.RouteListScreen
 import com.example.climblog.ui.screen.sectors.SectorListScreen
 import com.example.climblog.ui.screen.stats.StatsScreen
 import com.example.climblog.ui.screen.outdoor.AddOutdoorSessionScreen
+import com.example.climblog.ui.screen.outdoor.OutdoorSessionDetailScreen
 import com.example.climblog.ui.screen.walls.AddWallSessionScreen
 import com.example.climblog.ui.screen.wishlist.WishlistScreen
 
@@ -36,6 +37,12 @@ fun ClimbLogNavHost(
             AreaListScreen(
                 onAreaClick = { areaId ->
                     navController.navigate(Screen.AreaDetail.createRoute(areaId))
+                },
+                onSectorClick = { sectorId ->
+                    navController.navigate(Screen.RouteList.createRoute(sectorId))
+                },
+                onRouteClick = { routeId ->
+                    navController.navigate(Screen.RouteDetail.createRoute(routeId))
                 }
             )
         }
@@ -128,6 +135,18 @@ fun ClimbLogNavHost(
             )
         }
 
+        composable(
+            route = Screen.OutdoorSessionDetail.route,
+            arguments = listOf(navArgument("sessionId") { type = NavType.LongType })
+        ) {
+            OutdoorSessionDetailScreen(
+                onNavigateUp = { navController.navigateUp() },
+                onEditAscent = { routeId, ascentId ->
+                    navController.navigate(Screen.LogAscent.createRoute(routeId, ascentId))
+                }
+            )
+        }
+
         composable(Screen.AddWallSession.route) {
             AddWallSessionScreen(
                 onSaved = { navController.navigateUp() },
@@ -139,6 +158,7 @@ fun ClimbLogNavHost(
             LogbookScreen(
                 onRouteClick = { routeId -> navController.navigate(Screen.RouteDetail.createRoute(routeId)) },
                 onEditAscent = { routeId, ascentId -> navController.navigate(Screen.LogAscent.createRoute(routeId, ascentId)) },
+                onSessionClick = { sessionId -> navController.navigate(Screen.OutdoorSessionDetail.createRoute(sessionId)) },
                 onAddWallSession = { navController.navigate(Screen.AddWallSession.route) },
                 onAddOutdoorSession = { navController.navigate(Screen.AddOutdoorSession.route) }
             )
@@ -149,7 +169,8 @@ fun ClimbLogNavHost(
         composable(Screen.Calendar.route) {
             CalendarScreen(
                 onAscentClick = { routeId -> navController.navigate(Screen.RouteDetail.createRoute(routeId)) },
-                onEditAscent = { routeId, ascentId -> navController.navigate(Screen.LogAscent.createRoute(routeId, ascentId)) }
+                onEditAscent = { routeId, ascentId -> navController.navigate(Screen.LogAscent.createRoute(routeId, ascentId)) },
+                onSessionClick = { sessionId -> navController.navigate(Screen.OutdoorSessionDetail.createRoute(sessionId)) }
             )
         }
 

@@ -1,5 +1,6 @@
 package com.example.climblog.ui.components
 
+import android.content.Context
 import android.net.Uri
 import android.os.Environment
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -29,7 +30,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.core.content.FileProvider
 import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.example.climblog.domain.model.Photo
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -60,20 +65,28 @@ fun PhotoSection(
     var showPickerDialog by remember { mutableStateOf(false) }
     var fullscreenUri by remember { mutableStateOf<String?>(null) }
     var pendingCameraUri by remember { mutableStateOf<Uri?>(null) }
+    var pendingCameraFile by remember { mutableStateOf<File?>(null) }
+    val coroutineScope = rememberCoroutineScope()
 
     val galleryLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickMultipleVisualMedia()
     ) { uris ->
-        if (uris.isNotEmpty()) onPhotosAdded(uris.map { it.toString() })
+        if (uris.isNotEmpty()) {
+            coroutineScope.launch {
+                val localUris = copyPhotosToLocalStorage(context, uris)
+                if (localUris.isNotEmpty()) onPhotosAdded(localUris)
+            }
+        }
     }
 
     val cameraLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.TakePicture()
     ) { success ->
         if (success) {
-            pendingCameraUri?.let { onPhotosAdded(listOf(it.toString())) }
+            pendingCameraFile?.let { onPhotosAdded(listOf(Uri.fromFile(it).toString())) }
         }
         pendingCameraUri = null
+        pendingCameraFile = null
     }
 
     Column(modifier = modifier) {
@@ -116,6 +129,7 @@ fun PhotoSection(
                     "${context.packageName}.fileprovider",
                     file
                 )
+                pendingCameraFile = file
                 pendingCameraUri = uri
                 cameraLauncher.launch(uri)
             },
@@ -166,7 +180,10 @@ private fun AddPhotoButton(onClick: () -> Unit) {
 private fun PhotoThumbnail(uri: String, onDelete: () -> Unit, onClick: () -> Unit) {
     Box(modifier = Modifier.size(80.dp)) {
         AsyncImage(
-            model = uri,
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(Uri.parse(uri))
+                .crossfade(true)
+                .build(),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -252,7 +269,10 @@ private fun FullscreenPhotoDialog(uri: String, onDismiss: () -> Unit) {
                 .clickable(onClick = onDismiss)
         ) {
             AsyncImage(
-                model = uri,
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(Uri.parse(uri))
+                    .crossfade(true)
+                    .build(),
                 contentDescription = null,
                 contentScale = ContentScale.Fit,
                 modifier = Modifier.fillMaxSize()
@@ -266,3 +286,16 @@ private fun createTempPhotoFile(context: android.content.Context): File {
     val dir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
     return File.createTempFile("PHOTO_${timestamp}_", ".jpg", dir)
 }
+
+private suspend fun copyPhotosToLocalStorage(context: Context, uris: List<Uri>): List<String> =
+    withContext(Dispatchers.IO) {
+        uris.mapNotNull { sourceUri ->
+            runCatching {
+                context.contentResolver.openInputStream(sourceUri)?.use { input ->
+                    val target = createTempPhotoFile(context)
+                    target.outputStream().use { output -> input.copyTo(output) }
+                    Uri.fromFile(target).toString()
+                }
+            }.getOrNull()
+        }
+    }

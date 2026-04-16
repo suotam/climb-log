@@ -59,9 +59,18 @@ fun LogAscentScreen(
         ) {
             // Route info header
             uiState.route?.let { route ->
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    GradeChip(grade = route.grade)
-                    Text(route.name, style = MaterialTheme.typography.titleLarge)
+                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        GradeChip(grade = route.grade)
+                        Text(route.name, style = MaterialTheme.typography.titleLarge)
+                    }
+                    if (route.description.isNotBlank()) {
+                        Text(
+                            text = route.description,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                 }
             }
 

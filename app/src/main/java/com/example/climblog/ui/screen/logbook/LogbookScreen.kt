@@ -31,6 +31,7 @@ private val dateFormat = SimpleDateFormat("d. M. yyyy", Locale("cs"))
 fun LogbookScreen(
     onRouteClick: (Long) -> Unit,
     onEditAscent: (routeId: Long, ascentId: Long) -> Unit,
+    onSessionClick: (sessionId: Long) -> Unit,
     onAddWallSession: () -> Unit,
     onAddOutdoorSession: () -> Unit,
     viewModel: LogbookViewModel = hiltViewModel()
@@ -86,6 +87,7 @@ fun LogbookScreen(
                     feed = uiState.skályFeed,
                     onRouteClick = onRouteClick,
                     onEditAscent = onEditAscent,
+                    onSessionClick = onSessionClick,
                     onDeleteSession = { deleteOutdoorTarget = it }
                 )
                 LogbookTab.STENY -> WallTab(
@@ -138,6 +140,7 @@ private fun OutdoorTab(
     feed: List<SkályFeedItem>,
     onRouteClick: (Long) -> Unit,
     onEditAscent: (routeId: Long, ascentId: Long) -> Unit,
+    onSessionClick: (Long) -> Unit,
     onDeleteSession: (OutdoorSession) -> Unit
 ) {
     if (feed.isEmpty()) {
@@ -159,6 +162,7 @@ private fun OutdoorTab(
             when (item) {
                 is SkályFeedItem.Session -> OutdoorSessionCard(
                     session = item.session,
+                    onClick = { onSessionClick(item.session.id) },
                     onEditAscent = onEditAscent,
                     onDelete = { onDeleteSession(item.session) }
                 )
@@ -174,11 +178,14 @@ private fun OutdoorTab(
 @Composable
 private fun OutdoorSessionCard(
     session: OutdoorSession,
+    onClick: () -> Unit,
     onEditAscent: (routeId: Long, ascentId: Long) -> Unit,
     onDelete: () -> Unit
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.3f)
@@ -209,35 +216,14 @@ private fun OutdoorSessionCard(
                 if (session.routes.isNotEmpty()) {
                     Text(
                         "${session.routes.size} ${pluralCesty(session.routes.size)}",
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
-                    session.routes.forEach { route ->
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable { onEditAscent(route.routeId, route.ascentId) }
-                                .padding(vertical = 2.dp),
-                            horizontalArrangement = Arrangement.spacedBy(6.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            AscentStyleChip(style = route.style)
-                            Text(
-                                route.routeName,
-                                style = MaterialTheme.typography.bodySmall,
-                                modifier = Modifier.weight(1f)
-                            )
-                            Text(
-                                route.grade,
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.primary
-                            )
-                        }
-                    }
                 }
                 if (session.notes.isNotBlank()) {
                     Text(
                         session.notes,
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 2
                     )

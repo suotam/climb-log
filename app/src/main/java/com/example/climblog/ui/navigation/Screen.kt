@@ -29,6 +29,10 @@ sealed class Screen(val route: String) {
     object AddWallSession : Screen("walls/add")
     object AddOutdoorSession : Screen("outdoor/add")
 
+    object OutdoorSessionDetail : Screen("outdoor/{sessionId}") {
+        fun createRoute(sessionId: Long) = "outdoor/$sessionId"
+    }
+
     object EditRoute : Screen("routes/edit?sectorId={sectorId}&routeId={routeId}") {
         fun createRoute(sectorId: Long) = "routes/edit?sectorId=$sectorId&routeId=-1"
         fun editRoute(routeId: Long) = "routes/edit?sectorId=-1&routeId=$routeId"

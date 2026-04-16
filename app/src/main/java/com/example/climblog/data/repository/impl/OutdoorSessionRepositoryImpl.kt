@@ -14,6 +14,7 @@ import com.example.climblog.domain.model.AscentStyle
 import com.example.climblog.domain.model.OutdoorSession
 import com.example.climblog.domain.model.OutdoorSessionRoute
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -26,6 +27,30 @@ class OutdoorSessionRepositoryImpl @Inject constructor(
     private val ascentDao: AscentDao,
     private val photoDao: PhotoDao
 ) : OutdoorSessionRepository {
+
+    override fun getSessionById(id: Long): Flow<OutdoorSession?> =
+        dao.getSessionById(id).map { list ->
+            list.firstOrNull()?.let { sessionWithRoutes ->
+                val areaName = sessionWithRoutes.session.areaId?.let { areaDao.getAreaById(it)?.name }
+                val routeDetails = sessionWithRoutes.ascents.map { ascentEntity ->
+                    val route = routeDao.getRouteById(ascentEntity.routeId)
+                    OutdoorSessionRoute(
+                        ascentId = ascentEntity.id,
+                        sessionId = sessionWithRoutes.session.id,
+                        routeId = ascentEntity.routeId,
+                        routeName = route?.name ?: "?",
+                        grade = route?.grade ?: "",
+                        style = AscentStyle.valueOf(ascentEntity.style)
+                    )
+                }
+                sessionWithRoutes.toDomain(areaName, routeDetails)
+            }
+        }
+
+    override suspend fun updateNotes(sessionId: Long, notes: String) {
+        val existing = dao.getSessionById(sessionId).first().firstOrNull()?.session ?: return
+        dao.updateSession(existing.copy(notes = notes))
+    }
 
     override fun getAllSessions(): Flow<List<OutdoorSession>> =
         dao.getAllSessions().map { sessions ->
