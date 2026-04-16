@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import com.example.climblog.data.local.entity.OutdoorSessionEntity
-import com.example.climblog.data.local.entity.OutdoorSessionRouteEntity
 import com.example.climblog.data.local.entity.OutdoorSessionWithRoutes
 import kotlinx.coroutines.flow.Flow
 
@@ -19,9 +18,6 @@ interface OutdoorSessionDao {
 
     @Insert
     suspend fun insertSession(session: OutdoorSessionEntity): Long
-
-    @Insert
-    suspend fun insertRoutes(routes: List<OutdoorSessionRouteEntity>)
 
     @Delete
     suspend fun deleteSession(session: OutdoorSessionEntity)

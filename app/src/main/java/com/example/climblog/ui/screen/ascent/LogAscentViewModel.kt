@@ -43,6 +43,8 @@ class LogAscentViewModel @Inject constructor(
     private val routeId: Long = checkNotNull(savedStateHandle["routeId"])
     private val editAscentId: Long? = savedStateHandle.get<Long>("ascentId")?.takeIf { it != -1L }
 
+    private var existingOutdoorSessionId: Long? = null
+
     private val _uiState = MutableStateFlow(LogAscentUiState())
     val uiState: StateFlow<LogAscentUiState> = _uiState.asStateFlow()
 
@@ -52,7 +54,23 @@ class LogAscentViewModel @Inject constructor(
             _uiState.update { it.copy(route = route) }
         }
         if (editAscentId != null) {
-            // Load existing photos for this ascent in edit mode
+            viewModelScope.launch {
+                val existing = ascentRepository.getAscentById(editAscentId)
+                if (existing != null) {
+                    existingOutdoorSessionId = existing.outdoorSessionId
+                    _uiState.update {
+                        it.copy(
+                            date = existing.date,
+                            style = existing.style,
+                            attempts = existing.attempts,
+                            personalNote = existing.personalNote,
+                            publicNote = existing.publicNote,
+                            personalGrade = existing.personalGrade,
+                            rating = existing.rating
+                        )
+                    }
+                }
+            }
             viewModelScope.launch {
                 photoRepository.getPhotosByAscent(editAscentId).collect { photos ->
                     _uiState.update { it.copy(existingPhotos = photos) }
@@ -97,7 +115,8 @@ class LogAscentViewModel @Inject constructor(
                 personalNote = state.personalNote,
                 publicNote = state.publicNote,
                 personalGrade = state.personalGrade,
-                rating = state.rating
+                rating = state.rating,
+                outdoorSessionId = existingOutdoorSessionId
             )
             val savedId = if (editAscentId != null) {
                 ascentRepository.updateAscent(ascent)

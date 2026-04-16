@@ -18,6 +18,9 @@ interface AscentDao {
     @Query("SELECT * FROM ascents WHERE id = :id")
     suspend fun getAscentById(id: Long): AscentEntity?
 
+    @Query("SELECT * FROM ascents WHERE outdoorSessionId = :sessionId ORDER BY createdAt ASC")
+    suspend fun getAscentsBySessionId(sessionId: Long): List<AscentEntity>
+
     @Query("SELECT COUNT(*) FROM ascents WHERE routeId = :routeId")
     suspend fun countByRoute(routeId: Long): Int
 

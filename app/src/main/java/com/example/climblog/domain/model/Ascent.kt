@@ -11,7 +11,8 @@ data class Ascent(
     val publicNote: String = "",
     val photoUri: String? = null,
     val personalGrade: String? = null,
-    val rating: Int? = null   // 1–5
+    val rating: Int? = null,  // 1–5
+    val outdoorSessionId: Long? = null
 )
 
 /** Sdružuje cestu s jejím nejlepším přelezem (pro přehledy). */

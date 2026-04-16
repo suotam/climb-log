@@ -3,9 +3,11 @@ package com.example.climblog.ui.screen.calendar
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.climblog.data.repository.AscentRepository
+import com.example.climblog.data.repository.OutdoorSessionRepository
 import com.example.climblog.data.repository.PhotoRepository
 import com.example.climblog.data.repository.RouteRepository
 import com.example.climblog.domain.model.Ascent
+import com.example.climblog.domain.model.OutdoorSession
 import com.example.climblog.domain.model.Photo
 import com.example.climblog.domain.model.Route
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,18 +24,22 @@ data class CalendarDayEntry(
 data class CalendarUiState(
     val displayedYear: Int,
     val displayedMonth: Int,
-    val ascentsByDay: Map<Int, List<CalendarDayEntry>> = emptyMap(),
+    val standaloneAscentsByDay: Map<Int, List<CalendarDayEntry>> = emptyMap(),
+    val sessionsByDay: Map<Int, List<OutdoorSession>> = emptyMap(),
     val selectedDay: Int? = null,
     val dayPhotos: List<Photo> = emptyList(),
     val isLoading: Boolean = true
-)
+) {
+    val activityDays: Set<Int> get() = standaloneAscentsByDay.keys + sessionsByDay.keys
+}
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class CalendarViewModel @Inject constructor(
     private val ascentRepository: AscentRepository,
     private val routeRepository: RouteRepository,
-    private val photoRepository: PhotoRepository
+    private val photoRepository: PhotoRepository,
+    private val outdoorSessionRepository: OutdoorSessionRepository
 ) : ViewModel() {
 
     private val today = Calendar.getInstance()
@@ -42,14 +48,16 @@ class CalendarViewModel @Inject constructor(
     )
     private val _selectedDay = MutableStateFlow<Int?>(null)
 
-    private val _ascentsByDay: StateFlow<Map<Int, List<CalendarDayEntry>>> = combine(
+    private val _standaloneAscentsByDay: StateFlow<Map<Int, List<CalendarDayEntry>>> = combine(
         _displayedMonth,
         ascentRepository.getAllAscents()
     ) { monthKey, allAscents ->
         val year = monthKey / 100
         val month = monthKey % 100
         val (monthStart, monthEnd) = getMonthRange(year, month)
-        val monthAscents = allAscents.filter { it.date in monthStart..monthEnd }
+        val monthAscents = allAscents.filter {
+            it.date in monthStart..monthEnd && it.outdoorSessionId == null
+        }
         val routeIds = monthAscents.map { it.routeId }.distinct()
         val routesById = routeRepository.getRoutesByIds(routeIds).associateBy { it.id }
         monthAscents.groupBy { ascent ->
@@ -57,6 +65,24 @@ class CalendarViewModel @Inject constructor(
         }.mapValues { (_, ascents) ->
             ascents.map { ascent -> CalendarDayEntry(ascent, routesById[ascent.routeId]) }
         }
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = emptyMap()
+    )
+
+    private val _sessionsByDay: StateFlow<Map<Int, List<OutdoorSession>>> = combine(
+        _displayedMonth,
+        outdoorSessionRepository.getAllSessions()
+    ) { monthKey, allSessions ->
+        val year = monthKey / 100
+        val month = monthKey % 100
+        val (monthStart, monthEnd) = getMonthRange(year, month)
+        allSessions
+            .filter { it.date in monthStart..monthEnd }
+            .groupBy { session ->
+                Calendar.getInstance().apply { timeInMillis = session.date }.get(Calendar.DAY_OF_MONTH)
+            }
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
@@ -95,13 +121,15 @@ class CalendarViewModel @Inject constructor(
     val uiState: StateFlow<CalendarUiState> = combine(
         _displayedMonth,
         _selectedDay,
-        _ascentsByDay,
+        _standaloneAscentsByDay,
+        _sessionsByDay,
         _dayPhotos
-    ) { monthKey, selectedDay, ascentsByDay, dayPhotos ->
+    ) { monthKey, selectedDay, standaloneAscentsByDay, sessionsByDay, dayPhotos ->
         CalendarUiState(
             displayedYear = monthKey / 100,
             displayedMonth = monthKey % 100,
-            ascentsByDay = ascentsByDay,
+            standaloneAscentsByDay = standaloneAscentsByDay,
+            sessionsByDay = sessionsByDay,
             selectedDay = selectedDay,
             dayPhotos = dayPhotos,
             isLoading = false

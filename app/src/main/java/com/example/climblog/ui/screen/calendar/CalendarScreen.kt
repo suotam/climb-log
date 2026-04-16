@@ -6,9 +6,11 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.filled.Terrain
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -17,6 +19,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.climblog.domain.model.OutdoorSession
 import com.example.climblog.ui.components.AscentStyleChip
 import com.example.climblog.ui.components.PhotoSection
 import java.util.Calendar
@@ -31,6 +34,7 @@ private val dayNames = arrayOf("Po", "Út", "St", "Čt", "Pá", "So", "Ne")
 @Composable
 fun CalendarScreen(
     onAscentClick: (Long) -> Unit,
+    onEditAscent: (routeId: Long, ascentId: Long) -> Unit,
     viewModel: CalendarViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -61,7 +65,7 @@ fun CalendarScreen(
                 MonthGrid(
                     year = uiState.displayedYear,
                     month = uiState.displayedMonth,
-                    ascentDays = uiState.ascentsByDay.keys,
+                    activityDays = uiState.activityDays,
                     selectedDay = uiState.selectedDay,
                     onDayClick = viewModel::selectDay
                 )
@@ -69,8 +73,9 @@ fun CalendarScreen(
 
             // Selected day detail
             uiState.selectedDay?.let { day ->
-                val entries = uiState.ascentsByDay[day] ?: emptyList()
-                if (entries.isNotEmpty() || uiState.dayPhotos.isNotEmpty()) {
+                val standaloneEntries = uiState.standaloneAscentsByDay[day] ?: emptyList()
+                val sessions = uiState.sessionsByDay[day] ?: emptyList()
+                if (standaloneEntries.isNotEmpty() || sessions.isNotEmpty() || uiState.dayPhotos.isNotEmpty()) {
                     item {
                         Text(
                             "$day. ${monthNames[uiState.displayedMonth]} ${uiState.displayedYear}",
@@ -78,8 +83,16 @@ fun CalendarScreen(
                         )
                     }
 
-                    // Ascent cards
-                    items(entries, key = { it.ascent.id }) { entry ->
+                    // Session cards
+                    items(sessions, key = { "session_${it.id}" }) { session ->
+                        CalendarSessionCard(
+                            session = session,
+                            onEditAscent = onEditAscent
+                        )
+                    }
+
+                    // Standalone ascent cards
+                    items(standaloneEntries, key = { it.ascent.id }) { entry ->
                         Card(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -155,7 +168,7 @@ private fun MonthHeader(year: Int, month: Int, onPrevious: () -> Unit, onNext: (
 private fun MonthGrid(
     year: Int,
     month: Int,
-    ascentDays: Set<Int>,
+    activityDays: Set<Int>,
     selectedDay: Int?,
     onDayClick: (Int) -> Unit
 ) {
@@ -200,7 +213,7 @@ private fun MonthGrid(
                         DayCell(
                             day = day,
                             isToday = day == todayDay,
-                            hasAscent = day in ascentDays,
+                            hasAscent = day in activityDays,
                             isSelected = day == selectedDay,
                             onClick = { onDayClick(day) },
                             modifier = Modifier.weight(1f)
@@ -208,6 +221,86 @@ private fun MonthGrid(
                         dayCounter++
                     }
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun CalendarSessionCard(
+    session: OutdoorSession,
+    onEditAscent: (routeId: Long, ascentId: Long) -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.3f)
+        )
+    ) {
+        Column(
+            modifier = Modifier.padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp)
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    Icons.Filled.Terrain,
+                    contentDescription = null,
+                    modifier = Modifier.size(16.dp),
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Text(session.cragDisplayName, style = MaterialTheme.typography.titleSmall)
+                if (session.routes.isNotEmpty()) {
+                    Text(
+                        "· ${session.routes.size} ${when (session.routes.size) {
+                            1 -> "cesta"; in 2..4 -> "cesty"; else -> "cest"
+                        }}",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+            if (session.routes.isNotEmpty()) {
+                Surface(
+                    shape = RoundedCornerShape(6.dp),
+                    color = MaterialTheme.colorScheme.surface.copy(alpha = 0.6f)
+                ) {
+                    Column {
+                        session.routes.forEach { route ->
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable { onEditAscent(route.routeId, route.ascentId) }
+                                    .padding(horizontal = 10.dp, vertical = 6.dp),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                AscentStyleChip(style = route.style)
+                                Text(
+                                    route.routeName,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    modifier = Modifier.weight(1f)
+                                )
+                                Text(
+                                    route.grade,
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+            if (session.notes.isNotBlank()) {
+                Text(
+                    session.notes,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    maxLines = 2
+                )
             }
         }
     }

@@ -21,7 +21,8 @@
       "Bash(echo \"Scraper started in background PID: $!\")",
       "Bash(xargs grep:*)",
       "Bash(xargs cat:*)",
-      "Bash(./gradlew assembleDebug --info)"
+      "Bash(./gradlew assembleDebug --info)",
+      "Bash(./gradlew compileDebugKotlin)"
     ]
   }
 }

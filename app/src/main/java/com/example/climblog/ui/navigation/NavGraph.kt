@@ -138,6 +138,7 @@ fun ClimbLogNavHost(
         composable(Screen.Logbook.route) {
             LogbookScreen(
                 onRouteClick = { routeId -> navController.navigate(Screen.RouteDetail.createRoute(routeId)) },
+                onEditAscent = { routeId, ascentId -> navController.navigate(Screen.LogAscent.createRoute(routeId, ascentId)) },
                 onAddWallSession = { navController.navigate(Screen.AddWallSession.route) },
                 onAddOutdoorSession = { navController.navigate(Screen.AddOutdoorSession.route) }
             )
@@ -147,7 +148,8 @@ fun ClimbLogNavHost(
 
         composable(Screen.Calendar.route) {
             CalendarScreen(
-                onAscentClick = { routeId -> navController.navigate(Screen.RouteDetail.createRoute(routeId)) }
+                onAscentClick = { routeId -> navController.navigate(Screen.RouteDetail.createRoute(routeId)) },
+                onEditAscent = { routeId, ascentId -> navController.navigate(Screen.LogAscent.createRoute(routeId, ascentId)) }
             )
         }
 

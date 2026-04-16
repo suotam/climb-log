@@ -46,8 +46,8 @@ data class OutdoorSessionRouteEntity(
 
 data class OutdoorSessionWithRoutes(
     @Embedded val session: OutdoorSessionEntity,
-    @Relation(parentColumn = "id", entityColumn = "sessionId")
-    val routes: List<OutdoorSessionRouteEntity>
+    @Relation(parentColumn = "id", entityColumn = "outdoorSessionId")
+    val ascents: List<AscentEntity>
 )
 
 fun OutdoorSessionWithRoutes.toDomain(

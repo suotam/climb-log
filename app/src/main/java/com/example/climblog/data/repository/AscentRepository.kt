@@ -7,6 +7,7 @@ interface AscentRepository {
     fun getAscentsByRoute(routeId: Long): Flow<List<Ascent>>
     fun getAllAscents(): Flow<List<Ascent>>
     fun getAscentsByDateRange(startDate: Long, endDate: Long): Flow<List<Ascent>>
+    suspend fun getAscentById(id: Long): Ascent?
     suspend fun saveAscent(ascent: Ascent): Long
     suspend fun updateAscent(ascent: Ascent)
     suspend fun deleteAscent(ascent: Ascent)

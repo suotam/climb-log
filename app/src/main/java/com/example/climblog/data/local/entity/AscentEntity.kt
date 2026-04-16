@@ -9,13 +9,21 @@ import com.example.climblog.domain.model.AscentStyle
 
 @Entity(
     tableName = "ascents",
-    foreignKeys = [ForeignKey(
-        entity = RouteEntity::class,
-        parentColumns = ["id"],
-        childColumns = ["routeId"],
-        onDelete = ForeignKey.CASCADE
-    )],
-    indices = [Index("routeId")]
+    foreignKeys = [
+        ForeignKey(
+            entity = RouteEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["routeId"],
+            onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = OutdoorSessionEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["outdoorSessionId"],
+            onDelete = ForeignKey.CASCADE
+        )
+    ],
+    indices = [Index("routeId"), Index("outdoorSessionId")]
 )
 data class AscentEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
@@ -29,6 +37,7 @@ data class AscentEntity(
     val photoUri: String? = null,
     val personalGrade: String? = null,
     val rating: Int? = null,
+    val outdoorSessionId: Long? = null,
     val syncStatus: String = "LOCAL",
     val createdAt: Long = System.currentTimeMillis(),
     val updatedAt: Long = System.currentTimeMillis()
@@ -45,7 +54,8 @@ fun AscentEntity.toDomain() = Ascent(
     publicNote = publicNote,
     photoUri = photoUri,
     personalGrade = personalGrade,
-    rating = rating
+    rating = rating,
+    outdoorSessionId = outdoorSessionId
 )
 
 fun Ascent.toEntity() = AscentEntity(
@@ -59,5 +69,6 @@ fun Ascent.toEntity() = AscentEntity(
     publicNote = publicNote,
     photoUri = photoUri,
     personalGrade = personalGrade,
-    rating = rating
+    rating = rating,
+    outdoorSessionId = outdoorSessionId
 )

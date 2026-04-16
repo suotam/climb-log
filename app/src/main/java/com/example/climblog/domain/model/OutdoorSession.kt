@@ -14,7 +14,7 @@ data class OutdoorSession(
 }
 
 data class OutdoorSessionRoute(
-    val id: Long = 0,
+    val ascentId: Long = 0,
     val sessionId: Long,
     val routeId: Long,
     val routeName: String,

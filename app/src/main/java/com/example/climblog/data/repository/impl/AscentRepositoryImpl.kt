@@ -22,6 +22,9 @@ class AscentRepositoryImpl @Inject constructor(
     override fun getAscentsByDateRange(startDate: Long, endDate: Long): Flow<List<Ascent>> =
         ascentDao.getAscentsByDateRange(startDate, endDate).map { list -> list.map { it.toDomain() } }
 
+    override suspend fun getAscentById(id: Long): Ascent? =
+        ascentDao.getAscentById(id)?.toDomain()
+
     override suspend fun saveAscent(ascent: Ascent): Long =
         ascentDao.insert(ascent.toEntity())
 

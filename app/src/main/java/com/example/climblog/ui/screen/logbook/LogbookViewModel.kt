@@ -51,9 +51,11 @@ class LogbookViewModel @Inject constructor(
     private val _selectedTab = MutableStateFlow(LogbookTab.SKALY)
 
     private val ascentsFlow = ascentRepository.getAllAscents().map { ascents ->
-        ascents.map { ascent ->
-            LogbookEntry(ascent, routeDao.getRouteById(ascent.routeId)?.toDomain())
-        }
+        ascents
+            .filter { it.outdoorSessionId == null }
+            .map { ascent ->
+                LogbookEntry(ascent, routeDao.getRouteById(ascent.routeId)?.toDomain())
+            }
     }
 
     val uiState: StateFlow<LogbookUiState> = combine(

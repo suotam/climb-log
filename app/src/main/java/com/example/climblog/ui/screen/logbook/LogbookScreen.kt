@@ -30,6 +30,7 @@ private val dateFormat = SimpleDateFormat("d. M. yyyy", Locale("cs"))
 @Composable
 fun LogbookScreen(
     onRouteClick: (Long) -> Unit,
+    onEditAscent: (routeId: Long, ascentId: Long) -> Unit,
     onAddWallSession: () -> Unit,
     onAddOutdoorSession: () -> Unit,
     viewModel: LogbookViewModel = hiltViewModel()
@@ -84,6 +85,7 @@ fun LogbookScreen(
                 LogbookTab.SKALY -> OutdoorTab(
                     feed = uiState.skályFeed,
                     onRouteClick = onRouteClick,
+                    onEditAscent = onEditAscent,
                     onDeleteSession = { deleteOutdoorTarget = it }
                 )
                 LogbookTab.STENY -> WallTab(
@@ -135,6 +137,7 @@ fun LogbookScreen(
 private fun OutdoorTab(
     feed: List<SkályFeedItem>,
     onRouteClick: (Long) -> Unit,
+    onEditAscent: (routeId: Long, ascentId: Long) -> Unit,
     onDeleteSession: (OutdoorSession) -> Unit
 ) {
     if (feed.isEmpty()) {
@@ -156,6 +159,7 @@ private fun OutdoorTab(
             when (item) {
                 is SkályFeedItem.Session -> OutdoorSessionCard(
                     session = item.session,
+                    onEditAscent = onEditAscent,
                     onDelete = { onDeleteSession(item.session) }
                 )
                 is SkályFeedItem.SingleAscent -> OutdoorEntryCard(
@@ -168,7 +172,11 @@ private fun OutdoorTab(
 }
 
 @Composable
-private fun OutdoorSessionCard(session: OutdoorSession, onDelete: () -> Unit) {
+private fun OutdoorSessionCard(
+    session: OutdoorSession,
+    onEditAscent: (routeId: Long, ascentId: Long) -> Unit,
+    onDelete: () -> Unit
+) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
@@ -203,19 +211,27 @@ private fun OutdoorSessionCard(session: OutdoorSession, onDelete: () -> Unit) {
                         "${session.routes.size} ${pluralCesty(session.routes.size)}",
                         style = MaterialTheme.typography.bodyMedium
                     )
-                    session.routes.take(3).forEach { route ->
-                        Text(
-                            "· ${route.routeName}  ${route.grade}  (${route.style.label})",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
-                    if (session.routes.size > 3) {
-                        Text(
-                            "… a ${session.routes.size - 3} dalších",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
+                    session.routes.forEach { route ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { onEditAscent(route.routeId, route.ascentId) }
+                                .padding(vertical = 2.dp),
+                            horizontalArrangement = Arrangement.spacedBy(6.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            AscentStyleChip(style = route.style)
+                            Text(
+                                route.routeName,
+                                style = MaterialTheme.typography.bodySmall,
+                                modifier = Modifier.weight(1f)
+                            )
+                            Text(
+                                route.grade,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                        }
                     }
                 }
                 if (session.notes.isNotBlank()) {

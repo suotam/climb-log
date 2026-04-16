@@ -41,7 +41,7 @@ import com.example.climblog.data.local.entity.WishlistEntity
         OutdoorSessionEntity::class,
         OutdoorSessionRouteEntity::class
     ],
-    version = 7,
+    version = 8,
     exportSchema = false
 )
 abstract class ClimbLogDatabase : RoomDatabase() {
@@ -51,6 +51,49 @@ abstract class ClimbLogDatabase : RoomDatabase() {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL("ALTER TABLE sectors ADD COLUMN `order` INTEGER NOT NULL DEFAULT 0")
                 db.execSQL("ALTER TABLE routes ADD COLUMN `order` INTEGER NOT NULL DEFAULT 0")
+            }
+        }
+
+        val MIGRATION_7_8 = object : Migration(7, 8) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                // SQLite can't add FK via ALTER TABLE — recreate ascents with full schema
+                db.execSQL("""
+                    CREATE TABLE IF NOT EXISTS `ascents_new` (
+                        `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        `routeId` INTEGER NOT NULL,
+                        `userId` TEXT NOT NULL,
+                        `date` INTEGER NOT NULL,
+                        `style` TEXT NOT NULL,
+                        `attempts` INTEGER NOT NULL,
+                        `personalNote` TEXT NOT NULL,
+                        `publicNote` TEXT NOT NULL,
+                        `photoUri` TEXT,
+                        `personalGrade` TEXT,
+                        `rating` INTEGER,
+                        `outdoorSessionId` INTEGER,
+                        `syncStatus` TEXT NOT NULL,
+                        `createdAt` INTEGER NOT NULL,
+                        `updatedAt` INTEGER NOT NULL,
+                        FOREIGN KEY(`routeId`) REFERENCES `routes`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE,
+                        FOREIGN KEY(`outdoorSessionId`) REFERENCES `outdoor_sessions`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE
+                    )
+                """.trimIndent())
+                db.execSQL("""
+                    INSERT INTO `ascents_new` (`id`, `routeId`, `userId`, `date`, `style`, `attempts`, `personalNote`, `publicNote`, `photoUri`, `personalGrade`, `rating`, `outdoorSessionId`, `syncStatus`, `createdAt`, `updatedAt`)
+                    SELECT `id`, `routeId`, `userId`, `date`, `style`, `attempts`, `personalNote`, `publicNote`, `photoUri`, `personalGrade`, `rating`, NULL, `syncStatus`, `createdAt`, `updatedAt`
+                    FROM `ascents`
+                """.trimIndent())
+                db.execSQL("DROP TABLE `ascents`")
+                db.execSQL("ALTER TABLE `ascents_new` RENAME TO `ascents`")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_ascents_routeId` ON `ascents` (`routeId`)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_ascents_outdoorSessionId` ON `ascents` (`outdoorSessionId`)")
+                // Migrate existing outdoor_session_routes to full ascents
+                db.execSQL("""
+                    INSERT INTO `ascents` (`routeId`, `userId`, `date`, `style`, `attempts`, `personalNote`, `publicNote`, `outdoorSessionId`, `syncStatus`, `createdAt`, `updatedAt`)
+                    SELECT r.`routeId`, 'local_user', s.`date`, r.`style`, 1, '', '', r.`sessionId`, 'LOCAL', s.`createdAt`, s.`createdAt`
+                    FROM `outdoor_session_routes` r
+                    JOIN `outdoor_sessions` s ON r.`sessionId` = s.`id`
+                """.trimIndent())
             }
         }
 
