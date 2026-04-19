@@ -11,5 +11,6 @@ data class Route(
     val bolts: Int? = null,
     val description: String = "",
     val firstAscent: String? = null,
-    val firstAscentYear: Int? = null
+    val firstAscentYear: Int? = null,
+    val lezecId: Int? = null
 )

@@ -1,11 +1,14 @@
 package com.example.climblog.ui.components
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Environment
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -89,6 +92,18 @@ fun PhotoSection(
         pendingCameraFile = null
     }
 
+    val cameraPermissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (granted) {
+            val file = createTempPhotoFile(context)
+            val uri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
+            pendingCameraFile = file
+            pendingCameraUri = uri
+            cameraLauncher.launch(uri)
+        }
+    }
+
     Column(modifier = modifier) {
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -123,15 +138,17 @@ fun PhotoSection(
         PickerDialog(
             onCamera = {
                 showPickerDialog = false
-                val file = createTempPhotoFile(context)
-                val uri = FileProvider.getUriForFile(
-                    context,
-                    "${context.packageName}.fileprovider",
-                    file
-                )
-                pendingCameraFile = file
-                pendingCameraUri = uri
-                cameraLauncher.launch(uri)
+                if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
+                    == PackageManager.PERMISSION_GRANTED
+                ) {
+                    val file = createTempPhotoFile(context)
+                    val uri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
+                    pendingCameraFile = file
+                    pendingCameraUri = uri
+                    cameraLauncher.launch(uri)
+                } else {
+                    cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+                }
             },
             onGallery = {
                 showPickerDialog = false

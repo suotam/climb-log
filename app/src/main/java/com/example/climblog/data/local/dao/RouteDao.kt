@@ -51,4 +51,7 @@ interface RouteDao {
 
     @Query("DELETE FROM routes WHERE remoteId LIKE 'chs-%'")
     suspend fun deleteChsRoutes()
+
+    @Query("UPDATE routes SET lezecId = :lezecId WHERE remoteId = :remoteId")
+    suspend fun updateLezecId(remoteId: String, lezecId: Int?)
 }

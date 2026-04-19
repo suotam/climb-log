@@ -37,26 +37,119 @@ class ChsRocksSeeder @Inject constructor(
 ) {
     companion object {
         private const val PREFS = "chs_seed"
-        private const val KEY_DONE = "seeded_v4"   // bump při změně JSON schématu
+        private const val KEY_FULL_SEED = "seeded_v4"  // plný seed — neměnit, jinak smaže data!
+        private const val KEY_LEZEC_IDS  = "lezecids_v1" // přidá lezecId bez mazání dat
     }
 
     suspend fun seedIfNeeded() {
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-        if (prefs.getBoolean(KEY_DONE, false)) return
 
-        // Smaž stará CHS data (routes → sectors → areas kvůli FK)
-        routeDao.deleteChsRoutes()
-        sectorDao.deleteChsSectors()
-        areaDao.deleteChsAreas()
-
-        context.assets.open("chs-rocks.json").use { stream ->
-            val reader = JsonReader(InputStreamReader(stream, Charsets.UTF_8))
-            reader.isLenient = true
-            parseRoot(reader)
-            reader.close()
+        // Plný seed — spustí se jen při první instalaci
+        if (!prefs.getBoolean(KEY_FULL_SEED, false)) {
+            routeDao.deleteChsRoutes()
+            sectorDao.deleteChsSectors()
+            areaDao.deleteChsAreas()
+            context.assets.open("chs-rocks.json").use { stream ->
+                val reader = JsonReader(InputStreamReader(stream, Charsets.UTF_8))
+                reader.isLenient = true
+                parseRoot(reader)
+                reader.close()
+            }
+            prefs.edit().putBoolean(KEY_FULL_SEED, true).apply()
         }
 
-        prefs.edit().putBoolean(KEY_DONE, true).apply()
+        // Aktualizace lezecId — nemaže žádná data, jen updatuje existující cesty
+        if (!prefs.getBoolean(KEY_LEZEC_IDS, false)) {
+            context.assets.open("chs-rocks.json").use { stream ->
+                val reader = JsonReader(InputStreamReader(stream, Charsets.UTF_8))
+                reader.isLenient = true
+                updateLezecIds(reader)
+                reader.close()
+            }
+            prefs.edit().putBoolean(KEY_LEZEC_IDS, true).apply()
+        }
+    }
+
+    private suspend fun updateLezecIds(reader: JsonReader) {
+        reader.beginObject()
+        while (reader.hasNext()) {
+            if (reader.nextName() == "regions") updateLezecIdsInRegions(reader)
+            else reader.skipValue()
+        }
+        reader.endObject()
+    }
+
+    private suspend fun updateLezecIdsInRegions(reader: JsonReader) {
+        reader.beginArray()
+        while (reader.hasNext()) {
+            reader.beginObject()
+            while (reader.hasNext()) {
+                if (reader.nextName() == "groups") updateLezecIdsInGroups(reader)
+                else reader.skipValue()
+            }
+            reader.endObject()
+        }
+        reader.endArray()
+    }
+
+    private suspend fun updateLezecIdsInGroups(reader: JsonReader) {
+        reader.beginArray()
+        while (reader.hasNext()) {
+            reader.beginObject()
+            while (reader.hasNext()) {
+                if (reader.nextName() == "areas") updateLezecIdsInAreas(reader)
+                else reader.skipValue()
+            }
+            reader.endObject()
+        }
+        reader.endArray()
+    }
+
+    private suspend fun updateLezecIdsInAreas(reader: JsonReader) {
+        reader.beginArray()
+        while (reader.hasNext()) {
+            reader.beginObject()
+            while (reader.hasNext()) {
+                if (reader.nextName() == "sectors") updateLezecIdsInSectors(reader)
+                else reader.skipValue()
+            }
+            reader.endObject()
+        }
+        reader.endArray()
+    }
+
+    private suspend fun updateLezecIdsInSectors(reader: JsonReader) {
+        reader.beginArray()
+        while (reader.hasNext()) {
+            reader.beginObject()
+            while (reader.hasNext()) {
+                if (reader.nextName() == "routes") updateLezecIdsInRoutes(reader)
+                else reader.skipValue()
+            }
+            reader.endObject()
+        }
+        reader.endArray()
+    }
+
+    private suspend fun updateLezecIdsInRoutes(reader: JsonReader) {
+        reader.beginArray()
+        while (reader.hasNext()) {
+            var routeId = -1L
+            var lezecId: Int? = null
+            reader.beginObject()
+            while (reader.hasNext()) {
+                when (reader.nextName()) {
+                    "id"      -> routeId = nextLongOrNull(reader) ?: -1L
+                    "lezecId" -> lezecId = nextIntOrNull(reader)
+                    else      -> reader.skipValue()
+                }
+            }
+            reader.endObject()
+            if (routeId != -1L) {
+                routeDao.updateLezecId("chs-route-$routeId", lezecId)
+            }
+        }
+        reader.endArray()
     }
 
     // ── Kořen ────────────────────────────────────────────────────────────────
@@ -273,6 +366,7 @@ class ChsRocksSeeder @Inject constructor(
         var length: Int? = null
         var description = ""
         var firstAscent: String? = null
+        var lezecId: Int? = null
 
         reader.beginObject()
         while (reader.hasNext()) {
@@ -285,6 +379,7 @@ class ChsRocksSeeder @Inject constructor(
                 "length"      -> length = nextIntOrNull(reader)
                 "description" -> description = nextStringOrNull(reader) ?: ""
                 "firstAscent" -> firstAscent = nextStringOrNull(reader)
+                "lezecId"     -> lezecId = nextIntOrNull(reader)
                 else          -> reader.skipValue()
             }
         }
@@ -309,7 +404,8 @@ class ChsRocksSeeder @Inject constructor(
             type = resolvedType.name,
             length = length,
             description = description,
-            firstAscent = firstAscent
+            firstAscent = firstAscent,
+            lezecId = lezecId
         )
     }
 

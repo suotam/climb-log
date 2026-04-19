@@ -34,7 +34,8 @@ data class RouteEntity(
     val firstAscentYear: Int? = null,
     val syncStatus: String = "LOCAL",
     val createdAt: Long = System.currentTimeMillis(),
-    val updatedAt: Long = System.currentTimeMillis()
+    val updatedAt: Long = System.currentTimeMillis(),
+    val lezecId: Int? = null
 )
 
 fun RouteEntity.toDomain() = Route(
@@ -48,7 +49,8 @@ fun RouteEntity.toDomain() = Route(
     bolts = bolts,
     description = description,
     firstAscent = firstAscent,
-    firstAscentYear = firstAscentYear
+    firstAscentYear = firstAscentYear,
+    lezecId = lezecId
 )
 
 fun Route.toEntity() = RouteEntity(

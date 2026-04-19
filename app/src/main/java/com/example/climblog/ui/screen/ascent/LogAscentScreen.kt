@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climblog.domain.model.AscentStyle
@@ -165,28 +166,119 @@ fun LogAscentScreen(
                 onDeletePending = viewModel::deletePendingPhoto
             )
 
+            HorizontalDivider()
+
+            // Lezec sync toggle
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column {
+                    Text("Zapsat na lezec.cz", style = MaterialTheme.typography.bodyLarge)
+                    if (!uiState.lezecHasCredentials) {
+                        Text(
+                            "Přihlašovací údaje nejsou uloženy",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    } else if (uiState.route?.lezecId == null) {
+                        Text(
+                            "Cesta není na lezec.cz",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+                Switch(
+                    checked = uiState.syncToLezec,
+                    onCheckedChange = viewModel::onSyncToLezecToggle,
+                    enabled = uiState.route?.lezecId != null
+                )
+            }
+
             Spacer(Modifier.height(8.dp))
 
             // Save button
             Button(
                 onClick = viewModel::save,
                 enabled = !uiState.isSaving,
+                colors = if (uiState.lezecSyncState == LezecSyncState.FAILED || uiState.lezecSyncState == LezecSyncState.NO_ID)
+                    ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
+                else
+                    ButtonDefaults.buttonColors(),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(52.dp)
             ) {
-                if (uiState.isSaving) {
-                    CircularProgressIndicator(
-                        modifier = Modifier.size(20.dp),
-                        color = MaterialTheme.colorScheme.onPrimary,
-                        strokeWidth = 2.dp
-                    )
-                } else {
-                    Text("Uložit přelez", style = MaterialTheme.typography.labelLarge)
+                when (uiState.lezecSyncState) {
+                    LezecSyncState.SYNCING -> {
+                        CircularProgressIndicator(modifier = Modifier.size(20.dp), color = MaterialTheme.colorScheme.onPrimary, strokeWidth = 2.dp)
+                        Spacer(Modifier.width(8.dp))
+                        Text("Zapisuji na lezec.cz…", style = MaterialTheme.typography.labelLarge)
+                    }
+                    LezecSyncState.FAILED  -> Text("Chyba synchronizace s lezec.cz", style = MaterialTheme.typography.labelLarge)
+                    LezecSyncState.NO_ID   -> Text("Cesta nenalezena na lezec.cz", style = MaterialTheme.typography.labelLarge)
+                    else -> {
+                        if (uiState.isSaving) {
+                            CircularProgressIndicator(modifier = Modifier.size(20.dp), color = MaterialTheme.colorScheme.onPrimary, strokeWidth = 2.dp)
+                        } else {
+                            Text("Uložit přelez", style = MaterialTheme.typography.labelLarge)
+                        }
+                    }
                 }
             }
         }
     }
+
+    if (uiState.showCredentialsDialog) {
+        LezecCredentialsDialog(
+            onConfirm = viewModel::onCredentialsSaved,
+            onDismiss = viewModel::onCredentialsDismissed
+        )
+    }
+}
+
+@Composable
+private fun LezecCredentialsDialog(
+    onConfirm: (uid: String, password: String) -> Unit,
+    onDismiss: () -> Unit
+) {
+    var uid by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Přihlášení na lezec.cz") },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                OutlinedTextField(
+                    value = uid,
+                    onValueChange = { uid = it },
+                    label = { Text("Uživatelské jméno") },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                OutlinedTextField(
+                    value = password,
+                    onValueChange = { password = it },
+                    label = { Text("Heslo") },
+                    singleLine = true,
+                    visualTransformation = PasswordVisualTransformation(),
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+        },
+        confirmButton = {
+            TextButton(
+                onClick = { onConfirm(uid, password) },
+                enabled = uid.isNotBlank() && password.isNotBlank()
+            ) { Text("Uložit") }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text("Zrušit") }
+        }
+    )
 }
 
 @Composable

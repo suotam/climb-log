@@ -23,7 +23,15 @@
       "Bash(xargs cat:*)",
       "Bash(./gradlew assembleDebug --info)",
       "Bash(./gradlew compileDebugKotlin)",
-      "Bash(./gradlew kspDebugKotlin)"
+      "Bash(./gradlew kspDebugKotlin)",
+      "WebFetch(domain:www.lezec.cz)",
+      "Bash(curl -s \"https://www.lezec.cz/cesta.php?key=152618\")",
+      "Bash(curl -s \"https://www.lezec.cz/pruvodcx.php?key=99\")",
+      "Bash(sed 's/<[^>]*>//g')",
+      "Bash(grep -v '^$')",
+      "Bash(curl -s \"https://www.lezec.cz/pruvodce.php\")",
+      "Bash(grep -o '\">[^<]\\\\{2,40\\\\}<\\\\/a>')",
+      "Bash(curl -sI \"https://www.lezec.cz/pruvodcx.php?key=99\")"
     ]
   }
 }

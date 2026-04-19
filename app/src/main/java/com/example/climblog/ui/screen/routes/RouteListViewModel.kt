@@ -10,7 +10,6 @@ import com.example.climblog.domain.model.AscentStyle
 import com.example.climblog.domain.model.Route
 import com.example.climblog.domain.model.Sector
 import com.example.climblog.domain.model.priority
-import kotlinx.coroutines.launch
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -19,13 +18,20 @@ import javax.inject.Inject
 data class RouteListUiState(
     val sector: Sector? = null,
     val routes: List<RouteWithStatus> = emptyList(),
-    val isLoading: Boolean = true
+    val isLoading: Boolean = true,
+    val isSelectMode: Boolean = false,
+    val selectedRouteIds: Set<Long> = emptySet()
 )
 
 data class RouteWithStatus(
     val route: Route,
     val isSent: Boolean,
     val bestStyle: AscentStyle?
+)
+
+private data class SelectState(
+    val isSelectMode: Boolean = false,
+    val selectedRouteIds: Set<Long> = emptySet()
 )
 
 @HiltViewModel
@@ -39,15 +45,16 @@ class RouteListViewModel @Inject constructor(
     private val sectorId: Long = checkNotNull(savedStateHandle["sectorId"])
 
     private val _sector = MutableStateFlow<Sector?>(null)
+    private val _selectState = MutableStateFlow(SelectState())
 
-    // Načteme všechny přelezy najednou a pak matchujeme s cestami
     private val allAscents = ascentRepository.getAllAscents()
 
     val uiState: StateFlow<RouteListUiState> = combine(
         _sector,
         routeRepository.getRoutesBySector(sectorId),
-        allAscents
-    ) { sector, routes, ascents ->
+        allAscents,
+        _selectState
+    ) { sector, routes, ascents, select ->
         val ascentsByRoute = ascents.groupBy { it.routeId }
         val routesWithStatus = routes.map { route ->
             val routeAscents = ascentsByRoute[route.id] ?: emptyList()
@@ -60,7 +67,13 @@ class RouteListViewModel @Inject constructor(
                 bestStyle = bestAscent?.style
             )
         }
-        RouteListUiState(sector = sector, routes = routesWithStatus, isLoading = false)
+        RouteListUiState(
+            sector = sector,
+            routes = routesWithStatus,
+            isLoading = false,
+            isSelectMode = select.isSelectMode,
+            selectedRouteIds = select.selectedRouteIds
+        )
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
@@ -75,5 +88,23 @@ class RouteListViewModel @Inject constructor(
 
     fun deleteRoute(route: Route) {
         viewModelScope.launch { routeRepository.deleteRoute(route) }
+    }
+
+    fun enterSelectMode(routeId: Long) {
+        _selectState.update { SelectState(isSelectMode = true, selectedRouteIds = setOf(routeId)) }
+    }
+
+    fun toggleSelection(routeId: Long) {
+        _selectState.update { state ->
+            val updated = if (routeId in state.selectedRouteIds)
+                state.selectedRouteIds - routeId
+            else
+                state.selectedRouteIds + routeId
+            state.copy(selectedRouteIds = updated)
+        }
+    }
+
+    fun exitSelectMode() {
+        _selectState.update { SelectState() }
     }
 }

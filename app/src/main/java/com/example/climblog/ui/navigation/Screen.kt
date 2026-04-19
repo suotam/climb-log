@@ -26,6 +26,10 @@ sealed class Screen(val route: String) {
             else "routes/$routeId/log?ascentId=-1"
     }
 
+    object BulkLogAscent : Screen("routes/bulk-log?routeIds={routeIds}") {
+        fun createRoute(routeIds: List<Long>) = "routes/bulk-log?routeIds=${routeIds.joinToString(",")}"
+    }
+
     object AddWallSession : Screen("walls/add")
     object AddOutdoorSession : Screen("outdoor/add")
 

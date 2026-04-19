@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.climblog.ui.screen.areas.AreaDetailScreen
 import com.example.climblog.ui.screen.areas.AreaListScreen
+import com.example.climblog.ui.screen.ascent.BulkLogAscentScreen
 import com.example.climblog.ui.screen.ascent.LogAscentScreen
 import com.example.climblog.ui.screen.calendar.CalendarScreen
 import com.example.climblog.ui.screen.logbook.LogbookScreen
@@ -80,6 +81,7 @@ fun ClimbLogNavHost(
                 sectorId = sectorId,
                 onRouteClick = { routeId -> navController.navigate(Screen.RouteDetail.createRoute(routeId)) },
                 onAddRoute = { navController.navigate(Screen.EditRoute.createRoute(sectorId)) },
+                onBulkLog = { routeIds -> navController.navigate(Screen.BulkLogAscent.createRoute(routeIds)) },
                 onNavigateUp = { navController.navigateUp() }
             )
         }
@@ -144,6 +146,16 @@ fun ClimbLogNavHost(
                 onEditAscent = { routeId, ascentId ->
                     navController.navigate(Screen.LogAscent.createRoute(routeId, ascentId))
                 }
+            )
+        }
+
+        composable(
+            route = Screen.BulkLogAscent.route,
+            arguments = listOf(navArgument("routeIds") { type = NavType.StringType })
+        ) {
+            BulkLogAscentScreen(
+                onSaved = { navController.navigateUp() },
+                onNavigateUp = { navController.navigateUp() }
             )
         }
 

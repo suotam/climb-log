@@ -77,6 +77,9 @@ dependencies {
     // Material Icons Extended
     implementation(libs.androidx.compose.material.icons.extended)
 
+    // OkHttp (lezec.cz sync)
+    implementation(libs.okhttp)
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

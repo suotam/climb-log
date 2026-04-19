@@ -41,7 +41,7 @@ import com.example.climblog.data.local.entity.WishlistEntity
         OutdoorSessionEntity::class,
         OutdoorSessionRouteEntity::class
     ],
-    version = 8,
+    version = 9,
     exportSchema = false
 )
 abstract class ClimbLogDatabase : RoomDatabase() {
@@ -94,6 +94,69 @@ abstract class ClimbLogDatabase : RoomDatabase() {
                     FROM `outdoor_session_routes` r
                     JOIN `outdoor_sessions` s ON r.`sessionId` = s.`id`
                 """.trimIndent())
+            }
+        }
+
+        val MIGRATION_8_9 = object : Migration(8, 9) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                // lezecId na cesty
+                db.execSQL("ALTER TABLE routes ADD COLUMN `lezecId` INTEGER")
+
+                // Oprava ascents: starší migrace mohla vytvořit outdoorSessionId s DEFAULT NULL
+                // nebo bez FK na outdoor_sessions — rekreujeme na čistý stav
+                db.execSQL("""
+                    CREATE TABLE IF NOT EXISTS `ascents_v9` (
+                        `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        `routeId` INTEGER NOT NULL,
+                        `userId` TEXT NOT NULL,
+                        `date` INTEGER NOT NULL,
+                        `style` TEXT NOT NULL,
+                        `attempts` INTEGER NOT NULL,
+                        `personalNote` TEXT NOT NULL,
+                        `publicNote` TEXT NOT NULL,
+                        `photoUri` TEXT,
+                        `personalGrade` TEXT,
+                        `rating` INTEGER,
+                        `outdoorSessionId` INTEGER,
+                        `syncStatus` TEXT NOT NULL,
+                        `createdAt` INTEGER NOT NULL,
+                        `updatedAt` INTEGER NOT NULL,
+                        FOREIGN KEY(`routeId`) REFERENCES `routes`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE,
+                        FOREIGN KEY(`outdoorSessionId`) REFERENCES `outdoor_sessions`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE
+                    )
+                """.trimIndent())
+                db.execSQL("INSERT INTO `ascents_v9` SELECT * FROM `ascents`")
+                db.execSQL("DROP TABLE `ascents`")
+                db.execSQL("ALTER TABLE `ascents_v9` RENAME TO `ascents`")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_ascents_routeId` ON `ascents` (`routeId`)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_ascents_outdoorSessionId` ON `ascents` (`outdoorSessionId`)")
+
+                // Oprava photos: starší migrace mohla chybět FK na outdoor_sessions
+                db.execSQL("""
+                    CREATE TABLE IF NOT EXISTS `photos_v9` (
+                        `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        `areaId` INTEGER,
+                        `routeId` INTEGER,
+                        `ascentId` INTEGER,
+                        `outdoorSessionId` INTEGER,
+                        `uri` TEXT NOT NULL,
+                        `caption` TEXT,
+                        `takenAt` INTEGER NOT NULL,
+                        `syncStatus` TEXT NOT NULL,
+                        `createdAt` INTEGER NOT NULL,
+                        FOREIGN KEY(`areaId`) REFERENCES `areas`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE,
+                        FOREIGN KEY(`routeId`) REFERENCES `routes`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE,
+                        FOREIGN KEY(`ascentId`) REFERENCES `ascents`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE,
+                        FOREIGN KEY(`outdoorSessionId`) REFERENCES `outdoor_sessions`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE
+                    )
+                """.trimIndent())
+                db.execSQL("INSERT INTO `photos_v9` SELECT * FROM `photos`")
+                db.execSQL("DROP TABLE `photos`")
+                db.execSQL("ALTER TABLE `photos_v9` RENAME TO `photos`")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_photos_areaId` ON `photos` (`areaId`)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_photos_routeId` ON `photos` (`routeId`)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_photos_ascentId` ON `photos` (`ascentId`)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_photos_outdoorSessionId` ON `photos` (`outdoorSessionId`)")
             }
         }
 

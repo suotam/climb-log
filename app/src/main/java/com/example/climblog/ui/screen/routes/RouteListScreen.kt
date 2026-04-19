@@ -1,6 +1,9 @@
 package com.example.climblog.ui.screen.routes
 
+import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -8,6 +11,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.CheckCircleOutline
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.RadioButtonUnchecked
 import androidx.compose.material3.*
@@ -27,26 +32,55 @@ fun RouteListScreen(
     sectorId: Long,
     onRouteClick: (Long) -> Unit,
     onAddRoute: () -> Unit,
+    onBulkLog: (List<Long>) -> Unit,
     onNavigateUp: () -> Unit,
     viewModel: RouteListViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
     var deleteTarget by remember { mutableStateOf<Route?>(null) }
 
+    BackHandler(enabled = uiState.isSelectMode) {
+        viewModel.exitSelectMode()
+    }
+
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text(uiState.sector?.name ?: "Cesty") },
-                navigationIcon = {
-                    IconButton(onClick = onNavigateUp) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Zpět")
+            if (uiState.isSelectMode) {
+                TopAppBar(
+                    title = { Text("Vybráno: ${uiState.selectedRouteIds.size}") },
+                    navigationIcon = {
+                        IconButton(onClick = { viewModel.exitSelectMode() }) {
+                            Icon(Icons.Filled.Close, contentDescription = "Zrušit výběr")
+                        }
+                    },
+                    actions = {
+                        TextButton(
+                            onClick = {
+                                onBulkLog(uiState.selectedRouteIds.toList())
+                                viewModel.exitSelectMode()
+                            },
+                            enabled = uiState.selectedRouteIds.isNotEmpty()
+                        ) {
+                            Text("Zapsat")
+                        }
                     }
-                }
-            )
+                )
+            } else {
+                TopAppBar(
+                    title = { Text(uiState.sector?.name ?: "Cesty") },
+                    navigationIcon = {
+                        IconButton(onClick = onNavigateUp) {
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Zpět")
+                        }
+                    }
+                )
+            }
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = onAddRoute) {
-                Icon(Icons.Filled.Add, contentDescription = "Přidat cestu")
+            if (!uiState.isSelectMode) {
+                FloatingActionButton(onClick = onAddRoute) {
+                    Icon(Icons.Filled.Add, contentDescription = "Přidat cestu")
+                }
             }
         }
     ) { padding ->
@@ -73,7 +107,15 @@ fun RouteListScreen(
                 items(uiState.routes, key = { it.route.id }) { item ->
                     RouteListCard(
                         item = item,
-                        onClick = { onRouteClick(item.route.id) },
+                        isSelectMode = uiState.isSelectMode,
+                        isSelected = item.route.id in uiState.selectedRouteIds,
+                        onClick = {
+                            if (uiState.isSelectMode) viewModel.toggleSelection(item.route.id)
+                            else onRouteClick(item.route.id)
+                        },
+                        onLongClick = {
+                            if (!uiState.isSelectMode) viewModel.enterSelectMode(item.route.id)
+                        },
                         onDelete = { deleteTarget = item.route }
                     )
                 }
@@ -99,25 +141,47 @@ fun RouteListScreen(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun RouteListCard(item: RouteWithStatus, onClick: () -> Unit, onDelete: () -> Unit) {
+private fun RouteListCard(
+    item: RouteWithStatus,
+    isSelectMode: Boolean,
+    isSelected: Boolean,
+    onClick: () -> Unit,
+    onLongClick: () -> Unit,
+    onDelete: () -> Unit
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = onClick),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+            .combinedClickable(onClick = onClick, onLongClick = onLongClick),
+        elevation = CardDefaults.cardElevation(defaultElevation = if (isSelected) 4.dp else 1.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = if (isSelected) MaterialTheme.colorScheme.secondaryContainer
+            else MaterialTheme.colorScheme.surface
+        )
     ) {
         Row(
             modifier = Modifier.padding(start = 12.dp, top = 8.dp, bottom = 8.dp, end = 4.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(
-                imageVector = if (item.isSent) Icons.Filled.CheckCircle else Icons.Filled.RadioButtonUnchecked,
-                contentDescription = null,
-                tint = if (item.isSent) MaterialTheme.colorScheme.tertiary
-                else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
-                modifier = Modifier.size(24.dp)
-            )
+            if (isSelectMode) {
+                Icon(
+                    imageVector = if (isSelected) Icons.Filled.CheckCircle else Icons.Filled.CheckCircleOutline,
+                    contentDescription = null,
+                    tint = if (isSelected) MaterialTheme.colorScheme.primary
+                    else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
+                    modifier = Modifier.size(24.dp)
+                )
+            } else {
+                Icon(
+                    imageVector = if (item.isSent) Icons.Filled.CheckCircle else Icons.Filled.RadioButtonUnchecked,
+                    contentDescription = null,
+                    tint = if (item.isSent) MaterialTheme.colorScheme.tertiary
+                    else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
+                    modifier = Modifier.size(24.dp)
+                )
+            }
             Spacer(Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(text = item.route.name, style = MaterialTheme.typography.titleMedium)
@@ -135,12 +199,14 @@ private fun RouteListCard(item: RouteWithStatus, onClick: () -> Unit, onDelete: 
                 GradeChip(grade = item.route.grade)
                 item.bestStyle?.let { style -> AscentStyleChip(style = style) }
             }
-            IconButton(onClick = onDelete, modifier = Modifier.size(36.dp)) {
-                Icon(
-                    Icons.Filled.Delete, contentDescription = "Smazat cestu",
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
-                    modifier = Modifier.size(18.dp)
-                )
+            if (!isSelectMode) {
+                IconButton(onClick = onDelete, modifier = Modifier.size(36.dp)) {
+                    Icon(
+                        Icons.Filled.Delete, contentDescription = "Smazat cestu",
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
+                        modifier = Modifier.size(18.dp)
+                    )
+                }
             }
         }
     }

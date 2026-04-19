@@ -43,7 +43,7 @@ object AppModule {
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): ClimbLogDatabase =
         Room.databaseBuilder(context, ClimbLogDatabase::class.java, "climblog.db")
-            .addMigrations(ClimbLogDatabase.MIGRATION_5_6, ClimbLogDatabase.MIGRATION_6_7, ClimbLogDatabase.MIGRATION_7_8)
+            .addMigrations(ClimbLogDatabase.MIGRATION_5_6, ClimbLogDatabase.MIGRATION_6_7, ClimbLogDatabase.MIGRATION_7_8, ClimbLogDatabase.MIGRATION_8_9)
             .fallbackToDestructiveMigration()
             .build()
 
