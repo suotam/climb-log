@@ -22,6 +22,7 @@ import com.example.climblog.domain.model.RouteComment
 import com.example.climblog.ui.components.AscentStyleChip
 import com.example.climblog.ui.components.GradeChip
 import com.example.climblog.ui.components.PhotoSection
+import com.example.climblog.ui.components.SettingsIconButton
 import com.example.climblog.ui.screen.wishlist.PriorityIndicator
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -36,6 +37,7 @@ fun RouteDetailScreen(
     onLogAscent: () -> Unit,
     onEditRoute: () -> Unit,
     onNavigateUp: () -> Unit,
+    onSettingsClick: () -> Unit = {},
     viewModel: RouteDetailViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -76,6 +78,7 @@ fun RouteDetailScreen(
                                    else MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
+                    SettingsIconButton(onSettingsClick)
                 }
             )
         },

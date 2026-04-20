@@ -38,7 +38,7 @@ class ChsRocksSeeder @Inject constructor(
     companion object {
         private const val PREFS = "chs_seed"
         private const val KEY_FULL_SEED = "seeded_v4"  // plný seed — neměnit, jinak smaže data!
-        private const val KEY_LEZEC_IDS  = "lezecids_v1" // přidá lezecId bez mazání dat
+        private const val KEY_LEZEC_IDS  = "lezecids_v2" // přidá lezecId bez mazání dat
     }
 
     suspend fun seedIfNeeded() {

@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climblog.ui.components.OsmMapView
 import com.example.climblog.ui.components.PhotoSection
+import com.example.climblog.ui.components.SettingsIconButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,6 +25,7 @@ fun AreaDetailScreen(
     areaId: Long,
     onSectorsClick: (Long) -> Unit,
     onNavigateUp: () -> Unit,
+    onSettingsClick: () -> Unit = {},
     viewModel: AreaDetailViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -36,7 +38,8 @@ fun AreaDetailScreen(
                     IconButton(onClick = onNavigateUp) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Zpět")
                     }
-                }
+                },
+                actions = { SettingsIconButton(onSettingsClick) }
             )
         }
     ) { padding ->

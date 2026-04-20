@@ -11,12 +11,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climblog.domain.model.AscentStyle
+import com.example.climblog.data.remote.LezecSyncState
 import com.example.climblog.ui.components.GradeChip
 import com.example.climblog.ui.components.PhotoSection
+import com.example.climblog.ui.components.SettingsIconButton
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -30,12 +31,17 @@ fun LogAscentScreen(
     editAscentId: Long?,
     onSaved: () -> Unit,
     onNavigateUp: () -> Unit,
+    onSettingsClick: () -> Unit = {},
     viewModel: LogAscentViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(uiState.isSaved) {
         if (uiState.isSaved) onSaved()
+    }
+
+    LaunchedEffect(viewModel.navigateToSettings) {
+        for (event in viewModel.navigateToSettings) onSettingsClick()
     }
 
     Scaffold(
@@ -46,7 +52,8 @@ fun LogAscentScreen(
                     IconButton(onClick = onNavigateUp) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Zpět")
                     }
-                }
+                },
+                actions = { SettingsIconButton(onSettingsClick) }
             )
         }
     ) { padding ->
@@ -231,54 +238,6 @@ fun LogAscentScreen(
         }
     }
 
-    if (uiState.showCredentialsDialog) {
-        LezecCredentialsDialog(
-            onConfirm = viewModel::onCredentialsSaved,
-            onDismiss = viewModel::onCredentialsDismissed
-        )
-    }
-}
-
-@Composable
-private fun LezecCredentialsDialog(
-    onConfirm: (uid: String, password: String) -> Unit,
-    onDismiss: () -> Unit
-) {
-    var uid by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text("Přihlášení na lezec.cz") },
-        text = {
-            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                OutlinedTextField(
-                    value = uid,
-                    onValueChange = { uid = it },
-                    label = { Text("Uživatelské jméno") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                OutlinedTextField(
-                    value = password,
-                    onValueChange = { password = it },
-                    label = { Text("Heslo") },
-                    singleLine = true,
-                    visualTransformation = PasswordVisualTransformation(),
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
-        },
-        confirmButton = {
-            TextButton(
-                onClick = { onConfirm(uid, password) },
-                enabled = uid.isNotBlank() && password.isNotBlank()
-            ) { Text("Uložit") }
-        },
-        dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Zrušit") }
-        }
-    )
 }
 
 @Composable

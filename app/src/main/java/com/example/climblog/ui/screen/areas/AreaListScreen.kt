@@ -21,6 +21,7 @@ import com.example.climblog.domain.model.Area
 import com.example.climblog.ui.components.EmptyState
 import com.example.climblog.ui.components.GradeChip
 import com.example.climblog.ui.components.OsmMapView
+import com.example.climblog.ui.components.SettingsIconButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -28,6 +29,7 @@ fun AreaListScreen(
     onAreaClick: (Long) -> Unit,
     onSectorClick: (sectorId: Long) -> Unit,
     onRouteClick: (routeId: Long) -> Unit,
+    onSettingsClick: () -> Unit = {},
     viewModel: AreaListViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -46,6 +48,7 @@ fun AreaListScreen(
                             contentDescription = if (uiState.showMap) "Přepnout na seznam" else "Přepnout na mapu"
                         )
                     }
+                    SettingsIconButton(onSettingsClick)
                 }
             )
         }

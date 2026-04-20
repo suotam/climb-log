@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climblog.domain.model.Sector
 import com.example.climblog.ui.components.EmptyState
+import com.example.climblog.ui.components.SettingsIconButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -22,6 +23,7 @@ fun SectorListScreen(
     areaId: Long,
     onSectorClick: (Long) -> Unit,
     onNavigateUp: () -> Unit,
+    onSettingsClick: () -> Unit = {},
     viewModel: SectorListViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -34,7 +36,8 @@ fun SectorListScreen(
                     IconButton(onClick = onNavigateUp) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Zpět")
                     }
-                }
+                },
+                actions = { SettingsIconButton(onSettingsClick) }
             )
         }
     ) { padding ->

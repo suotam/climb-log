@@ -64,5 +64,6 @@ fun Route.toEntity() = RouteEntity(
     bolts = bolts,
     description = description,
     firstAscent = firstAscent,
-    firstAscentYear = firstAscentYear
+    firstAscentYear = firstAscentYear,
+    lezecId = lezecId
 )

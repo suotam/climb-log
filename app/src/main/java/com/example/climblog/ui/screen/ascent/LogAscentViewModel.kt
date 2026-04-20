@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.climblog.data.remote.LezecCredentialsStore
 import com.example.climblog.data.remote.LezecService
+import com.example.climblog.data.remote.LezecSyncState
 import com.example.climblog.data.repository.AscentRepository
 import com.example.climblog.data.repository.PhotoRepository
 import com.example.climblog.data.repository.RouteRepository
@@ -16,9 +17,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.channels.Channel
 import javax.inject.Inject
-
-enum class LezecSyncState { IDLE, SYNCING, SUCCESS, FAILED, NO_ID }
 
 data class LogAscentUiState(
     val route: Route? = null,
@@ -36,7 +36,6 @@ data class LogAscentUiState(
     // Lezec sync
     val syncToLezec: Boolean = false,
     val lezecHasCredentials: Boolean = false,
-    val showCredentialsDialog: Boolean = false,
     val lezecSyncState: LezecSyncState = LezecSyncState.IDLE,
 )
 
@@ -58,8 +57,14 @@ class LogAscentViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(LogAscentUiState())
     val uiState: StateFlow<LogAscentUiState> = _uiState.asStateFlow()
 
+    val navigateToSettings = Channel<Unit>(Channel.BUFFERED)
+
     init {
-        _uiState.update { it.copy(lezecHasCredentials = lezecCredentialsStore.hasCredentials()) }
+        viewModelScope.launch {
+            lezecCredentialsStore.hasCredentialsFlow.collect { has ->
+                _uiState.update { it.copy(lezecHasCredentials = has) }
+            }
+        }
         viewModelScope.launch {
             val route = routeRepository.getRouteById(routeId)
             _uiState.update { it.copy(route = route) }
@@ -112,19 +117,10 @@ class LogAscentViewModel @Inject constructor(
 
     fun onSyncToLezecToggle(enabled: Boolean) {
         if (enabled && !lezecCredentialsStore.hasCredentials()) {
-            _uiState.update { it.copy(showCredentialsDialog = true) }
+            viewModelScope.launch { navigateToSettings.send(Unit) }
         } else {
             _uiState.update { it.copy(syncToLezec = enabled) }
         }
-    }
-
-    fun onCredentialsSaved(uid: String, password: String) {
-        lezecCredentialsStore.save(uid, password)
-        _uiState.update { it.copy(lezecHasCredentials = true, syncToLezec = true, showCredentialsDialog = false) }
-    }
-
-    fun onCredentialsDismissed() {
-        _uiState.update { it.copy(showCredentialsDialog = false) }
     }
 
     fun save() {

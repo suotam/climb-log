@@ -21,7 +21,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climblog.domain.model.Area
 import com.example.climblog.domain.model.AscentStyle
 import com.example.climblog.domain.model.Photo
+import com.example.climblog.data.remote.LezecSyncState
 import com.example.climblog.ui.components.PhotoSection
+import com.example.climblog.ui.components.SettingsIconButton
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -41,12 +43,17 @@ private val styleOptions = listOf(
 fun AddOutdoorSessionScreen(
     onSaved: () -> Unit,
     onNavigateUp: () -> Unit,
+    onSettingsClick: () -> Unit = {},
     viewModel: AddOutdoorSessionViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(uiState.isSaved) {
         if (uiState.isSaved) onSaved()
+    }
+
+    LaunchedEffect(viewModel.navigateToSettings) {
+        for (event in viewModel.navigateToSettings) onSettingsClick()
     }
 
     Scaffold(
@@ -69,6 +76,7 @@ fun AddOutdoorSessionScreen(
                             Text("Uložit")
                         }
                     }
+                    SettingsIconButton(onSettingsClick)
                 }
             )
         }
@@ -160,6 +168,48 @@ fun AddOutdoorSessionScreen(
                 minLines = 2,
                 maxLines = 4
             )
+
+            HorizontalDivider()
+
+            // ── Lezec sync ────────────────────────────────────────────────────
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column {
+                    Text("Zapsat na lezec.cz", style = MaterialTheme.typography.bodyLarge)
+                    when {
+                        !uiState.lezecHasCredentials ->
+                            Text("Přihlašovací údaje nejsou uloženy",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        uiState.mode == CragMode.CUSTOM_CRAG ->
+                            Text("Vlastní skála nemá cesty na lezec.cz",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                }
+                Switch(
+                    checked = uiState.syncToLezec,
+                    onCheckedChange = viewModel::onSyncToLezecToggle,
+                    enabled = uiState.mode == CragMode.KNOWN_AREA
+                )
+            }
+
+            when (uiState.lezecSyncState) {
+                LezecSyncState.SYNCING -> LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+                LezecSyncState.SUCCESS -> Text("Odesláno na lezec.cz ✓",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.primary)
+                LezecSyncState.FAILED -> Text("Chyba synchronizace s lezec.cz",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.error)
+                LezecSyncState.NO_ID -> Text("Žádná vybraná cesta není na lezec.cz",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant)
+                else -> {}
+            }
 
             Spacer(Modifier.height(8.dp))
         }

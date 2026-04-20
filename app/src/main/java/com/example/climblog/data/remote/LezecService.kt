@@ -20,6 +20,16 @@ import javax.inject.Singleton
 
 private const val TAG = "LezecService"
 
+data class BulkAscentParams(
+    val lezecId: Int,
+    val dateMillis: Long,
+    val style: AscentStyle,
+    val grade: String,
+    val attempts: Int,
+    val note: String,
+    val routeType: RouteType,
+)
+
 @Singleton
 class LezecService @Inject constructor() {
 
@@ -34,8 +44,24 @@ class LezecService @Inject constructor() {
         note: String,
         routeType: RouteType
     ): Boolean = withContext(Dispatchers.IO) {
-        val stl = style.toLezecCode() ?: return@withContext false
+        val client = login(uid, password) ?: return@withContext false
+        postAscent(client, lezecId, dateMillis, style, grade, attempts, note, routeType)
+    }
 
+    /** Login jednou, pak zapiš každý přelez zvlášť. Vrátí seznam výsledků ve stejném pořadí. */
+    suspend fun loginAndLogAscents(
+        uid: String,
+        password: String,
+        ascents: List<BulkAscentParams>
+    ): List<Boolean> = withContext(Dispatchers.IO) {
+        if (ascents.isEmpty()) return@withContext emptyList()
+        val client = login(uid, password) ?: return@withContext List(ascents.size) { false }
+        ascents.map { a ->
+            postAscent(client, a.lezecId, a.dateMillis, a.style, a.grade, a.attempts, a.note, a.routeType)
+        }
+    }
+
+    private fun login(uid: String, password: String): OkHttpClient? {
         val cookieJar = InMemoryCookieJar()
         val client = OkHttpClient.Builder()
             .cookieJar(cookieJar)
@@ -73,16 +99,29 @@ class LezecService @Inject constructor() {
             Log.d(TAG, "Login body: $body")
             if (!response.isSuccessful && response.code != 302) {
                 Log.e(TAG, "Login failed with code ${response.code}")
-                return@withContext false
+                return null
             }
         }
 
         if (cookieJar.isEmpty()) {
             Log.e(TAG, "Login OK but no cookies — špatné heslo nebo blokování")
-            return@withContext false
+            return null
         }
 
-        // 3. POST denik — formulář v Windows-1250 (server to očekává)
+        return client
+    }
+
+    private fun postAscent(
+        client: OkHttpClient,
+        lezecId: Int,
+        dateMillis: Long,
+        style: AscentStyle,
+        grade: String,
+        attempts: Int,
+        note: String,
+        routeType: RouteType
+    ): Boolean {
+        val stl = style.toLezecCode() ?: return false
         val cal = Calendar.getInstance().apply { timeInMillis = dateMillis }
         val ascentParams = buildWindows1250Form(
             "denik" to "2",
@@ -108,13 +147,12 @@ class LezecService @Inject constructor() {
 
         client.newCall(ascentRequest).execute().use { response ->
             val body = response.body?.string()?.take(600) ?: ""
-            Log.d(TAG, "Denik response: ${response.code}")
-            Log.d(TAG, "Denik body preview: $body")
-            // Úspěch = přesměrování na deník NEBO tělo neobsahuje login formulář
+            Log.d(TAG, "Denik[$lezecId] response: ${response.code}")
+            Log.d(TAG, "Denik[$lezecId] body preview: $body")
             val isLoginPage = body.contains("login.php") || body.contains("name=\"hes\"")
             val success = (response.isSuccessful || response.code == 302) && !isLoginPage
-            if (!success) Log.e(TAG, "Denik.php failed — pravděpodobně neautentizováno")
-            success
+            if (!success) Log.e(TAG, "Denik.php[$lezecId] failed — pravděpodobně neautentizováno")
+            return success
         }
     }
 }
@@ -141,7 +179,7 @@ private class InMemoryCookieJar : CookieJar {
 
 private fun AscentStyle.toLezecCode(): String? = when (this) {
     AscentStyle.ONSIGHT  -> "OS"
-    AscentStyle.FLASH    -> "F"
+    AscentStyle.FLASH    -> "flash"
     AscentStyle.REDPOINT -> "RP"
     AscentStyle.TOPROPE  -> "TH"
     AscentStyle.ATTEMPT  -> "PP"

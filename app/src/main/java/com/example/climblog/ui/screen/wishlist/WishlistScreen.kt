@@ -17,11 +17,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climblog.domain.model.WishlistEntry
 import com.example.climblog.ui.components.EmptyState
 import com.example.climblog.ui.components.GradeChip
+import com.example.climblog.ui.components.SettingsIconButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WishlistScreen(
     onRouteClick: (Long) -> Unit,
+    onSettingsClick: () -> Unit = {},
     viewModel: WishlistViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -29,7 +31,10 @@ fun WishlistScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Cíle") })
+            TopAppBar(
+                title = { Text("Cíle") },
+                actions = { SettingsIconButton(onSettingsClick) }
+            )
         }
     ) { padding ->
         if (uiState.isLoading) {

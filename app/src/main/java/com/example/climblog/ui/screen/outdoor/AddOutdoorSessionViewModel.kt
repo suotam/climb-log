@@ -6,11 +6,18 @@ import com.example.climblog.data.local.dao.AreaDao
 import com.example.climblog.data.local.dao.RouteDao
 import com.example.climblog.data.local.dao.SectorDao
 import com.example.climblog.data.local.entity.toDomain
+import com.example.climblog.data.remote.BulkAscentParams
+import com.example.climblog.data.remote.LezecCredentialsStore
+import com.example.climblog.data.remote.LezecService
+import com.example.climblog.data.remote.LezecSyncState
 import com.example.climblog.data.repository.OutdoorSessionRepository
 import com.example.climblog.domain.model.Area
 import com.example.climblog.domain.model.AscentStyle
+import com.example.climblog.domain.model.RouteType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
@@ -24,6 +31,8 @@ data class SelectableRoute(
     val routeId: Long,
     val routeName: String,
     val grade: String,
+    val lezecId: Int? = null,
+    val routeType: RouteType = RouteType.SPORT,
     val isSelected: Boolean = false,
     val style: AscentStyle = AscentStyle.REDPOINT
 )
@@ -45,6 +54,9 @@ data class AddOutdoorSessionUiState(
     val date: Long = System.currentTimeMillis(),
     val notes: String = "",
     val pendingPhotoUris: List<String> = emptyList(),
+    val syncToLezec: Boolean = false,
+    val lezecHasCredentials: Boolean = false,
+    val lezecSyncState: LezecSyncState = LezecSyncState.IDLE,
     val isSaving: Boolean = false,
     val isSaved: Boolean = false
 ) {
@@ -65,15 +77,24 @@ class AddOutdoorSessionViewModel @Inject constructor(
     private val repository: OutdoorSessionRepository,
     private val areaDao: AreaDao,
     private val sectorDao: SectorDao,
-    private val routeDao: RouteDao
+    private val routeDao: RouteDao,
+    private val lezecService: LezecService,
+    private val lezecCredentialsStore: LezecCredentialsStore,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AddOutdoorSessionUiState())
     val uiState: StateFlow<AddOutdoorSessionUiState> = _uiState
 
+    val navigateToSettings = Channel<Unit>(Channel.BUFFERED)
+
     private var routeLoadingJob: Job? = null
 
     init {
+        viewModelScope.launch {
+            lezecCredentialsStore.hasCredentialsFlow.collect { has ->
+                _uiState.update { it.copy(lezecHasCredentials = has) }
+            }
+        }
         viewModelScope.launch {
             val areas = areaDao.getAllAreas().first().map { it.toDomain() }
             _uiState.update { it.copy(areas = areas) }
@@ -102,7 +123,9 @@ class AddOutdoorSessionViewModel @Inject constructor(
                         SelectableRoute(
                             routeId = route.id,
                             routeName = route.name,
-                            grade = route.grade
+                            grade = route.grade,
+                            lezecId = route.lezecId,
+                            routeType = RouteType.valueOf(route.type)
                         )
                     }
                 )
@@ -138,6 +161,14 @@ class AddOutdoorSessionViewModel @Inject constructor(
     fun onDateChange(date: Long) { _uiState.update { it.copy(date = date) } }
     fun onNotesChange(notes: String) { _uiState.update { it.copy(notes = notes) } }
 
+    fun onSyncToLezecToggle(enabled: Boolean) {
+        if (enabled && !lezecCredentialsStore.hasCredentials()) {
+            viewModelScope.launch { navigateToSettings.send(Unit) }
+        } else {
+            _uiState.update { it.copy(syncToLezec = enabled) }
+        }
+    }
+
     fun addPhotos(uris: List<String>) {
         _uiState.update { it.copy(pendingPhotoUris = it.pendingPhotoUris + uris) }
     }
@@ -149,7 +180,7 @@ class AddOutdoorSessionViewModel @Inject constructor(
     fun save() {
         val state = _uiState.value
         if (!state.canSave || state.isSaving) return
-        _uiState.update { it.copy(isSaving = true) }
+        _uiState.update { it.copy(isSaving = true, lezecSyncState = LezecSyncState.IDLE) }
         viewModelScope.launch {
             repository.saveSession(
                 date = state.date,
@@ -159,6 +190,39 @@ class AddOutdoorSessionViewModel @Inject constructor(
                 routes = state.selectedRoutes,
                 photoUris = state.pendingPhotoUris
             )
+
+            if (state.syncToLezec) {
+                val creds = lezecCredentialsStore.get()
+                if (creds != null) {
+                    _uiState.update { it.copy(lezecSyncState = LezecSyncState.SYNCING) }
+                    val selectedRouteMap = state.sectorsWithRoutes
+                        .flatMap { it.routes }
+                        .filter { it.isSelected && it.lezecId != null }
+                    val ascentsToSync = selectedRouteMap.map { route ->
+                        BulkAscentParams(
+                            lezecId = route.lezecId!!,
+                            dateMillis = state.date,
+                            style = route.style,
+                            grade = route.grade,
+                            attempts = 1,
+                            note = "",
+                            routeType = route.routeType
+                        )
+                    }
+                    if (ascentsToSync.isEmpty()) {
+                        _uiState.update { it.copy(lezecSyncState = LezecSyncState.NO_ID) }
+                        delay(1500)
+                    } else {
+                        val results = runCatching {
+                            lezecService.loginAndLogAscents(creds.first, creds.second, ascentsToSync)
+                        }.getOrDefault(emptyList())
+                        val allOk = results.isNotEmpty() && results.all { it }
+                        _uiState.update { it.copy(lezecSyncState = if (allOk) LezecSyncState.SUCCESS else LezecSyncState.FAILED) }
+                        if (!allOk) delay(1500)
+                    }
+                }
+            }
+
             _uiState.update { it.copy(isSaving = false, isSaved = true) }
         }
     }

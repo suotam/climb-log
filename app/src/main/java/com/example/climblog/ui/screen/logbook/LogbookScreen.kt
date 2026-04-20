@@ -20,6 +20,7 @@ import com.example.climblog.domain.model.WallSession
 import com.example.climblog.ui.components.AscentStyleChip
 import com.example.climblog.ui.components.EmptyState
 import com.example.climblog.ui.components.GradeChip
+import com.example.climblog.ui.components.SettingsIconButton
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -34,6 +35,7 @@ fun LogbookScreen(
     onSessionClick: (sessionId: Long) -> Unit,
     onAddWallSession: () -> Unit,
     onAddOutdoorSession: () -> Unit,
+    onSettingsClick: () -> Unit = {},
     viewModel: LogbookViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -42,7 +44,10 @@ fun LogbookScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Deník") })
+            TopAppBar(
+                title = { Text("Deník") },
+                actions = { SettingsIconButton(onSettingsClick) }
+            )
         },
         floatingActionButton = {
             when (uiState.selectedTab) {

@@ -14,12 +14,14 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climblog.domain.model.GradeSystem
 import com.example.climblog.domain.model.RouteType
+import com.example.climblog.ui.components.SettingsIconButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EditRouteScreen(
     onSaved: () -> Unit,
     onNavigateUp: () -> Unit,
+    onSettingsClick: () -> Unit = {},
     viewModel: EditRouteViewModel = hiltViewModel()
 ) {
     val s by viewModel.uiState.collectAsState()
@@ -45,6 +47,7 @@ fun EditRouteScreen(
                         if (s.isSaving) CircularProgressIndicator(modifier = Modifier.size(18.dp), strokeWidth = 2.dp)
                         else Text("Uložit")
                     }
+                    SettingsIconButton(onSettingsClick)
                 }
             )
         }

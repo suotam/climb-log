@@ -21,6 +21,7 @@ import com.example.climblog.ui.screen.stats.StatsScreen
 import com.example.climblog.ui.screen.outdoor.AddOutdoorSessionScreen
 import com.example.climblog.ui.screen.outdoor.OutdoorSessionDetailScreen
 import com.example.climblog.ui.screen.walls.AddWallSessionScreen
+import com.example.climblog.ui.screen.settings.SettingsScreen
 import com.example.climblog.ui.screen.wishlist.WishlistScreen
 
 @Composable
@@ -28,6 +29,8 @@ fun ClimbLogNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
+    val onSettings = { navController.navigate(Screen.Settings.route) }
+
     NavHost(
         navController = navController,
         startDestination = Screen.AreaList.route,
@@ -36,16 +39,15 @@ fun ClimbLogNavHost(
         // ── Explore ──────────────────────────────────────────────────────────
         composable(Screen.AreaList.route) {
             AreaListScreen(
-                onAreaClick = { areaId ->
-                    navController.navigate(Screen.AreaDetail.createRoute(areaId))
-                },
-                onSectorClick = { sectorId ->
-                    navController.navigate(Screen.RouteList.createRoute(sectorId))
-                },
-                onRouteClick = { routeId ->
-                    navController.navigate(Screen.RouteDetail.createRoute(routeId))
-                }
+                onAreaClick = { areaId -> navController.navigate(Screen.AreaDetail.createRoute(areaId)) },
+                onSectorClick = { sectorId -> navController.navigate(Screen.RouteList.createRoute(sectorId)) },
+                onRouteClick = { routeId -> navController.navigate(Screen.RouteDetail.createRoute(routeId)) },
+                onSettingsClick = onSettings
             )
+        }
+
+        composable(Screen.Settings.route) {
+            SettingsScreen(onNavigateUp = { navController.navigateUp() })
         }
 
         composable(
@@ -56,7 +58,8 @@ fun ClimbLogNavHost(
             AreaDetailScreen(
                 areaId = areaId,
                 onSectorsClick = { id -> navController.navigate(Screen.SectorList.createRoute(id)) },
-                onNavigateUp = { navController.navigateUp() }
+                onNavigateUp = { navController.navigateUp() },
+                onSettingsClick = onSettings
             )
         }
 
@@ -68,7 +71,8 @@ fun ClimbLogNavHost(
             SectorListScreen(
                 areaId = areaId,
                 onSectorClick = { sectorId -> navController.navigate(Screen.RouteList.createRoute(sectorId)) },
-                onNavigateUp = { navController.navigateUp() }
+                onNavigateUp = { navController.navigateUp() },
+                onSettingsClick = onSettings
             )
         }
 
@@ -82,7 +86,8 @@ fun ClimbLogNavHost(
                 onRouteClick = { routeId -> navController.navigate(Screen.RouteDetail.createRoute(routeId)) },
                 onAddRoute = { navController.navigate(Screen.EditRoute.createRoute(sectorId)) },
                 onBulkLog = { routeIds -> navController.navigate(Screen.BulkLogAscent.createRoute(routeIds)) },
-                onNavigateUp = { navController.navigateUp() }
+                onNavigateUp = { navController.navigateUp() },
+                onSettingsClick = onSettings
             )
         }
 
@@ -95,7 +100,8 @@ fun ClimbLogNavHost(
                 routeId = routeId,
                 onLogAscent = { navController.navigate(Screen.LogAscent.createRoute(routeId)) },
                 onEditRoute = { navController.navigate(Screen.EditRoute.editRoute(routeId)) },
-                onNavigateUp = { navController.navigateUp() }
+                onNavigateUp = { navController.navigateUp() },
+                onSettingsClick = onSettings
             )
         }
 
@@ -108,7 +114,8 @@ fun ClimbLogNavHost(
         ) {
             EditRouteScreen(
                 onSaved = { navController.navigateUp() },
-                onNavigateUp = { navController.navigateUp() }
+                onNavigateUp = { navController.navigateUp() },
+                onSettingsClick = onSettings
             )
         }
 
@@ -125,7 +132,8 @@ fun ClimbLogNavHost(
                 routeId = routeId,
                 editAscentId = ascentId,
                 onSaved = { navController.navigateUp() },
-                onNavigateUp = { navController.navigateUp() }
+                onNavigateUp = { navController.navigateUp() },
+                onSettingsClick = onSettings
             )
         }
 
@@ -133,7 +141,8 @@ fun ClimbLogNavHost(
         composable(Screen.AddOutdoorSession.route) {
             AddOutdoorSessionScreen(
                 onSaved = { navController.navigateUp() },
-                onNavigateUp = { navController.navigateUp() }
+                onNavigateUp = { navController.navigateUp() },
+                onSettingsClick = onSettings
             )
         }
 
@@ -145,7 +154,8 @@ fun ClimbLogNavHost(
                 onNavigateUp = { navController.navigateUp() },
                 onEditAscent = { routeId, ascentId ->
                     navController.navigate(Screen.LogAscent.createRoute(routeId, ascentId))
-                }
+                },
+                onSettingsClick = onSettings
             )
         }
 
@@ -155,14 +165,16 @@ fun ClimbLogNavHost(
         ) {
             BulkLogAscentScreen(
                 onSaved = { navController.navigateUp() },
-                onNavigateUp = { navController.navigateUp() }
+                onNavigateUp = { navController.navigateUp() },
+                onSettingsClick = onSettings
             )
         }
 
         composable(Screen.AddWallSession.route) {
             AddWallSessionScreen(
                 onSaved = { navController.navigateUp() },
-                onNavigateUp = { navController.navigateUp() }
+                onNavigateUp = { navController.navigateUp() },
+                onSettingsClick = onSettings
             )
         }
 
@@ -172,23 +184,28 @@ fun ClimbLogNavHost(
                 onEditAscent = { routeId, ascentId -> navController.navigate(Screen.LogAscent.createRoute(routeId, ascentId)) },
                 onSessionClick = { sessionId -> navController.navigate(Screen.OutdoorSessionDetail.createRoute(sessionId)) },
                 onAddWallSession = { navController.navigate(Screen.AddWallSession.route) },
-                onAddOutdoorSession = { navController.navigate(Screen.AddOutdoorSession.route) }
+                onAddOutdoorSession = { navController.navigate(Screen.AddOutdoorSession.route) },
+                onSettingsClick = onSettings
             )
         }
 
-        composable(Screen.Stats.route) { StatsScreen() }
+        composable(Screen.Stats.route) {
+            StatsScreen(onSettingsClick = onSettings)
+        }
 
         composable(Screen.Calendar.route) {
             CalendarScreen(
                 onAscentClick = { routeId -> navController.navigate(Screen.RouteDetail.createRoute(routeId)) },
                 onEditAscent = { routeId, ascentId -> navController.navigate(Screen.LogAscent.createRoute(routeId, ascentId)) },
-                onSessionClick = { sessionId -> navController.navigate(Screen.OutdoorSessionDetail.createRoute(sessionId)) }
+                onSessionClick = { sessionId -> navController.navigate(Screen.OutdoorSessionDetail.createRoute(sessionId)) },
+                onSettingsClick = onSettings
             )
         }
 
         composable(Screen.Wishlist.route) {
             WishlistScreen(
-                onRouteClick = { routeId -> navController.navigate(Screen.RouteDetail.createRoute(routeId)) }
+                onRouteClick = { routeId -> navController.navigate(Screen.RouteDetail.createRoute(routeId)) },
+                onSettingsClick = onSettings
             )
         }
     }

@@ -47,6 +47,7 @@ sealed class Screen(val route: String) {
     object Stats : Screen("stats")
     object Calendar : Screen("calendar")
     object Wishlist : Screen("wishlist")
+    object Settings : Screen("settings")
 }
 
 val bottomNavRoutes = setOf(

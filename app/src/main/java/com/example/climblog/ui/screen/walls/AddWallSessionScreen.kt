@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climblog.domain.model.BoulderGradeSystem
 import com.example.climblog.domain.model.RopeGradeSystem
+import com.example.climblog.ui.components.SettingsIconButton
 import com.example.climblog.domain.model.SessionType
 import com.example.climblog.domain.model.Wall
 import com.example.climblog.ui.components.WallMapView
@@ -34,6 +35,7 @@ private val dateFormat = SimpleDateFormat("d. M. yyyy", Locale("cs"))
 fun AddWallSessionScreen(
     onSaved: () -> Unit,
     onNavigateUp: () -> Unit,
+    onSettingsClick: () -> Unit = {},
     viewModel: AddWallSessionViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -62,6 +64,7 @@ fun AddWallSessionScreen(
                             Text("Uložit")
                         }
                     }
+                    SettingsIconButton(onSettingsClick)
                 }
             )
         }

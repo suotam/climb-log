@@ -22,6 +22,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climblog.domain.model.OutdoorSession
 import com.example.climblog.ui.components.AscentStyleChip
 import com.example.climblog.ui.components.PhotoSection
+import com.example.climblog.ui.components.SettingsIconButton
 import java.util.Calendar
 
 private val monthNames = arrayOf(
@@ -36,13 +37,17 @@ fun CalendarScreen(
     onAscentClick: (Long) -> Unit,
     onEditAscent: (routeId: Long, ascentId: Long) -> Unit,
     onSessionClick: (sessionId: Long) -> Unit,
+    onSettingsClick: () -> Unit = {},
     viewModel: CalendarViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Kalendář") })
+            TopAppBar(
+                title = { Text("Kalendář") },
+                actions = { SettingsIconButton(onSettingsClick) }
+            )
         }
     ) { padding ->
         LazyColumn(

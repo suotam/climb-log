@@ -25,6 +25,7 @@ import com.example.climblog.domain.model.Route
 import com.example.climblog.ui.components.AscentStyleChip
 import com.example.climblog.ui.components.GradeChip
 import com.example.climblog.ui.components.EmptyState
+import com.example.climblog.ui.components.SettingsIconButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -34,6 +35,7 @@ fun RouteListScreen(
     onAddRoute: () -> Unit,
     onBulkLog: (List<Long>) -> Unit,
     onNavigateUp: () -> Unit,
+    onSettingsClick: () -> Unit = {},
     viewModel: RouteListViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -72,7 +74,8 @@ fun RouteListScreen(
                         IconButton(onClick = onNavigateUp) {
                             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Zpět")
                         }
-                    }
+                    },
+                    actions = { SettingsIconButton(onSettingsClick) }
                 )
             }
         },

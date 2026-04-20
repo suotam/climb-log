@@ -13,8 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.climblog.data.remote.LezecSyncState
 import com.example.climblog.domain.model.AscentStyle
 import com.example.climblog.ui.components.GradeChip
+import com.example.climblog.ui.components.SettingsIconButton
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -26,12 +28,17 @@ private val dateFormat = SimpleDateFormat("d. M. yyyy", Locale("cs"))
 fun BulkLogAscentScreen(
     onSaved: () -> Unit,
     onNavigateUp: () -> Unit,
+    onSettingsClick: () -> Unit = {},
     viewModel: BulkLogAscentViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(uiState.isSaved) {
         if (uiState.isSaved) onSaved()
+    }
+
+    LaunchedEffect(viewModel.navigateToSettings) {
+        for (event in viewModel.navigateToSettings) onSettingsClick()
     }
 
     Scaffold(
@@ -42,7 +49,8 @@ fun BulkLogAscentScreen(
                     IconButton(onClick = onNavigateUp) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Zpět")
                     }
-                }
+                },
+                actions = { SettingsIconButton(onSettingsClick) }
             )
         }
     ) { padding ->
@@ -148,26 +156,57 @@ fun BulkLogAscentScreen(
                 }
             }
 
+            HorizontalDivider()
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column {
+                    Text("Zapsat na lezec.cz", style = MaterialTheme.typography.bodyLarge)
+                    if (!uiState.lezecHasCredentials) {
+                        Text(
+                            "Přihlašovací údaje nejsou uloženy",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+                Switch(
+                    checked = uiState.syncToLezec,
+                    onCheckedChange = viewModel::onSyncToLezecToggle
+                )
+            }
+
             Spacer(Modifier.height(8.dp))
 
             Button(
                 onClick = viewModel::save,
                 enabled = !uiState.isSaving,
+                colors = if (uiState.lezecSyncState == LezecSyncState.FAILED || uiState.lezecSyncState == LezecSyncState.NO_ID)
+                    ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
+                else
+                    ButtonDefaults.buttonColors(),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(52.dp)
             ) {
-                if (uiState.isSaving) {
-                    CircularProgressIndicator(
-                        modifier = Modifier.size(20.dp),
-                        color = MaterialTheme.colorScheme.onPrimary,
-                        strokeWidth = 2.dp
-                    )
-                } else {
-                    Text(
-                        "Uložit ${uiState.routes.size} přelezů",
-                        style = MaterialTheme.typography.labelLarge
-                    )
+                when (uiState.lezecSyncState) {
+                    LezecSyncState.SYNCING -> {
+                        CircularProgressIndicator(modifier = Modifier.size(20.dp), color = MaterialTheme.colorScheme.onPrimary, strokeWidth = 2.dp)
+                        Spacer(Modifier.width(8.dp))
+                        Text("Zapisuji na lezec.cz…", style = MaterialTheme.typography.labelLarge)
+                    }
+                    LezecSyncState.FAILED -> Text("Chyba synchronizace s lezec.cz", style = MaterialTheme.typography.labelLarge)
+                    LezecSyncState.NO_ID -> Text("Žádná cesta není na lezec.cz", style = MaterialTheme.typography.labelLarge)
+                    else -> {
+                        if (uiState.isSaving) {
+                            CircularProgressIndicator(modifier = Modifier.size(20.dp), color = MaterialTheme.colorScheme.onPrimary, strokeWidth = 2.dp)
+                        } else {
+                            Text("Uložit ${uiState.routes.size} přelezů", style = MaterialTheme.typography.labelLarge)
+                        }
+                    }
                 }
             }
         }

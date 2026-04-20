@@ -16,6 +16,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climblog.domain.model.OutdoorSessionRoute
 import com.example.climblog.ui.components.AscentStyleChip
 import com.example.climblog.ui.components.PhotoSection
+import com.example.climblog.ui.components.SettingsIconButton
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -27,6 +28,7 @@ private val dateFormat = SimpleDateFormat("d. M. yyyy", Locale("cs"))
 fun OutdoorSessionDetailScreen(
     onNavigateUp: () -> Unit,
     onEditAscent: (routeId: Long, ascentId: Long) -> Unit,
+    onSettingsClick: () -> Unit = {},
     viewModel: OutdoorSessionDetailViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -52,6 +54,7 @@ fun OutdoorSessionDetailScreen(
                             Text("Uložit")
                         }
                     }
+                    SettingsIconButton(onSettingsClick)
                 }
             )
         }
