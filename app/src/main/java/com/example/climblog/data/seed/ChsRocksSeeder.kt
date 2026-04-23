@@ -38,8 +38,10 @@ class ChsRocksSeeder @Inject constructor(
     companion object {
         private const val PREFS = "chs_seed"
         private const val KEY_FULL_SEED = "seeded_v4"  // plný seed — neměnit, jinak smaže data!
-        private const val KEY_LEZEC_IDS  = "lezecids_v2" // přidá lezecId bez mazání dat
+        private const val KEY_LEZEC_IDS  = "lezecids_v3" // přidá lezecId bez mazání dat
     }
+
+    private var lezecIdsSeenInAsset = 0
 
     suspend fun seedIfNeeded() {
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
@@ -60,13 +62,16 @@ class ChsRocksSeeder @Inject constructor(
 
         // Aktualizace lezecId — nemaže žádná data, jen updatuje existující cesty
         if (!prefs.getBoolean(KEY_LEZEC_IDS, false)) {
+            lezecIdsSeenInAsset = 0
             context.assets.open("chs-rocks.json").use { stream ->
                 val reader = JsonReader(InputStreamReader(stream, Charsets.UTF_8))
                 reader.isLenient = true
                 updateLezecIds(reader)
                 reader.close()
             }
-            prefs.edit().putBoolean(KEY_LEZEC_IDS, true).apply()
+            if (lezecIdsSeenInAsset > 0) {
+                prefs.edit().putBoolean(KEY_LEZEC_IDS, true).apply()
+            }
         }
     }
 
@@ -140,7 +145,7 @@ class ChsRocksSeeder @Inject constructor(
             while (reader.hasNext()) {
                 when (reader.nextName()) {
                     "id"      -> routeId = nextLongOrNull(reader) ?: -1L
-                    "lezecId" -> lezecId = nextIntOrNull(reader)
+                    "lezecId" -> lezecId = nextIntOrNull(reader)?.also { lezecIdsSeenInAsset++ }
                     else      -> reader.skipValue()
                 }
             }
