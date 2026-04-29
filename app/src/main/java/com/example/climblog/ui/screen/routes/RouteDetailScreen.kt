@@ -10,12 +10,14 @@ import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.BookmarkBorder
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.climblog.data.remote.LezecComment
 import com.example.climblog.domain.model.Ascent
 import com.example.climblog.domain.model.Route
 import com.example.climblog.domain.model.RouteComment
@@ -46,6 +48,14 @@ fun RouteDetailScreen(
     var showWishlistDialog by remember { mutableStateOf(false) }
     var showAddCommentDialog by remember { mutableStateOf(false) }
     var deleteCommentTarget by remember { mutableStateOf<RouteComment?>(null) }
+    var showAddLezecCommentDialog by remember { mutableStateOf(false) }
+
+    val lezecPostState = uiState.lezecPostState
+    LaunchedEffect(lezecPostState) {
+        if (lezecPostState is LezecPostState.Success || lezecPostState is LezecPostState.Error) {
+            viewModel.resetLezecPostState()
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -133,14 +143,45 @@ fun RouteDetailScreen(
                 )
             }
 
-            // Comments
+            // Lezec.cz comments
+            if (route.lezecId != null) {
+                item {
+                    LezecCommentsSection(
+                        state = uiState.lezecCommentsState,
+                        postState = uiState.lezecPostState,
+                        onLoad = viewModel::loadLezecComments,
+                        onAddComment = { showAddLezecCommentDialog = true },
+                    )
+                }
+                when (val s = uiState.lezecCommentsState) {
+                    is LezecCommentsState.Loaded -> {
+                        if (s.comments.isEmpty()) {
+                            item {
+                                Text(
+                                    "Žádné komentáře na lezec.cz",
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.padding(start = 4.dp, bottom = 4.dp)
+                                )
+                            }
+                        } else {
+                            items(s.comments, key = { "lezec_${it.author}_${it.date}_${it.text.take(20)}" }) {
+                                LezecCommentCard(it)
+                            }
+                        }
+                    }
+                    else -> {}
+                }
+            }
+
+            // Local comments
             item {
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("Komentáře (${uiState.comments.size})", style = MaterialTheme.typography.titleMedium)
+                    Text("Moje poznámky (${uiState.comments.size})", style = MaterialTheme.typography.titleMedium)
                     TextButton(onClick = { showAddCommentDialog = true }) {
                         Icon(Icons.Filled.Add, contentDescription = null, modifier = Modifier.size(18.dp))
                         Spacer(Modifier.width(4.dp))
@@ -251,7 +292,7 @@ fun RouteDetailScreen(
     deleteCommentTarget?.let { comment ->
         AlertDialog(
             onDismissRequest = { deleteCommentTarget = null },
-            title = { Text("Smazat komentář?") },
+            title = { Text("Smazat poznámku?") },
             confirmButton = {
                 TextButton(onClick = {
                     viewModel.deleteComment(comment)
@@ -261,6 +302,19 @@ fun RouteDetailScreen(
             dismissButton = {
                 TextButton(onClick = { deleteCommentTarget = null }) { Text("Zrušit") }
             }
+        )
+    }
+
+    if (showAddLezecCommentDialog) {
+        AddLezecCommentDialog(
+            initialName = viewModel.getSavedCommentName(),
+            initialEmail = viewModel.getSavedCommentEmail(),
+            isSending = uiState.lezecPostState is LezecPostState.Sending,
+            onConfirm = { name, email, text ->
+                viewModel.postLezecComment(name, email, text)
+                showAddLezecCommentDialog = false
+            },
+            onDismiss = { showAddLezecCommentDialog = false }
         )
     }
 }
@@ -483,5 +537,107 @@ private fun AddCommentDialog(
         dismissButton = {
             TextButton(onClick = onDismiss) { Text("Zrušit") }
         }
+    )
+}
+
+// ── Lezec.cz composables ───────────────────────────────────────────────────────
+
+@Composable
+private fun LezecCommentsSection(
+    state: LezecCommentsState,
+    postState: LezecPostState,
+    onLoad: () -> Unit,
+    onAddComment: () -> Unit,
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+    ) {
+        Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text("Komentáře lezec.cz", style = MaterialTheme.typography.titleMedium)
+                when (state) {
+                    is LezecCommentsState.Idle -> TextButton(onClick = onLoad) { Text("Načíst") }
+                    is LezecCommentsState.Loading -> CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                    is LezecCommentsState.Loaded -> {
+                        Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                            IconButton(onClick = onLoad, modifier = Modifier.size(32.dp)) {
+                                Icon(Icons.Filled.Refresh, contentDescription = "Obnovit", modifier = Modifier.size(18.dp))
+                            }
+                            TextButton(onClick = onAddComment) { Text("Přidat") }
+                        }
+                    }
+                    is LezecCommentsState.Error -> TextButton(onClick = onLoad) { Text("Zkusit znovu") }
+                }
+            }
+            if (state is LezecCommentsState.Error) {
+                Text(state.message, style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.error)
+            }
+            if (postState is LezecPostState.Error) {
+                Text(postState.message, style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.error)
+            }
+        }
+    }
+}
+
+@Composable
+private fun LezecCommentCard(comment: LezecComment) {
+    Card(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(comment.author, style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.primary)
+                if (comment.date.isNotBlank()) {
+                    Text(comment.date, style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+            }
+            Text(comment.text, style = MaterialTheme.typography.bodyMedium)
+        }
+    }
+}
+
+@Composable
+private fun AddLezecCommentDialog(
+    initialName: String,
+    initialEmail: String,
+    isSending: Boolean,
+    onConfirm: (name: String, email: String, text: String) -> Unit,
+    onDismiss: () -> Unit,
+) {
+    var name by remember { mutableStateOf(initialName) }
+    var email by remember { mutableStateOf(initialEmail) }
+    var text by remember { mutableStateOf("") }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Přidat komentář na lezec.cz") },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                OutlinedTextField(value = name, onValueChange = { name = it },
+                    label = { Text("Jméno") }, singleLine = true, modifier = Modifier.fillMaxWidth())
+                OutlinedTextField(value = email, onValueChange = { email = it },
+                    label = { Text("Email (volitelně)") }, singleLine = true, modifier = Modifier.fillMaxWidth())
+                OutlinedTextField(value = text, onValueChange = { text = it },
+                    label = { Text("Komentář") }, modifier = Modifier.fillMaxWidth(),
+                    minLines = 3, maxLines = 6)
+            }
+        },
+        confirmButton = {
+            TextButton(
+                onClick = { onConfirm(name.ifBlank { "?" }, email, text) },
+                enabled = text.isNotBlank() && !isSending
+            ) { Text(if (isSending) "Odesílám…" else "Odeslat") }
+        },
+        dismissButton = { TextButton(onClick = onDismiss) { Text("Zrušit") } }
     )
 }

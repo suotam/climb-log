@@ -20,6 +20,8 @@ import javax.inject.Singleton
 
 private const val TAG = "LezecService"
 
+data class LezecComment(val author: String, val date: String, val text: String)
+
 data class BulkAscentParams(
     val lezecId: Int,
     val dateMillis: Long,
@@ -111,6 +113,87 @@ class LezecService @Inject constructor() {
         return client
     }
 
+    suspend fun fetchRouteComments(lezecId: Int): List<LezecComment> = withContext(Dispatchers.IO) {
+        val client = OkHttpClient.Builder().build()
+        val request = Request.Builder()
+            .url("https://www.lezec.cz/cesta.php?key=$lezecId")
+            .addHeader("User-Agent", "Mozilla/5.0 (Android)")
+            .build()
+        val html = client.newCall(request).execute().use { response ->
+            val bytes = response.body?.bytes() ?: return@withContext emptyList<LezecComment>()
+            String(bytes, java.nio.charset.Charset.forName("windows-1250"))
+        }
+        parseRouteComments(html)
+    }
+
+    suspend fun postRouteComment(lezecId: Int, name: String, email: String, text: String): Boolean =
+        withContext(Dispatchers.IO) {
+            val cookieJar = InMemoryCookieJar()
+            val client = OkHttpClient.Builder().cookieJar(cookieJar).followRedirects(false).build()
+
+            // 1. GET stránku — server nastaví session cookies a vygeneruje kkk token
+            val html = client.newCall(
+                Request.Builder()
+                    .url("https://www.lezec.cz/cesta.php?key=$lezecId")
+                    .addHeader("User-Agent", "Mozilla/5.0 (Android)")
+                    .build()
+            ).execute().use { response ->
+                val bytes = response.body?.bytes() ?: return@withContext false
+                String(bytes, java.nio.charset.Charset.forName("windows-1250"))
+            }
+
+            // 2. Extrahuj per-session kkk token
+            val kkk = Regex("""name=['"]?kkk['"]?[^>]+value=['"]?([a-f0-9]+)""", RegexOption.IGNORE_CASE)
+                .find(html)?.groupValues?.get(1) ?: run {
+                    Log.e(TAG, "postComment[$lezecId] kkk token not found")
+                    return@withContext false
+                }
+            Log.d(TAG, "postComment[$lezecId] kkk=$kkk cookies=${cookieJar.cookieNames()}")
+
+            // 3. POST s session cookies a správným tokenem
+            val body = buildWindows1250Form(
+                "cesta" to "4",
+                "key" to lezecId.toString(),
+                "kkk" to kkk,
+                "jmn" to name,
+                "eml" to email,
+                "poz" to text
+            )
+            client.newCall(
+                Request.Builder()
+                    .url("https://www.lezec.cz/cesta.php")
+                    .post(body.toRequestBody("application/x-www-form-urlencoded".toMediaType()))
+                    .addHeader("Referer", "https://www.lezec.cz/cesta.php?key=$lezecId")
+                    .addHeader("Origin", "https://www.lezec.cz")
+                    .addHeader("User-Agent", "Mozilla/5.0 (Android)")
+                    .build()
+            ).execute().use { response ->
+                Log.d(TAG, "postComment[$lezecId] code=${response.code}")
+                response.isSuccessful || response.code == 302
+            }
+        }
+
+    private fun parseRouteComments(html: String): List<LezecComment> {
+        val startTag = "<h4>Komentáře</h4>"
+        val startIdx = html.indexOf(startTag)
+        if (startIdx < 0) return emptyList()
+        val contentStart = startIdx + startTag.length
+        val formIdx = html.indexOf("<form", contentStart)
+        val section = if (formIdx > 0) html.substring(contentStart, formIdx) else html.substring(contentStart)
+
+        return section.split("<hr>").mapNotNull { segment ->
+            val trimmed = segment.trim()
+            if (trimmed.isBlank()) return@mapNotNull null
+            val divIdx = trimmed.indexOf("<br><div")
+            val text = (if (divIdx > 0) trimmed.substring(0, divIdx) else trimmed).stripHtml()
+            if (text.isBlank()) return@mapNotNull null
+            val match = Regex("""Zapsal:\s*(.*?),\s*(\d{2}\.\d{2}\.\d{4})""").find(trimmed)
+            val author = match?.groupValues?.get(1)?.stripHtml() ?: "?"
+            val date = match?.groupValues?.get(2) ?: ""
+            LezecComment(author = author, date = date, text = text)
+        }
+    }
+
     private fun postAscent(
         client: OkHttpClient,
         lezecId: Int,
@@ -156,6 +239,12 @@ class LezecService @Inject constructor() {
         }
     }
 }
+
+private fun String.stripHtml(): String =
+    replace(Regex("<[^>]+>"), "")
+        .replace("&amp;", "&").replace("&quot;", "\"")
+        .replace("&lt;", "<").replace("&gt;", ">").replace("&nbsp;", " ")
+        .trim()
 
 /** Sestaví URL-encoded formulář v kódování Windows-1250 (jak očekává lezec.cz). */
 private fun buildWindows1250Form(vararg pairs: Pair<String, String>): String =

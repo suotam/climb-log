@@ -33,6 +33,14 @@ interface AscentDao {
     @Query("SELECT style, COUNT(*) as cnt FROM ascents GROUP BY style")
     suspend fun getAscentCountByStyle(): List<StyleCount>
 
+    @Query("""
+        SELECT a.style, r.grade
+        FROM ascents a
+        JOIN routes r ON a.routeId = r.id
+        WHERE a.style NOT IN ('ATTEMPT', 'PROJECT')
+    """)
+    fun getSentAscentsWithGrade(): Flow<List<AscentWithGrade>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(ascent: AscentEntity): Long
 
@@ -44,3 +52,5 @@ interface AscentDao {
 }
 
 data class StyleCount(val style: String, val cnt: Int)
+
+data class AscentWithGrade(val style: String, val grade: String)

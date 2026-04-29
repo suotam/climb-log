@@ -36,4 +36,11 @@ class LezecCredentialsStore @Inject constructor(
         prefs.edit().clear().apply()
         _hasCredentials.value = false
     }
+
+    fun saveCommentAuthor(name: String, email: String) {
+        prefs.edit().putString("comment_name", name).putString("comment_email", email).apply()
+    }
+
+    fun getCommentName(): String = prefs.getString("comment_name", "") ?: ""
+    fun getCommentEmail(): String = prefs.getString("comment_email", "") ?: ""
 }

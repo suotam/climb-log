@@ -2,6 +2,7 @@ package com.example.climblog.ui.screen.stats
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.climblog.data.local.dao.AscentWithGrade
 import com.example.climblog.data.repository.AscentRepository
 import com.example.climblog.data.repository.WallRepository
 import com.example.climblog.domain.model.AscentStyle
@@ -17,20 +18,43 @@ data class WallStatsData(
     val totalSessions: Int = 0,
     val totalRoutes: Int = 0,
     val sessionsByType: Map<SessionType, Int> = emptyMap(),
-    val topGrades: List<Pair<String, Int>> = emptyList(),   // grade → count, sorted desc
-    val wallBreakdown: List<Pair<String, Int>> = emptyList() // wallName → sessionCount
+    val topGrades: List<Pair<String, Int>> = emptyList(),
+    val wallBreakdown: List<Pair<String, Int>> = emptyList()
 )
+
+data class GradePyramidRow(
+    val grade: String,
+    val onsight: Int = 0,
+    val flash: Int = 0,
+    val redpoint: Int = 0,
+    val toprope: Int = 0,
+) {
+    val total: Int get() = onsight + flash + redpoint + toprope
+}
 
 data class StatsUiState(
     val filter: StatsFilter = StatsFilter.VSE,
-    // Outdoor (Skály)
     val totalAscents: Int = 0,
     val sentRoutes: Int = 0,
     val ascentsByStyle: Map<AscentStyle, Int> = emptyMap(),
-    // Indoor (Stěny)
+    val pyramid: List<GradePyramidRow> = emptyList(), // hardest first
     val wallStats: WallStatsData = WallStatsData(),
     val isLoading: Boolean = true
 )
+
+private val GRADE_ORDER = listOf(
+    "1", "2", "3", "3+",
+    "4", "4+", "5", "5-", "5+", "5a", "5b", "5c", "5c+",
+    "6-", "6", "6+", "6a", "6a+", "6b", "6b+", "6c", "6c+",
+    "7-", "7", "7+", "7a", "7a+", "7b", "7b+", "7c", "7c+",
+    "8-", "8", "8+", "8a", "8a+", "8b", "8b+", "8c", "8c+",
+    "9a", "9a+", "9b", "9b+", "9c"
+)
+
+private fun gradeIndex(grade: String): Int {
+    val idx = GRADE_ORDER.indexOf(grade.trim().lowercase())
+    return if (idx >= 0) idx else GRADE_ORDER.size + grade.length
+}
 
 @HiltViewModel
 class StatsViewModel @Inject constructor(
@@ -41,10 +65,12 @@ class StatsViewModel @Inject constructor(
     private val _filter = MutableStateFlow(StatsFilter.VSE)
 
     val uiState: StateFlow<StatsUiState> = combine(
-        ascentRepository.getAllAscents(),
-        wallRepository.getAllSessions(),
-        _filter
-    ) { ascents, sessions, filter ->
+        combine(
+            ascentRepository.getAllAscents(),
+            ascentRepository.getSentAscentsWithGrade(),
+        ) { ascents, withGrade -> ascents to withGrade },
+        combine(wallRepository.getAllSessions(), _filter) { sessions, filter -> sessions to filter }
+    ) { (ascents, withGrade), (sessions, filter) ->
         val byStyle = AscentStyle.entries.associateWith { style ->
             ascents.count { it.style == style }
         }.filterValues { it > 0 }
@@ -58,6 +84,7 @@ class StatsViewModel @Inject constructor(
             totalAscents = ascents.size,
             sentRoutes = sentRouteIds.size,
             ascentsByStyle = byStyle,
+            pyramid = buildPyramid(withGrade),
             wallStats = buildWallStats(sessions),
             isLoading = false
         )
@@ -68,6 +95,25 @@ class StatsViewModel @Inject constructor(
     )
 
     fun setFilter(filter: StatsFilter) { _filter.value = filter }
+
+    private fun buildPyramid(ascents: List<AscentWithGrade>): List<GradePyramidRow> {
+        if (ascents.isEmpty()) return emptyList()
+        val acc = mutableMapOf<String, GradePyramidRow>()
+        ascents.forEach { a ->
+            val g = a.grade.trim()
+            val row = acc.getOrDefault(g, GradePyramidRow(grade = g))
+            acc[g] = when (a.style) {
+                "ONSIGHT"  -> row.copy(onsight = row.onsight + 1)
+                "FLASH"    -> row.copy(flash = row.flash + 1)
+                "REDPOINT" -> row.copy(redpoint = row.redpoint + 1)
+                "TOPROPE"  -> row.copy(toprope = row.toprope + 1)
+                else       -> row
+            }
+        }
+        return acc.values
+            .filter { it.total > 0 }
+            .sortedByDescending { gradeIndex(it.grade) }
+    }
 
     private fun buildWallStats(sessions: List<WallSession>): WallStatsData {
         if (sessions.isEmpty()) return WallStatsData()

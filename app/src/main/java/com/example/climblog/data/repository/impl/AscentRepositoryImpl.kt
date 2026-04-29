@@ -1,6 +1,7 @@
 package com.example.climblog.data.repository.impl
 
 import com.example.climblog.data.local.dao.AscentDao
+import com.example.climblog.data.local.dao.AscentWithGrade
 import com.example.climblog.data.local.entity.toDomain
 import com.example.climblog.data.local.entity.toEntity
 import com.example.climblog.data.repository.AscentRepository
@@ -21,6 +22,9 @@ class AscentRepositoryImpl @Inject constructor(
 
     override fun getAscentsByDateRange(startDate: Long, endDate: Long): Flow<List<Ascent>> =
         ascentDao.getAscentsByDateRange(startDate, endDate).map { list -> list.map { it.toDomain() } }
+
+    override fun getSentAscentsWithGrade(): Flow<List<AscentWithGrade>> =
+        ascentDao.getSentAscentsWithGrade()
 
     override suspend fun getAscentById(id: Long): Ascent? =
         ascentDao.getAscentById(id)?.toDomain()

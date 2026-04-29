@@ -9,6 +9,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.climblog.domain.model.AscentStyle
@@ -66,6 +67,9 @@ fun StatsScreen(onSettingsClick: () -> Unit = {}, viewModel: StatsViewModel = hi
                 StatsFilter.SKALY -> {
                     item { OutdoorSummaryRow(uiState) }
                     item { OutdoorStyleCard(uiState) }
+                    if (uiState.pyramid.isNotEmpty()) {
+                        item { GradePyramidCard(uiState.pyramid) }
+                    }
                 }
                 StatsFilter.STENY -> {
                     item { WallSummaryRow(uiState) }
@@ -79,6 +83,9 @@ fun StatsScreen(onSettingsClick: () -> Unit = {}, viewModel: StatsViewModel = hi
                 StatsFilter.VSE -> {
                     item { CombinedSummaryRow(uiState) }
                     item { OutdoorStyleCard(uiState) }
+                    if (uiState.pyramid.isNotEmpty()) {
+                        item { GradePyramidCard(uiState.pyramid) }
+                    }
                     if (uiState.wallStats.wallBreakdown.isNotEmpty()) {
                         item { WallBreakdownCard(uiState) }
                     }
@@ -185,6 +192,72 @@ private fun StatCard(label: String, value: String, modifier: Modifier = Modifier
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
                 textAlign = androidx.compose.ui.text.style.TextAlign.Center)
         }
+    }
+}
+
+// ── Grade pyramid ──────────────────────────────────────────────────────────────
+
+private val COLOR_ONSIGHT  = Color(0xFF4CAF50)
+private val COLOR_FLASH    = Color(0xFFFF9800)
+private val COLOR_REDPOINT = Color(0xFF2196F3)
+private val COLOR_TOPROPE  = Color(0xFF9E9E9E)
+
+@Composable
+private fun GradePyramidCard(pyramid: List<GradePyramidRow>) {
+    val maxTotal = pyramid.maxOf { it.total }
+    Card(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            Text("Pyramida stupňů", style = MaterialTheme.typography.titleMedium)
+            // Legend
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.padding(bottom = 4.dp)) {
+                listOf("OS" to COLOR_ONSIGHT, "Flash" to COLOR_FLASH, "RP" to COLOR_REDPOINT, "TR" to COLOR_TOPROPE)
+                    .forEach { (label, color) ->
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                            Box(Modifier.size(10.dp).clip(RoundedCornerShape(2.dp)).background(color))
+                            Text(label, style = MaterialTheme.typography.labelSmall)
+                        }
+                    }
+            }
+            pyramid.forEach { row -> PyramidBar(row = row, maxTotal = maxTotal) }
+        }
+    }
+}
+
+@Composable
+private fun PyramidBar(row: GradePyramidRow, maxTotal: Int) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Text(row.grade, style = MaterialTheme.typography.labelMedium, modifier = Modifier.width(40.dp))
+        Box(
+            modifier = Modifier.weight(1f).height(22.dp)
+                .clip(RoundedCornerShape(4.dp))
+                .background(MaterialTheme.colorScheme.surfaceVariant)
+        ) {
+            val fraction = row.total.toFloat() / maxTotal
+            Row(modifier = Modifier.fillMaxHeight().fillMaxWidth(fraction)) {
+                val segments = listOf(
+                    row.onsight  to COLOR_ONSIGHT,
+                    row.flash    to COLOR_FLASH,
+                    row.redpoint to COLOR_REDPOINT,
+                    row.toprope  to COLOR_TOPROPE,
+                )
+                segments.forEach { (count, color) ->
+                    if (count > 0) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .weight(count.toFloat())
+                                .background(color)
+                        )
+                    }
+                }
+            }
+        }
+        Text(row.total.toString(), style = MaterialTheme.typography.labelMedium,
+            modifier = Modifier.width(24.dp))
     }
 }
 
